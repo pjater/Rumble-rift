@@ -44,6 +44,34 @@ header{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .card span{color:var(--muted);font-size:16px;line-height:1.2}
 .card:hover{background:var(--panel2)}
 .card i{font-style:normal;font-size:14px;line-height:1.2;color:var(--gold)}
+.roadbtn{background:var(--panel);border:2px solid var(--gold);color:var(--gold);border-radius:10px;padding:10px 20px;font-weight:700;letter-spacing:.03em}
+.roadbtn:hover{background:var(--gold);color:#1b1500}
+#road,#setpage{display:grid;gap:22px;min-width:0}
+#setpage[hidden],#road[hidden]{display:none}
+.roadtop{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.roadh{margin:0;font:400 clamp(28px,6vw,52px)/1 var(--display);text-shadow:3px 3px 0 var(--p1),6px 6px 0 var(--p2)}
+.roadscroll{overflow-x:auto;background:var(--panel);border:2px solid var(--line);border-radius:12px}
+.roadin{position:relative;display:flex;min-width:600px;padding:14px 0 16px}
+.roadin::before,.roadin::after{content:'';position:absolute;left:10%;top:129px;height:6px;border-radius:3px}
+.roadin::before{right:10%;background:var(--line)}
+.roadin::after{background:var(--gold);width:calc(var(--prog,0)*20%)}
+.node{position:relative;z-index:1;flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;background:none;border:0;padding:0 4px}
+.node canvas{width:96px;height:96px;margin-bottom:10px}
+.node .dot{width:24px;height:24px;border-radius:50%;border:4px solid var(--line);background:var(--bg);margin-bottom:8px}
+.node.open .dot{border-color:var(--p1)}
+.node.done .dot{border-color:var(--gold);background:var(--gold)}
+.node[aria-checked=true] .dot{border-color:#fff;box-shadow:0 0 0 4px rgba(255,194,61,.45)}
+.node[aria-checked=true] canvas{filter:drop-shadow(0 0 8px var(--gold))}
+.node b{font:400 15px var(--display);letter-spacing:.03em}
+.node span{color:var(--muted);font-size:16px;line-height:1.15;text-align:center}
+.node:disabled{opacity:.7;cursor:not-allowed}
+.pickhead{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pickhead .seeall{padding:4px 14px;min-height:32px}
+.strip{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:8px;align-items:center}
+.strip .arrow{padding:0;width:40px;height:56px;font-size:18px}
+.cards.row{display:flex;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;padding:2px}
+.cards.row::-webkit-scrollbar{display:none}
+.cards.row .card{flex:0 0 clamp(160px,23%,230px);scroll-snap-align:start}
 .mapcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
 .mcard canvas{width:100%;height:auto;aspect-ratio:16/9;align-self:stretch;margin-bottom:6px;border-radius:6px}
 .card[aria-checked=true]{border-color:var(--pc);background:var(--panel2);box-shadow:0 0 0 2px var(--pc) inset}
@@ -85,7 +113,7 @@ kbd{display:inline-block;min-width:26px;text-align:center;padding:0 7px;border:2
 #rot{display:none;position:fixed;inset:0;z-index:50;background:#0e0f22;color:#fff;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;font:400 clamp(18px,5vw,28px)/1.2 var(--display);padding:24px}
 #rot span{font-size:64px;line-height:1}
 @media (max-width:760px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.setpanel{padding:12px}}
-@media (pointer:coarse){#controls{display:none}.ghost,.seg button,.cta{min-height:44px}}
+@media (pointer:coarse){.roadbtn{min-height:44px}#controls{display:none}#controls{display:none}.ghost,.seg button,.cta{min-height:44px}}
 /* Phone: fullscreen landscape game with overlay touch controls */
 body.mgame{overflow:hidden;padding:0;position:fixed;inset:0;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;overscroll-behavior:none;touch-action:none}
 body.mgame .wrap{max-width:none;display:block}
@@ -111,7 +139,7 @@ body.mgame #pad button.on{background:rgba(255,194,61,.9)}
 <div class="wrap">
   <header>
     <div class="logo"><i>Rumble</i> <b>Rift</b></div>
-    <div style="display:flex;gap:8px"><button class="ghost" id="setBtn" type="button" aria-expanded="false" data-i18n="settings">Instellingen</button><button class="ghost" id="mute" type="button">Geluid aan</button></div>
+    <div style="display:flex;gap:8px"><button class="ghost" id="setBtn" type="button" data-i18n="settings">Instellingen</button></div>
   </header>
 
   <section id="menu" aria-label="Menu">
@@ -123,19 +151,31 @@ body.mgame #pad button.on{background:rgba(255,194,61,.9)}
       <div class="seg" role="radiogroup" aria-label="Spelmodus" data-i18n-aria="modeAria">
         <button type="button" role="radio" id="m1" aria-checked="true" data-i18n="m1">1 speler (tegen CPU)</button>
         <button type="button" role="radio" id="m2" aria-checked="false" data-i18n="m2">2 spelers</button>
-        <button type="button" role="radio" id="m3" aria-checked="false" data-i18n="m3">Bossfight Road</button>
       </div>
+      <button type="button" class="roadbtn" id="m3" data-i18n="m3">Bossfight Road</button>
     </div>
-    <div id="settings" class="setpanel" hidden></div>
     <div id="picks"></div>
     <div id="mapsel"></div>
-    <div id="roadsel"></div>
     <div class="startbar">
       <button class="cta" id="start" type="button">Start gevecht</button>
       <span class="hint" data-i18n="orEnter">of druk op Enter</span>
     </div>
-    <div class="controls" id="controls"></div>
     <p class="hint" style="margin:0" data-i18n="menuHint" data-html="1">Tegen de CPU speel je met WASD of met de pijltjes. Pauze met <kbd>Esc</kbd> of <kbd>P</kbd>. Tip: val je van het podium, spring twee keer en gebruik dan omhoog + special om terug te komen. Kom je in de buurt van de rand van het eiland, dan grijp je die automatisch en hang je eraan: omhoog = randsprong, richting het podium = opklimmen, omlaag of van het podium af = loslaten. Houd omlaag ingedrukt om de rand te negeren.</p>
+  </section>
+
+  <section id="setpage" hidden aria-label="Instellingen">
+    <div class="roadtop"><button class="ghost" id="setBack" type="button" data-i18n="back">Terug</button><h2 class="roadh" data-i18n="settings">Instellingen</h2></div>
+    <div id="settings" class="setpanel"></div>
+  </section>
+
+  <section id="road" hidden aria-label="Bossfight Road">
+    <div class="roadtop"><button class="ghost" id="roadBack" type="button" data-i18n="toMenu">Naar menu</button><h2 class="roadh" data-i18n="m3">Bossfight Road</h2></div>
+    <div id="roadpick"></div>
+    <div id="roadmap"></div>
+    <div class="startbar">
+      <button class="cta" id="roadStart" type="button" data-i18n="startFight">Start gevecht</button>
+      <span class="hint" data-i18n="orEnter">of druk op Enter</span>
+    </div>
   </section>
 
   <section id="game" hidden aria-label="Arena">
@@ -173,7 +213,7 @@ cv.width=W*S;cv.height=H*S;
 const LANGS=['en','nl','de','fr','es'],LANGN={en:'English',nl:'Nederlands',de:'Deutsch',fr:'Français',es:'Español'};
 let lang='en';
 const TR={
-en:{settings:'Settings',soundOn:'Sound on',soundOff:'Sound off',
+en:{settings:'Settings',
 heroP:'Knock your opponent off the stage. The more damage, the harder he flies. Three lives, last fighter standing wins. Beat the 5 bosses in Bossfight Road to unlock them as fighters!',
 modeAria:'Game mode',m1:'1 player (vs CPU)',m2:'2 players',m3:'Bossfight Road',startFight:'Start fight',startLevel:'Start level',orEnter:'or press Enter',
 menuHint:'Against the CPU you play with WASD or the arrow keys. Pause with <kbd>Esc</kbd> or <kbd>P</kbd>. Tip: if you fall off the stage, jump twice and then use up + special to get back. When you get close to the edge of the island you grab it automatically and hang on: up = ledge jump, toward the stage = climb up, down or away from the stage = let go. Hold down to ignore the ledge.',
@@ -191,7 +231,7 @@ levelAria:'Level',level:'Level {0}',beatFirst:'Beat level {0} first.',defeated:'
 modeRoad:'Bossfight Road · Level {0} vs {1}',modeCpu:'Player 1 vs CPU ({0})',modeP2:'Player 1 vs Player 2',arenaSfx:' · Arena: {0}',lvlCaps:'LEVEL {0} · {1}',
 draw:'Draw!',again:'Again',nextLevel:'Next level',wins:'{0} ({1}) wins!',bossNew:'Boss defeated! {0} unlocked!',bossDone:'Boss defeated!',roadDone:'Bossfight Road complete!',
 bossWins:'{0} wins.',tryAgain:'Try again!',retry:'Try again',resume:'Resume'},
-nl:{settings:'Instellingen',soundOn:'Geluid aan',soundOff:'Geluid uit',
+nl:{settings:'Instellingen',
 heroP:'Sla je tegenstander van het podium. Hoe meer schade, hoe harder hij vliegt. Drie levens, laatste vechter wint. Versla de 5 bazen in de Bossfight Road om ze als vechter vrij te spelen!',
 modeAria:'Spelmodus',m1:'1 speler (tegen CPU)',m2:'2 spelers',m3:'Bossfight Road',startFight:'Start gevecht',startLevel:'Start level',orEnter:'of druk op Enter',
 menuHint:'Tegen de CPU speel je met WASD of met de pijltjes. Pauze met <kbd>Esc</kbd> of <kbd>P</kbd>. Tip: val je van het podium, spring twee keer en gebruik dan omhoog + special om terug te komen. Kom je in de buurt van de rand van het eiland, dan grijp je die automatisch en hang je eraan: omhoog = randsprong, richting het podium = opklimmen, omlaag of van het podium af = loslaten. Houd omlaag ingedrukt om de rand te negeren.',
@@ -209,7 +249,7 @@ levelAria:'Level',level:'Level {0}',beatFirst:'Versla eerst level {0}.',defeated
 modeRoad:'Bossfight Road · Level {0} tegen {1}',modeCpu:'Speler 1 tegen CPU ({0})',modeP2:'Speler 1 tegen Speler 2',arenaSfx:' · Arena: {0}',lvlCaps:'LEVEL {0} · {1}',
 draw:'Gelijkspel!',again:'Opnieuw',nextLevel:'Volgend level',wins:'{0} ({1}) wint!',bossNew:'Boss verslagen! {0} is vrijgespeeld!',bossDone:'Boss verslagen!',roadDone:'Bossfight Road voltooid!',
 bossWins:'{0} wint.',tryAgain:'Probeer het opnieuw!',retry:'Opnieuw proberen',resume:'Hervatten'},
-de:{settings:'Einstellungen',soundOn:'Ton an',soundOff:'Ton aus',
+de:{settings:'Einstellungen',
 heroP:'Schlage deinen Gegner von der Bühne. Je mehr Schaden, desto weiter fliegt er. Drei Leben, der letzte Kämpfer gewinnt. Besiege die 5 Bosse in der Bossfight Road, um sie als Kämpfer freizuschalten!',
 modeAria:'Spielmodus',m1:'1 Spieler (gegen CPU)',m2:'2 Spieler',m3:'Bossfight Road',startFight:'Kampf starten',startLevel:'Level starten',orEnter:'oder drücke Enter',
 menuHint:'Gegen die CPU spielst du mit WASD oder den Pfeiltasten. Pause mit <kbd>Esc</kbd> oder <kbd>P</kbd>. Tipp: Wenn du von der Bühne fällst, springe zweimal und nutze dann hoch + Special, um zurückzukommen. Kommst du in die Nähe des Inselrandes, greifst du ihn automatisch und hängst daran: hoch = Kantensprung, Richtung Bühne = hochklettern, runter oder von der Bühne weg = loslassen. Halte runter gedrückt, um die Kante zu ignorieren.',
@@ -227,7 +267,7 @@ levelAria:'Level',level:'Level {0}',beatFirst:'Besiege zuerst Level {0}.',defeat
 modeRoad:'Bossfight Road · Level {0} gegen {1}',modeCpu:'Spieler 1 gegen CPU ({0})',modeP2:'Spieler 1 gegen Spieler 2',arenaSfx:' · Arena: {0}',lvlCaps:'LEVEL {0} · {1}',
 draw:'Unentschieden!',again:'Nochmal',nextLevel:'Nächstes Level',wins:'{0} ({1}) gewinnt!',bossNew:'Boss besiegt! {0} freigeschaltet!',bossDone:'Boss besiegt!',roadDone:'Bossfight Road abgeschlossen!',
 bossWins:'{0} gewinnt.',tryAgain:'Versuch es nochmal!',retry:'Nochmal versuchen',resume:'Fortsetzen'},
-fr:{settings:'Paramètres',soundOn:'Activer le son',soundOff:'Couper le son',
+fr:{settings:'Paramètres',
 heroP:'Envoie ton adversaire hors de la scène. Plus il subit de dégâts, plus il vole loin. Trois vies, le dernier combattant debout gagne. Bats les 5 boss de la Bossfight Road pour les débloquer comme combattants !',
 modeAria:'Mode de jeu',m1:'1 joueur (contre CPU)',m2:'2 joueurs',m3:'Bossfight Road',startFight:'Lancer le combat',startLevel:'Lancer le niveau',orEnter:'ou appuie sur Entrée',
 menuHint:'Contre le CPU, tu joues avec WASD ou les flèches. Pause avec <kbd>Échap</kbd> ou <kbd>P</kbd>. Astuce : si tu tombes de la scène, saute deux fois puis utilise haut + spécial pour revenir. Près du bord de l’île, tu t’y accroches automatiquement : haut = saut depuis le rebord, vers la scène = remonter, bas ou à l’opposé de la scène = lâcher. Maintiens bas pour ignorer le rebord.',
@@ -245,7 +285,7 @@ levelAria:'Niveau',level:'Niveau {0}',beatFirst:'Bats d’abord le niveau {0}.',
 modeRoad:'Bossfight Road · Niveau {0} contre {1}',modeCpu:'Joueur 1 contre CPU ({0})',modeP2:'Joueur 1 contre Joueur 2',arenaSfx:' · Arène : {0}',lvlCaps:'NIVEAU {0} · {1}',
 draw:'Match nul !',again:'Rejouer',nextLevel:'Niveau suivant',wins:'{0} ({1}) gagne !',bossNew:'Boss vaincu ! {0} débloqué !',bossDone:'Boss vaincu !',roadDone:'Bossfight Road terminée !',
 bossWins:'{0} gagne.',tryAgain:'Réessaie !',retry:'Réessayer',resume:'Reprendre'},
-es:{settings:'Ajustes',soundOn:'Activar sonido',soundOff:'Silenciar',
+es:{settings:'Ajustes',
 heroP:'Saca a tu rival del escenario. Cuanto más daño, más lejos vuela. Tres vidas, gana el último luchador en pie. ¡Vence a los 5 jefes de la Bossfight Road para desbloquearlos como luchadores!',
 modeAria:'Modo de juego',m1:'1 jugador (contra CPU)',m2:'2 jugadores',m3:'Bossfight Road',startFight:'Empezar combate',startLevel:'Empezar nivel',orEnter:'o pulsa Intro',
 menuHint:'Contra la CPU juegas con WASD o las flechas. Pausa con <kbd>Esc</kbd> o <kbd>P</kbd>. Consejo: si te caes del escenario, salta dos veces y luego usa arriba + especial para volver. Cerca del borde de la isla te agarras automáticamente y te quedas colgado: arriba = salto desde el borde, hacia el escenario = trepar, abajo o alejándote del escenario = soltarte. Mantén abajo para ignorar el borde.',
@@ -269,11 +309,17 @@ Object.assign(TR.nl,{resetTitle:'Spel resetten',resetNote:'Wist alle voortgang (
 Object.assign(TR.de,{resetTitle:'Spiel zurücksetzen',resetNote:'Löscht den gesamten Fortschritt (freigeschaltete Kämpfer und Bosse), deine Einstellungen, Tasten und Sprache.',resetGame:'Spiel und Fortschritt zurücksetzen',resetConfirm:'Bist du sicher? Das kann nicht rückgängig gemacht werden.',resetYes:'Ja, alles zurücksetzen',resetNo:'Abbrechen',resetDone:'Spiel zurückgesetzt.'});
 Object.assign(TR.fr,{resetTitle:'Réinitialiser le jeu',resetNote:'Efface toute la progression (combattants et boss débloqués), tes paramètres, touches et langue.',resetGame:'Réinitialiser le jeu et la progression',resetConfirm:'Es-tu sûr ? Cette action est irréversible.',resetYes:'Oui, tout réinitialiser',resetNo:'Annuler',resetDone:'Jeu réinitialisé.'});
 Object.assign(TR.es,{resetTitle:'Reiniciar juego',resetNote:'Borra todo el progreso (luchadores y jefes desbloqueados), tus ajustes, teclas e idioma.',resetGame:'Reiniciar juego y progreso',resetConfirm:'¿Seguro? No se puede deshacer.',resetYes:'Sí, reiniciar todo',resetNo:'Cancelar',resetDone:'Juego reiniciado.'});
+Object.assign(TR.en,{seeAll:'See all',showLess:'Show less',scrollL:'Scroll left',scrollR:'Scroll right'});
+Object.assign(TR.nl,{seeAll:'Alles bekijken',showLess:'Minder tonen',scrollL:'Naar links scrollen',scrollR:'Naar rechts scrollen'});
+Object.assign(TR.de,{seeAll:'Alle anzeigen',showLess:'Weniger anzeigen',scrollL:'Nach links scrollen',scrollR:'Nach rechts scrollen'});
+Object.assign(TR.fr,{seeAll:'Tout voir',showLess:'Voir moins',scrollL:'Défiler à gauche',scrollR:'Défiler à droite'});
+Object.assign(TR.es,{seeAll:'Ver todos',showLess:'Ver menos',scrollL:'Desplazar a la izquierda',scrollR:'Desplazar a la derecha'});
 Object.assign(TR.en,{rotate:'Rotate your phone to landscape'});
 Object.assign(TR.nl,{rotate:'Draai je telefoon naar liggend'});
 Object.assign(TR.de,{rotate:'Drehe dein Handy ins Querformat'});
 Object.assign(TR.fr,{rotate:'Tourne ton téléphone en mode paysage'});
 Object.assign(TR.es,{rotate:'Gira el móvil en horizontal'});
+Object.assign(TR.en,{back:'Back'});Object.assign(TR.nl,{back:'Terug'});Object.assign(TR.de,{back:'Zurück'});Object.assign(TR.fr,{back:'Retour'});Object.assign(TR.es,{back:'Volver'});
 function tx(k){
   let s=TR[lang]&&TR[lang][k];if(s===undefined)s=TR.en[k];if(s===undefined)return k;
   for(let i=1;i<arguments.length;i++)s=s.split('{'+(i-1)+'}').join(arguments[i]);
@@ -305,7 +351,7 @@ fr:['Le Roi des glaces','Le Golem de pierre','Le Chevalier de l’ombre','Le Dra
 es:['El Rey del Hielo','El Gólem de Piedra','El Caballero de las Sombras','El Dragón de Fuego','El Soberano de las Estrellas']
 };
 const rt=r=>(RT[lang]&&RT[lang][ROAD.indexOf(r)])||r.title;
-function updMute(){$('mute').textContent=muted?tx('soundOn'):tx('soundOff');}
+function updMute(){}
 function applyStatic(){
   document.documentElement.lang=lang;
   document.querySelectorAll('[data-i18n]').forEach(e=>{const v=tx(e.dataset.i18n);if(e.dataset.html)e.innerHTML=v;else e.textContent=v;});
@@ -417,11 +463,12 @@ function doRebind(e){
   saveSet();renderSettings();renderControls();
 }
 function renderControls(){
-  $('controls').innerHTML=[0,1].map(p=>'<div class="ctl"><h3 style="color:'+(p?'var(--p2)':'var(--p1)')+'">'+tx('player',p+1)+'</h3><dl>'+NAMES.map(k=>'<dt><kbd>'+keyName(MAP[p][k][0])+'</kbd></dt><dd>'+DESC[k]+'</dd>').join('')+'</dl></div>').join('');
+  const el=$('controls');if(!el)return;
+  el.innerHTML=[0,1].map(p=>'<div class="ctl"><h3 style="color:'+(p?'var(--p2)':'var(--p1)')+'">'+tx('player',p+1)+'</h3><dl>'+NAMES.map(k=>'<dt><kbd>'+keyName(MAP[p][k][0])+'</kbd></dt><dd>'+DESC[k]+'</dd>').join('')+'</dl></div>').join('');
 }
 function renderSettings(){
   const box=$('settings');
-  box.innerHTML='<h2>'+tx('settings')+'</h2>'+
+  box.innerHTML=
    '<div><h3>'+tx('language')+'</h3><div class="seg" role="radiogroup" aria-label="'+tx('language')+'">'+
    LANGS.map(l=>'<button type="button" role="radio" lang="'+l+'" aria-checked="'+(lang===l)+'" data-lg="'+l+'">'+LANGN[l]+'</button>').join('')+'</div></div>'+
    '<div><h3>'+tx('diffTitle')+'</h3><div class="seg" role="radiogroup" aria-label="'+tx('diffAria')+'">'+
@@ -456,6 +503,7 @@ try{const o=JSON.parse(localStorage.getItem('rr_sel')||'null');if(o){
   if(ok(o.map,-1,MAPS.length-1))sel.map=o.map;
   if(ok(o.lvl,0,ROAD.length-1))sel.lvl=o.lvl;
   if(sel.mode===3&&!lvlOpen(sel.lvl))sel.lvl=autoLvl();
+  if(sel.mode===3)sel.mode=1;
 }}catch(e){}
 function saveSel(){try{localStorage.setItem('rr_sel',JSON.stringify(sel));}catch(e){}}
 function resetAll(){
@@ -469,6 +517,8 @@ function resetAll(){
   renderSettings();renderMenu();
 }
 let game=null,running=false,last=0,acc=0;
+const showAll={p1:false,p2:false,map:false};
+let prevMode=1,inSet=false;
 
 /* ---------- Audio ---------- */
 let ac=null,muted=true;
@@ -730,7 +780,7 @@ function startGame(){
   p1.maxSt=p1.stocks;p2.maxSt=p2.stocks;
   p1.x=W/2-100;p2.x=W/2+100;p1.y=p2.y=MAIN.y;p2.face=-1;
   game={mode:sel.mode,road:rd?sel.lvl:-1,players:[p1,p2],proj:[],parts:[],freeze:0,shake:0,countdown:170,over:null,overT:0,paused:false,resumeCd:0,tick:0};
-  $('menu').hidden=true;$('game').hidden=false;$('setBtn').hidden=true;$('settings').hidden=true;rebind=null;
+  $('menu').hidden=true;$('road').hidden=true;$('game').hidden=false;$('setBtn').hidden=true;$('setpage').hidden=true;inSet=false;rebind=null;
   $('modeLabel').textContent=(rd?tx('modeRoad',sel.lvl+1,p2.f.name):(sel.mode===1?tx('modeCpu',DIFFN[cfg.diff]):tx('modeP2')))+tx('arenaSfx',mn(MAPS[mi]));
   $('pad').hidden=!TOUCH;document.body.classList.toggle('mgame',TOUCH);goLandscape();
   hideOv();
@@ -1386,39 +1436,61 @@ function renderMenu(){
   if(sel.p1>=0&&isLocked(sel.p1))sel.p1=0;
   if(sel.p2>=0&&isLocked(sel.p2))sel.p2=1;
   const M=sel.mode;
-  $('m1').setAttribute('aria-checked',M===1);$('m2').setAttribute('aria-checked',M===2);$('m3').setAttribute('aria-checked',M===3);
-  $('start').textContent=M===3?tx('startLevel'):tx('startFight');
-  const rows=[['p1',tx('player',1),'var(--p1)']];
-  if(M!==3)rows.push(['p2',M===1?'CPU':tx('player',2),'var(--p2)']);
-  $('picks').innerHTML=rows.map(([k,name,col])=>
-    '<div class="pick" style="--pc:'+col+'"><h2>'+name+'</h2><div class="cards" role="radiogroup" aria-label="'+tx('fighterAria',name)+'">'+
-    FIGHTERS.map((f,i)=>{const lk=isLocked(i);
-      return '<button type="button" class="card'+(f.boss?' boss':'')+'" role="radio" aria-checked="'+(sel[k]===i)+'"'+(lk?' disabled':'')+' data-k="'+k+'" data-i="'+i+'"><canvas width="144" height="144"></canvas><b>'+(lk?'???':f.name)+'</b><span>'+(lk?tx('lockedDesc'):fd(f))+'</span>'+(lk?'<i>'+tx('locked')+'</i>':'<i>'+tx('special',fs(f))+'</i><i>'+tx('extra',fe(f))+'</i>'+(f.boss?'<i>'+tx('bossTag')+'</i>':''))+'</button>';
-    }).join('')+'<button type="button" class="card" role="radio" aria-checked="'+(sel[k]===-1)+'" data-k="'+k+'" data-i="-1"><canvas width="144" height="144"></canvas><b>'+tx('random')+'</b><span>'+tx('randomF')+'</span></button>'+
-    '</div></div>').join('');
+  $('m1').setAttribute('aria-checked',M===1);$('m2').setAttribute('aria-checked',M===2);
+  if(!game){$('menu').hidden=M===3||inSet;$('road').hidden=M!==3||inSet;$('setpage').hidden=!inSet;$('setBtn').hidden=inSet;}
+  $('start').textContent=tx('startFight');
+  const fcard=(k,i)=>{
+    if(i<0)return '<button type="button" class="card" role="radio" aria-checked="'+(sel[k]===-1)+'" data-k="'+k+'" data-i="-1"><canvas width="144" height="144"></canvas><b>'+tx('random')+'</b><span>'+tx('randomF')+'</span></button>';
+    const f=FIGHTERS[i],lk=isLocked(i);
+    return '<button type="button" class="card'+(f.boss?' boss':'')+'" role="radio" aria-checked="'+(sel[k]===i)+'"'+(lk?' disabled':'')+' data-k="'+k+'" data-i="'+i+'"><canvas width="144" height="144"></canvas><b>'+(lk?'???':f.name)+'</b><span>'+(lk?tx('lockedDesc'):fd(f))+'</span>'+(lk?'<i>'+tx('locked')+'</i>':'<i>'+tx('special',fs(f))+'</i><i>'+tx('extra',fe(f))+'</i>'+(f.boss?'<i>'+tx('bossTag')+'</i>':''))+'</button>';
+  };
+  const mcard=i=>{
+    const n=i>=0?mn(MAPS[i]):tx('random'),d=i>=0?md(MAPS[i]):tx('randomM');
+    return '<button type="button" class="card mcard" role="radio" aria-checked="'+(sel.map===i)+'" data-m="'+i+'"><canvas width="240" height="135"></canvas><b>'+n+'</b><span>'+d+'</span></button>';
+  };
+  /* One row with arrows (or the full grid via "See all"); the selected item is always first, the rest keep their default order */
+  const rowHTML=(k,title,col,aria,cur,all,card,openCls)=>{
+    const ord=[cur].concat(all.filter(i=>i!==cur)),open=!!showAll[k];
+    return '<div class="pick" style="--pc:'+col+'"><div class="pickhead"><h2>'+title+'</h2><button type="button" class="ghost seeall" data-all="'+k+'" aria-expanded="'+open+'">'+(open?tx('showLess'):tx('seeAll'))+'</button></div>'+
+      (open
+        ?'<div class="'+openCls+'" role="radiogroup" aria-label="'+aria+'">'+ord.map(card).join('')+'</div>'
+        :'<div class="strip"><button type="button" class="ghost arrow" data-sc="-1" aria-label="'+tx('scrollL')+'">◀</button><div class="cards row" role="radiogroup" aria-label="'+aria+'">'+ord.map(card).join('')+'</div><button type="button" class="ghost arrow" data-sc="1" aria-label="'+tx('scrollR')+'">▶</button></div>')+
+      '</div>';
+  };
+  const fall=FIGHTERS.map((f,i)=>i).concat([-1]),mall=MAPS.map((m,i)=>i).concat([-1]);
+  const pickHTML=(k,name,col)=>rowHTML(k,name,col,tx('fighterAria',name),sel[k],fall,i=>fcard(k,i),'cards');
   if(M===3){
-    $('mapsel').innerHTML='';
-    $('roadsel').innerHTML='<div class="pick" style="--pc:var(--gold)"><h2>'+tx('m3')+'</h2><div class="mapcards" role="radiogroup" aria-label="'+tx('levelAria')+'">'+
-      ROAD.map((r,i)=>{const bf=FIGHTERS[bossIdx(r.boss)],open=lvlOpen(i),done=unl.includes(r.boss);
-        return '<button type="button" class="card boss" role="radio" aria-checked="'+(sel.lvl===i)+'"'+(open?'':' disabled')+' data-l="'+i+'"><canvas width="144" height="144"></canvas><b>'+tx('level',i+1)+'</b><span>'+(open?bf.name+' · '+rt(r):tx('beatFirst',i))+'</span><i>'+(done?tx('defeated',bf.name):(open?tx('reward',bf.name):tx('locked')))+'</i></button>';
+    $('picks').innerHTML='';$('mapsel').innerHTML='';
+    $('roadpick').innerHTML=pickHTML('p1',tx('player',1),'var(--p1)');
+    const done=ROAD.filter(r=>unl.includes(r.boss)).length;
+    $('roadmap').innerHTML='<div class="roadscroll"><div class="roadin" style="--prog:'+Math.min(done,ROAD.length-1)+'" role="radiogroup" aria-label="'+tx('levelAria')+'">'+
+      ROAD.map((r,i)=>{const bf=FIGHTERS[bossIdx(r.boss)],open=lvlOpen(i),dn=unl.includes(r.boss);
+        return '<button type="button" class="node'+(dn?' done':'')+(open?' open':'')+'" role="radio" aria-checked="'+(sel.lvl===i)+'"'+(open?'':' disabled')+' data-l="'+i+'"><canvas width="192" height="192"></canvas><span class="dot"></span><b>'+tx('level',i+1)+'</b><span>'+(open?bf.name:'???')+'</span></button>';
       }).join('')+'</div></div>';
   }else{
-    $('roadsel').innerHTML='';
-    const ms=MAPS.map((m,i)=>[i,mn(m),md(m)]).concat([[-1,tx('random'),tx('randomM')]]);
-    $('mapsel').innerHTML='<div class="pick" style="--pc:var(--gold)"><h2>'+tx('arena')+'</h2><div class="mapcards" role="radiogroup" aria-label="'+tx('arena')+'">'+
-      ms.map(([i,n,d])=>'<button type="button" class="card mcard" role="radio" aria-checked="'+(sel.map===i)+'" data-m="'+i+'"><canvas width="240" height="135"></canvas><b>'+n+'</b><span>'+d+'</span></button>').join('')+
-      '</div></div>';
+    $('roadpick').innerHTML='';$('roadmap').innerHTML='';
+    $('picks').innerHTML=[['p1',tx('player',1),'var(--p1)']].concat([['p2',M===1?'CPU':tx('player',2),'var(--p2)']]).map(([k,n,c])=>pickHTML(k,n,c)).join('');
+    $('mapsel').innerHTML=rowHTML('map',tx('arena'),'var(--gold)',tx('arena'),sel.map,mall,mcard,'mapcards');
   }
-  document.querySelectorAll('#picks .card').forEach(el=>{
+  document.querySelectorAll('.seeall').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.all;showAll[k]=!showAll[k];renderMenu();const n=document.querySelector('.seeall[data-all="'+k+'"]');if(n)n.focus();}));
+  document.querySelectorAll('.strip').forEach(st=>{
+    const row=st.querySelector('.cards');
+    st.querySelectorAll('.arrow').forEach(a=>a.addEventListener('click',()=>row.scrollBy({left:+a.dataset.sc*row.clientWidth*.8,behavior:'smooth'})));
+  });
+  document.querySelectorAll('#picks .card,#roadpick .card').forEach(el=>{
     const i=+el.dataset.i,c=el.querySelector('canvas').getContext('2d');
     if(i<0){c.scale(2,2);c.fillStyle='#ffc23d';c.font='400 56px Bungee,Impact,sans-serif';c.textAlign='center';c.fillText('?',36,56);}
     else paintFighter(c,i,isLocked(i));
-    el.addEventListener('click',()=>{sel[el.dataset.k]=+el.dataset.i;renderMenu();const n=document.querySelector('#picks .card[data-k="'+el.dataset.k+'"][data-i="'+el.dataset.i+'"]');if(n)n.focus();});
+    el.addEventListener('click',()=>{sel[el.dataset.k]=+el.dataset.i;renderMenu();const n=document.querySelector('.card[data-k="'+el.dataset.k+'"][data-i="'+el.dataset.i+'"]');if(n)n.focus();});
   });
-  document.querySelectorAll('#roadsel .card').forEach(el=>{
+  document.querySelectorAll('#roadmap .node').forEach(el=>{
     const i=+el.dataset.l,c=el.querySelector('canvas').getContext('2d');
-    paintFighter(c,bossIdx(ROAD[i].boss),!lvlOpen(i));
-    el.addEventListener('click',()=>{sel.lvl=i;renderMenu();const n=document.querySelector('#roadsel .card[data-l="'+i+'"]');if(n)n.focus();});
+    c.scale(2,2);c.save();c.translate(48,86);const bf=FIGHTERS[bossIdx(ROAD[i].boss)];const k=bf.boss?.95:1.2;c.scale(k,k);
+    drawFighter(c,bf,{t:0});
+    if(!lvlOpen(i)){c.globalCompositeOperation='source-atop';c.fillStyle='#0b0c20';c.fillRect(-120,-160,300,300);c.globalCompositeOperation='source-over';}
+    c.restore();
+    if(!lvlOpen(i)){c.fillStyle='#ffc23d';c.font='400 30px Bungee,Impact,sans-serif';c.textAlign='center';c.fillText('?',48,58);}
+    el.addEventListener('click',()=>{sel.lvl=i;renderMenu();const n=document.querySelector('#roadmap .node[data-l="'+i+'"]');if(n)n.focus();});
   });
   document.querySelectorAll('#mapsel .mcard').forEach(el=>{
     const i=+el.dataset.m,c=el.querySelector('canvas').getContext('2d');
@@ -1433,22 +1505,27 @@ function renderMenu(){
 }
 $('m1').addEventListener('click',()=>{sel.mode=1;renderMenu();});
 $('m2').addEventListener('click',()=>{sel.mode=2;renderMenu();});
-$('setBtn').addEventListener('click',()=>{const b=$('settings');b.hidden=!b.hidden;rebind=null;keyMsg='';resetAsk=false;$('setBtn').setAttribute('aria-expanded',String(!b.hidden));if(!b.hidden){renderSettings();b.scrollIntoView({block:'nearest'});}});
-$('m3').addEventListener('click',()=>{sel.mode=3;sel.lvl=autoLvl();renderMenu();});
+function openSet(){inSet=true;rebind=null;keyMsg='';resetAsk=false;renderSettings();renderMenu();window.scrollTo(0,0);const b=$('setBack');if(b)b.focus();}
+function closeSet(){inSet=false;rebind=null;keyMsg='';resetAsk=false;renderMenu();window.scrollTo(0,0);const b=$('setBtn');if(b&&!b.hidden)b.focus();}
+$('setBtn').addEventListener('click',openSet);
+$('setBack').addEventListener('click',closeSet);
+$('m3').addEventListener('click',()=>{if(sel.mode!==3)prevMode=sel.mode;sel.mode=3;sel.lvl=autoLvl();renderMenu();window.scrollTo(0,0);});
+$('roadBack').addEventListener('click',()=>{sel.mode=prevMode;renderMenu();window.scrollTo(0,0);});
+$('roadStart').addEventListener('click',()=>{initAudio();startGame();});
 $('start').addEventListener('click',()=>{initAudio();startGame();});
 $('pauseBtn').addEventListener('click',togglePause);
 $('quitBtn').addEventListener('click',toMenu);
-$('mute').addEventListener('click',()=>{initAudio();muted=!muted;updMute();if(!muted)sfx.beep();});
 
 /* ---------- Events ---------- */
 const BLOCK=['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space','Slash','Period','Comma'];
 addEventListener('keydown',e=>{
   initAudio();
   if(rebind){e.preventDefault();doRebind(e);return;}
+  if(inSet&&!game&&e.code==='Escape'){e.preventDefault();closeSet();return;}
   if(game&&running&&(BLOCK.includes(e.code)||isBound(e.code)))e.preventDefault();
   keys.add(e.code);
   if((e.code==='Escape'||e.code==='KeyP')&&!e.repeat)togglePause();
-  if(e.code==='Enter'&&!game&&!$('menu').hidden&&!(document.activeElement&&document.activeElement.tagName==='BUTTON')){startGame();}
+  if(e.code==='Enter'&&!game&&(!$('menu').hidden||!$('road').hidden)&&!(document.activeElement&&document.activeElement.tagName==='BUTTON')){startGame();}
 });
 addEventListener('keyup',e=>keys.delete(e.code));
 addEventListener('blur',()=>{keys.clear();for(const k in vk)vk[k]=false;if(game&&running&&!game.over&&!game.paused)togglePause();});
