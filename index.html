@@ -89,7 +89,7 @@ header{display:flex;align-items:center;justify-content:space-between;gap:12px}
 @keyframes sldShake{0%,100%{transform:translate(0,0)}20%{transform:translate(-1px,.6px)}40%{transform:translate(1px,-.6px)}60%{transform:translate(-.6px,-1px)}80%{transform:translate(.8px,.8px)}}
 .sld-rail{position:relative;height:36px}
 .sld-track{position:absolute;left:0;right:0;top:14px;height:8px;border-radius:4px;background:var(--line)}
-.sld-fill{position:absolute;left:0;top:14px;height:8px;border-radius:4px;background:var(--tc);width:calc(var(--tw)/2 + (100% - var(--tw))*var(--v)/var(--m));transition:width .2s,background-color .25s,box-shadow .25s}
+.sld-fill{position:absolute;left:0;top:14px;height:8px;border-radius:4px;background:var(--tc);width:calc(var(--tw)/2 + (100% - var(--tw))*var(--v)/var(--m));transition:background-color .25s,box-shadow .25s}
 .sld-dot{position:absolute;top:10px;width:16px;height:16px;margin-left:-8px;left:calc(var(--tw)/2 + (100% - var(--tw))*var(--i)/var(--m));border-radius:50%;background:var(--bg);border:3px solid var(--line);transition:background-color .25s,border-color .25s}
 .sld-dot.on{border-color:var(--tc);background:var(--tc)}
 .sld-rail input[type=range]{position:absolute;inset:0;width:100%;height:36px;margin:0;background:transparent;-webkit-appearance:none;appearance:none;cursor:pointer;touch-action:pan-y;outline:none}
@@ -782,23 +782,52 @@ function sliderHTML(id,labels,v,aria){
   return '<div class="sld'+(id==='diff'?' sld-diff':'')+'" data-id="'+id+'" data-c="'+v+'" style="--m:'+m+';--v:'+v+'">'+
     '<div class="sld-rail"><div class="sld-track"></div><div class="sld-fill"></div>'+
     labels.map((_,i)=>'<span class="sld-dot'+(i<=v?' on':'')+'" style="--i:'+i+'"></span>').join('')+
-    '<input type="range" min="0" max="'+m+'" step="1" value="'+v+'" aria-label="'+aria+'" aria-valuetext="'+labels[v]+'"></div>'+
+    '<input type="range" min="0" max="'+m+'" step="any" value="'+v+'" aria-label="'+aria+'" aria-valuetext="'+labels[v]+'"></div>'+
     '<div class="sld-labels">'+labels.map((l,i)=>'<button type="button" tabindex="-1" aria-hidden="true" class="sld-lb'+(i===v?' sel':'')+'" style="--i:'+i+'" data-i="'+i+'">'+l+'</button>').join('')+'</div></div>';
 }
 function bindSliders(box){
   box.querySelectorAll('.sld:not(.music-sld)').forEach(el=>{
     const id=el.dataset.id,inp=el.querySelector('input'),labs=el.querySelectorAll('.sld-lb'),dots=el.querySelectorAll('.sld-dot');
-    const apply=()=>{
-      const v=+inp.value;
-      el.style.setProperty('--v',v);el.dataset.c=v;
+    const m=labs.length-1,clamp=v=>Math.max(0,Math.min(m,v));
+    let goal=+inp.value,disp=goal,raf=0;
+    const commit=v=>{
+      el.dataset.c=v;
       dots.forEach((d,i)=>d.classList.toggle('on',i<=v));
       labs.forEach((b,i)=>b.classList.toggle('sel',i===v));
       inp.setAttribute('aria-valuetext',labs[v].textContent);
       if(id==='diff')cfg.diff=DIFFK[v];else cfg.stocks=STOCKOPT[v];
       saveSet();
     };
-    inp.addEventListener('input',apply);
-    labs.forEach(b=>b.addEventListener('click',()=>{inp.value=b.dataset.i;apply();inp.focus();}));
+    // de knop volgt de muis NIET: hij glijdt altijd naar het gekozen checkpoint
+    const glide=to=>{
+      to=clamp(to);
+      if(to===goal&&raf)return;
+      const changed=to!==goal;
+      goal=to;
+      if(changed)commit(to);
+      cancelAnimationFrame(raf);
+      const from=disp,t0=performance.now(),dur=Math.max(160,Math.min(400,Math.abs(to-from)*260));
+      const step=now=>{
+        const k=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-k,3);
+        disp=from+(to-from)*e;
+        inp.value=disp;
+        el.style.setProperty('--v',disp);
+        raf=k<1?requestAnimationFrame(step):0;
+      };
+      raf=requestAnimationFrame(step);
+    };
+    inp.addEventListener('input',()=>{
+      const t=clamp(Math.round(+inp.value)); // waar de muis/vinger heen wil
+      inp.value=disp;                         // knop blijft staan waar hij is...
+      if(t!==goal||!raf&&disp!==goal)glide(t); // ...en glijdt naar het nieuwe checkpoint
+    });
+    inp.addEventListener('keydown',e=>{
+      const map={ArrowLeft:-1,ArrowDown:-1,ArrowRight:1,ArrowUp:1};
+      if(e.key in map){e.preventDefault();glide(goal+map[e.key]);}
+      else if(e.key==='Home'){e.preventDefault();glide(0);}
+      else if(e.key==='End'){e.preventDefault();glide(m);}
+    });
+    labs.forEach(b=>b.addEventListener('click',()=>{glide(+b.dataset.i);inp.focus();}));
   });
 }
 function renderSettings(){
