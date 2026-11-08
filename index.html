@@ -193,6 +193,8 @@ header{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .qbar i{transition:width .9s cubic-bezier(.22,.8,.3,1)}
 .qwarn{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:rgba(255,160,40,.1);border:2px solid #ffa028;border-radius:10px;padding:10px 12px;color:#ffd9a0;font-weight:700}
 .qwarn[hidden]{display:none}
+.qwarn .wline{display:flex;align-items:center;gap:8px}
+.qwarn .wico{width:20px;height:20px;flex:none}
 .qwsub{font-weight:400;font-size:13px;margin-top:2px;opacity:.9}
 .qfix{background:#ffa028;color:#1b1500;border:0;border-radius:8px;padding:8px 14px;font:700 14px var(--body);box-shadow:0 3px 0 #b36a0a;cursor:pointer}
 .qfix:active{transform:translateY(2px);box-shadow:0 1px 0 #b36a0a}
@@ -292,7 +294,8 @@ header{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .pickhead{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .pickhead .seeall{padding:4px 14px;min-height:32px}
 .strip{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:8px;align-items:center}
-.strip .arrow{padding:0;width:40px;height:56px;font-size:18px}
+.strip .arrow{padding:0;width:40px;height:56px;display:grid;place-items:center}
+.strip .arrow .ico{width:22px;height:22px}
 .cards.row{display:flex;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;padding:2px}
 .cards.row::-webkit-scrollbar{display:none}
 .cards.row .cw,.cards.row>.card{flex:0 0 clamp(160px,23%,230px);scroll-snap-align:start}
@@ -323,6 +326,65 @@ header{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .cta{background:var(--gold);color:#1b1500;border:0;border-radius:10px;padding:14px 34px;font:400 22px var(--display);letter-spacing:.04em;box-shadow:0 5px 0 #b5851a}
 .cta:active{transform:translateY(3px);box-shadow:0 2px 0 #b5851a}
 .hint{color:var(--muted)}
+#modsel:empty{display:none}
+.modcount{margin-left:8px;color:var(--gold);letter-spacing:.04em}
+.sin{animation:itemIn .4s ease-out both;animation-delay:calc(var(--i,0)*45ms)}
+.modbtns{display:flex;gap:8px;align-items:center}
+.modall,.modtog{padding:4px 14px;min-height:32px}
+.modtog{display:inline-flex;align-items:center;gap:6px}
+.modtog .ico{width:18px;height:18px;transition:transform .25s}
+.modtog[aria-expanded="true"] .ico{transform:rotate(180deg)}
+.modwrap{display:grid;grid-template-rows:0fr;visibility:hidden;opacity:0;transition:grid-template-rows .32s ease,opacity .25s ease,visibility 0s .32s}
+.modwrap.open{grid-template-rows:1fr;visibility:visible;opacity:1;transition:grid-template-rows .32s ease,opacity .25s ease,visibility 0s 0s}
+.modin{min-height:0;overflow:hidden;display:grid;gap:10px;padding:2px 0 4px}
+.modwrap.fresh .mod{animation:itemIn .4s ease-out both;animation-delay:calc(var(--i,0)*45ms + 60ms)}
+.modgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:8px;min-width:0}
+.mod{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;text-align:left;background:var(--panel);border:2px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--muted);transition:border-color .15s,background .15s,color .15s,transform .15s}
+.mod:hover{border-color:var(--muted);transform:translateY(-2px)}
+.mod:active{transform:scale(.97)}
+.mod-e{width:26px;height:26px;display:grid;place-items:center;line-height:1;filter:grayscale(1);opacity:.6;transition:filter .15s,opacity .15s}
+.mod b{font-weight:700;color:var(--text);line-height:1.2;min-width:0;overflow-wrap:anywhere}
+.mod-sw{position:relative;width:38px;height:22px;border-radius:11px;background:var(--bg);border:2px solid var(--line);flex:none;transition:background .15s,border-color .15s}
+.mod-sw::after{content:'';position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:var(--muted);transition:transform .18s,background .15s}
+.mod.on{border-color:var(--gold);background:var(--panel2);color:var(--text)}
+.mod.on .mod-e{filter:none;opacity:1}
+.mod.on .mod-sw{background:var(--gold);border-color:var(--gold)}
+.mod.on .mod-sw::after{transform:translateX(16px);background:#1b1500}
+.mod-e .mi{width:26px;height:26px;display:block}
+.rulesum .mi{width:20px;height:20px;display:block}
+.coin{width:1.15em;height:1.15em;vertical-align:-.22em;margin:0 .1em;flex:none}
+.coinbig .coin{width:1em;height:1em;vertical-align:-.12em;margin:0 .15em 0 0}
+.coinpill{display:inline-flex;align-items:center;gap:6px}
+.coinpill .coin{width:20px;height:20px;margin:0}
+.qrew .coin,.qclaim .coin,.qall .coin,.cc .coin{width:1.1em;height:1.1em}
+.modnote{margin:2px 0 0}
+.rulesum{display:flex;gap:4px;align-items:center;flex:1;min-width:0;overflow:hidden;font-size:18px;line-height:1;margin-left:4px}
+.rulesum span{animation:pop .3s ease-out}
+.ruletop{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.ruletop .seg button{padding:8px 16px}
+.rulehint{margin:2px 0 0;min-height:1.3em}
+.rulesoon{padding:18px 14px;border:2px dashed var(--line);border-radius:10px;text-align:center;color:var(--muted)}
+.inst-btns{display:flex;flex-wrap:wrap;gap:12px}
+.inst-btn{display:inline-flex;align-items:center;gap:10px;font-weight:700;padding:10px 18px}
+.inst-btn svg{width:20px;height:20px;fill:currentColor;flex:none}
+#instOv{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top,0px)) 16px max(16px,env(safe-area-inset-bottom,0px));background:rgba(5,6,18,.78)}
+#instOv .inst-box{position:relative;background:var(--panel);border:2px solid var(--line);border-radius:14px;max-width:460px;width:100%;max-height:100%;overflow:auto;padding:20px 20px 18px;box-shadow:0 12px 40px rgba(0,0,0,.55)}
+#instOv h2{margin:0 0 4px;padding-right:36px;font:400 22px var(--display);letter-spacing:.03em}
+#instOv .inst-sub{margin:0 0 14px;color:var(--muted)}
+#instOv ol{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:10px;counter-reset:st}
+#instOv li{counter-increment:st;display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:start;background:var(--bg);border:2px solid var(--line);border-radius:10px;padding:10px 12px}
+#instOv li::before{content:counter(st);display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--gold);color:#1b1500;font:400 16px var(--display)}
+#instOv .inst-note{margin:0 0 14px;padding:10px 12px;border-left:4px solid var(--gold);background:var(--bg);border-radius:6px;color:var(--muted)}
+#instOv .inst-x{position:absolute;top:12px;right:12px;padding:2px 10px;font-size:20px;line-height:1.2}
+#instOv .inst-ok{width:100%}
+#instOv{animation:fadeIn .2s ease-out both}
+#instOv .inst-box{animation:instIn .3s cubic-bezier(.2,.9,.3,1.15) both}
+#instOv li{animation:itemIn .35s ease-out both;animation-delay:calc(var(--i,0)*60ms + 140ms)}
+#instOv.out{animation:instFade .2s ease-in both;pointer-events:none}
+#instOv.out .inst-box{animation:instOut .2s ease-in both}
+@keyframes instIn{from{opacity:0;transform:translateY(24px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes instOut{to{opacity:0;transform:translateY(16px) scale(.96)}}
+@keyframes instFade{to{opacity:0}}
 .controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
 .ctl{background:var(--panel);border:2px solid var(--line);border-radius:10px;padding:14px 16px;min-width:0}
 .ctl h3{margin:0 0 8px;font:700 15px var(--body);text-transform:uppercase;letter-spacing:.14em}
@@ -456,15 +518,17 @@ body.mgame #pad button.on{background:rgba(255,194,61,.9)}
       <button type="button" class="roadbtn" id="m5" aria-pressed="false" data-i18n-aria="trainBtn"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></button>
       <button type="button" class="roadbtn" id="m3"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.5 8.5C4.5 7.5 3.5 5.5 4 3c1.8.8 3.3 2 4.2 3.7"/><path d="M17.5 8.5c2-1 3-3 2.5-5.5-1.8.8-3.3 2-4.2 3.7"/><path d="M12 7c-4.4 0-7 2.6-7 6.2 0 2 .9 3.3 2 4.1V20h10v-2.7c1.1-.8 2-2.1 2-4.1C19 9.6 16.4 7 12 7z"/><path d="M8 12l3 1.5-2.5 1.3z" fill="currentColor"/><path d="M16 12l-3 1.5 2.5 1.3z" fill="currentColor"/><path d="M10 20v-2M12 20v-2M14 20v-2"/></svg><span data-i18n="m3">Bossfight Road</span></button>
       <button type="button" class="roadbtn" id="m4" data-i18n-aria="chestBtn"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg></button>
+      <button type="button" class="roadbtn" id="m7"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></button>
       <button type="button" class="roadbtn" id="m6" data-i18n-aria="questBtn"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 4h6l1 2h3v15H5V6h3l1-2z"/><path d="M8.5 13.5l2.5 2.5 4.5-5.5"/></svg><span class="qdot" id="qdot" hidden></span></button>
     </div>
     <div id="picks"></div>
     <div id="mapsel"></div>
+    <div id="modsel"></div>
     <div class="startbar">
       <button class="cta" id="start" type="button">Start gevecht</button>
       <span class="hint" data-i18n="orEnter">of druk op Enter</span>
     </div>
-    <div class="qwarn" id="qwarnMenu" hidden role="status"><div>⚠ <span id="qwarnTxt"></span></div><button type="button" class="qfix" id="qwarnBtn"></button></div>
+    <div class="qwarn" id="qwarnMenu" hidden role="status"><div class="wline"><svg class="ico wico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5l9.5 16.5h-19z"/><path d="M12 10v4.5M12 17.2v.2"/></svg><span id="qwarnTxt"></span></div><button type="button" class="qfix" id="qwarnBtn"></button></div>
     <p class="hint" style="margin:0" data-i18n="menuHint" data-html="1">Tegen de CPU speel je met WASD of met de pijltjes. Pauze met <kbd>Esc</kbd> of <kbd>P</kbd>. Tip: val je van het podium, spring twee keer en gebruik dan omhoog + special om terug te komen. Kom je in de buurt van de rand van het eiland of een platform, dan grijp je die automatisch en hang je eraan: omhoog = randsprong, richting het podium = opklimmen, omlaag of van het podium af = loslaten. Houd omlaag ingedrukt om de rand te negeren.</p>
   </section>
 
@@ -513,6 +577,7 @@ body.mgame #pad button.on{background:rgba(255,194,61,.9)}
   </section>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <script>
 (()=>{
 'use strict';
@@ -531,7 +596,7 @@ heroP:'Knock your opponent off the stage. The more damage, the harder he flies. 
 modeAria:'Game mode',m1:'1 player (vs CPU)',m2:'2 players',m3:'Bossfight Road',startFight:'Start fight',startLevel:'Start level',orEnter:'or press Enter',
 menuHint:'Against the CPU you play with WASD or the arrow keys. Pause with <kbd>Esc</kbd> or <kbd>P</kbd>. Tip: if you fall off the stage, jump twice and then use up + special to get back. When you get close to the edge of the island or a platform you grab it automatically and hang on: up = ledge jump, toward the stage = climb up, down or away from the stage = let go. Hold down to ignore the ledge.',
 pause:'Pause',toMenu:'To menu',canvasAria:'Battle arena',
-pad_l:'◀ Left',pad_r:'Right ▶',pad_u:'▲ Jump',pad_d:'▼ Drop',pad_atk:'Attack',pad_spc:'Special',pad_ex:'Extra',pad_sh:'Shield',
+pad_l:'◀︎ Left',pad_r:'Right ▶︎',pad_u:'▲ Jump',pad_d:'▼ Drop',pad_atk:'Attack',pad_spc:'Special',pad_ex:'Extra',pad_sh:'Shield',
 language:'Language',diffTitle:'CPU difficulty (regular fights)',diffAria:'CPU difficulty',diff_easy:'Easy',diff_normal:'Normal',diff_hard:'Hard',diffNote:'Does not apply to the bosses in Bossfight Road.',
 stocksTitle:'Number of lives (regular fights)',stocksAria:'Number of lives',stocksNote:'In Bossfight Road you always have 3 lives.',
 keysTitle:'Keys',player:'Player {0}',waitKey:'Press a key…',resetKeys:'Reset keys',keyHelp:'Click a key, then press the new key. Esc cancels.',
@@ -549,7 +614,7 @@ heroP:'Sla je tegenstander van het podium. Hoe meer schade, hoe harder hij vlieg
 modeAria:'Spelmodus',m1:'1 speler (tegen CPU)',m2:'2 spelers',m3:'Bossfight Road',startFight:'Start gevecht',startLevel:'Start level',orEnter:'of druk op Enter',
 menuHint:'Tegen de CPU speel je met WASD of met de pijltjes. Pauze met <kbd>Esc</kbd> of <kbd>P</kbd>. Tip: val je van het podium, spring twee keer en gebruik dan omhoog + special om terug te komen. Kom je in de buurt van de rand van het eiland of een platform, dan grijp je die automatisch en hang je eraan: omhoog = randsprong, richting het podium = opklimmen, omlaag of van het podium af = loslaten. Houd omlaag ingedrukt om de rand te negeren.',
 pause:'Pauze',toMenu:'Naar menu',canvasAria:'Gevechtsarena',
-pad_l:'◀ Links',pad_r:'Rechts ▶',pad_u:'▲ Spring',pad_d:'▼ Zak',pad_atk:'Slaan',pad_spc:'Special',pad_ex:'Extra',pad_sh:'Schild',
+pad_l:'◀︎ Links',pad_r:'Rechts ▶︎',pad_u:'▲ Spring',pad_d:'▼ Zak',pad_atk:'Slaan',pad_spc:'Special',pad_ex:'Extra',pad_sh:'Schild',
 language:'Taal',diffTitle:'Moeilijkheid CPU (gewone gevechten)',diffAria:'Moeilijkheid CPU',diff_easy:'Easy',diff_normal:'Normal',diff_hard:'Hard',diffNote:'Geldt niet voor de bazen in Bossfight Road.',
 stocksTitle:'Aantal levens (gewone gevechten)',stocksAria:'Aantal levens',stocksNote:'In Bossfight Road heb je altijd 3 levens.',
 keysTitle:'Toetsen',player:'Speler {0}',waitKey:'Druk op een toets…',resetKeys:'Toetsen herstellen',keyHelp:'Klik op een toets en druk daarna op de nieuwe toets. Esc annuleert.',
@@ -567,7 +632,7 @@ heroP:'Schlage deinen Gegner von der Bühne. Je mehr Schaden, desto weiter flieg
 modeAria:'Spielmodus',m1:'1 Spieler (gegen CPU)',m2:'2 Spieler',m3:'Bossfight Road',startFight:'Kampf starten',startLevel:'Level starten',orEnter:'oder drücke Enter',
 menuHint:'Gegen die CPU spielst du mit WASD oder den Pfeiltasten. Pause mit <kbd>Esc</kbd> oder <kbd>P</kbd>. Tipp: Wenn du von der Bühne fällst, springe zweimal und nutze dann hoch + Special, um zurückzukommen. Kommst du in die Nähe des Inselrandes oder einer Plattform, greifst du ihn automatisch und hängst daran: hoch = Kantensprung, Richtung Bühne = hochklettern, runter oder von der Bühne weg = loslassen. Halte runter gedrückt, um die Kante zu ignorieren.',
 pause:'Pause',toMenu:'Zum Menü',canvasAria:'Kampfarena',
-pad_l:'◀ Links',pad_r:'Rechts ▶',pad_u:'▲ Sprung',pad_d:'▼ Runter',pad_atk:'Schlag',pad_spc:'Special',pad_ex:'Extra',pad_sh:'Schild',
+pad_l:'◀︎ Links',pad_r:'Rechts ▶︎',pad_u:'▲ Sprung',pad_d:'▼ Runter',pad_atk:'Schlag',pad_spc:'Special',pad_ex:'Extra',pad_sh:'Schild',
 language:'Sprache',diffTitle:'CPU-Schwierigkeit (normale Kämpfe)',diffAria:'CPU-Schwierigkeit',diff_easy:'Leicht',diff_normal:'Normal',diff_hard:'Schwer',diffNote:'Gilt nicht für die Bosse in der Bossfight Road.',
 stocksTitle:'Anzahl der Leben (normale Kämpfe)',stocksAria:'Anzahl der Leben',stocksNote:'In der Bossfight Road hast du immer 3 Leben.',
 keysTitle:'Tasten',player:'Spieler {0}',waitKey:'Drücke eine Taste…',resetKeys:'Tasten zurücksetzen',keyHelp:'Klicke auf eine Taste und drücke dann die neue Taste. Esc bricht ab.',
@@ -585,7 +650,7 @@ heroP:'Envoie ton adversaire hors de la scène. Plus il subit de dégâts, plus 
 modeAria:'Mode de jeu',m1:'1 joueur (contre CPU)',m2:'2 joueurs',m3:'Bossfight Road',startFight:'Lancer le combat',startLevel:'Lancer le niveau',orEnter:'ou appuie sur Entrée',
 menuHint:'Contre le CPU, tu joues avec WASD ou les flèches. Pause avec <kbd>Échap</kbd> ou <kbd>P</kbd>. Astuce : si tu tombes de la scène, saute deux fois puis utilise haut + spécial pour revenir. Près du bord de l’île ou d’une plateforme, tu t’y accroches automatiquement : haut = saut depuis le rebord, vers la scène = remonter, bas ou à l’opposé de la scène = lâcher. Maintiens bas pour ignorer le rebord.',
 pause:'Pause',toMenu:'Vers le menu',canvasAria:'Arène de combat',
-pad_l:'◀ Gauche',pad_r:'Droite ▶',pad_u:'▲ Saut',pad_d:'▼ Bas',pad_atk:'Frapper',pad_spc:'Spécial',pad_ex:'Extra',pad_sh:'Bouclier',
+pad_l:'◀︎ Gauche',pad_r:'Droite ▶︎',pad_u:'▲ Saut',pad_d:'▼ Bas',pad_atk:'Frapper',pad_spc:'Spécial',pad_ex:'Extra',pad_sh:'Bouclier',
 language:'Langue',diffTitle:'Difficulté du CPU (combats normaux)',diffAria:'Difficulté du CPU',diff_easy:'Facile',diff_normal:'Normal',diff_hard:'Difficile',diffNote:'Ne s’applique pas aux boss de la Bossfight Road.',
 stocksTitle:'Nombre de vies (combats normaux)',stocksAria:'Nombre de vies',stocksNote:'Dans la Bossfight Road, tu as toujours 3 vies.',
 keysTitle:'Touches',player:'Joueur {0}',waitKey:'Appuie sur une touche…',resetKeys:'Rétablir les touches',keyHelp:'Clique sur une touche, puis appuie sur la nouvelle touche. Échap annule.',
@@ -603,7 +668,7 @@ heroP:'Saca a tu rival del escenario. Cuanto más daño, más lejos vuela. Tres 
 modeAria:'Modo de juego',m1:'1 jugador (contra CPU)',m2:'2 jugadores',m3:'Bossfight Road',startFight:'Empezar combate',startLevel:'Empezar nivel',orEnter:'o pulsa Intro',
 menuHint:'Contra la CPU juegas con WASD o las flechas. Pausa con <kbd>Esc</kbd> o <kbd>P</kbd>. Consejo: si te caes del escenario, salta dos veces y luego usa arriba + especial para volver. Cerca del borde de la isla o de una plataforma te agarras automáticamente y te quedas colgado: arriba = salto desde el borde, hacia el escenario = trepar, abajo o alejándote del escenario = soltarte. Mantén abajo para ignorar el borde.',
 pause:'Pausa',toMenu:'Al menú',canvasAria:'Arena de combate',
-pad_l:'◀ Izq.',pad_r:'Der. ▶',pad_u:'▲ Saltar',pad_d:'▼ Bajar',pad_atk:'Golpe',pad_spc:'Especial',pad_ex:'Extra',pad_sh:'Escudo',
+pad_l:'◀︎ Izq.',pad_r:'Der. ▶︎',pad_u:'▲ Saltar',pad_d:'▼ Bajar',pad_atk:'Golpe',pad_spc:'Especial',pad_ex:'Extra',pad_sh:'Escudo',
 language:'Idioma',diffTitle:'Dificultad de la CPU (combates normales)',diffAria:'Dificultad de la CPU',diff_easy:'Fácil',diff_normal:'Normal',diff_hard:'Difícil',diffNote:'No se aplica a los jefes de la Bossfight Road.',
 stocksTitle:'Número de vidas (combates normales)',stocksAria:'Número de vidas',stocksNote:'En la Bossfight Road siempre tienes 3 vidas.',
 keysTitle:'Teclas',player:'Jugador {0}',waitKey:'Pulsa una tecla…',resetKeys:'Restablecer teclas',keyHelp:'Haz clic en una tecla y pulsa la nueva. Esc cancela.',
@@ -622,6 +687,31 @@ Object.assign(TR.nl,{resetTitle:'Spel resetten',resetNote:'Wist alle voortgang (
 Object.assign(TR.de,{resetTitle:'Spiel zurücksetzen',resetNote:'Löscht den gesamten Fortschritt (freigeschaltete Kämpfer und Bosse), deine Einstellungen, Tasten und Sprache.',resetGame:'Spiel und Fortschritt zurücksetzen',resetConfirm:'Bist du sicher? Das kann nicht rückgängig gemacht werden.',resetYes:'Ja, alles zurücksetzen',resetNo:'Abbrechen',resetDone:'Spiel zurückgesetzt.'});
 Object.assign(TR.fr,{resetTitle:'Réinitialiser le jeu',resetNote:'Efface toute la progression (combattants et boss débloqués), tes paramètres, touches et langue.',resetGame:'Réinitialiser le jeu et la progression',resetConfirm:'Es-tu sûr ? Cette action est irréversible.',resetYes:'Oui, tout réinitialiser',resetNo:'Annuler',resetDone:'Jeu réinitialisé.'});
 Object.assign(TR.es,{resetTitle:'Reiniciar juego',resetNote:'Borra todo el progreso (luchadores y jefes desbloqueados), tus ajustes, teclas e idioma.',resetGame:'Reiniciar juego y progreso',resetConfirm:'¿Seguro? No se puede deshacer.',resetYes:'Sí, reiniciar todo',resetNo:'Cancelar',resetDone:'Juego reiniciado.'});
+Object.assign(TR.en,{"qWarnMods": "No quest progress while modifiers or power-ups are on", "qWarnBoth": "No quest progress with these settings (needs 3 lives + Normal, no modifiers or power-ups)", "qWarnModsBody": "Modifiers or power-ups are on. Quests only count without them.", "qFixMods": "Turn off modifiers", "qFixBoth": "Set 3 lives + Normal, modifiers off"});
+Object.assign(TR.nl,{"qWarnMods": "Geen quest-voortgang zolang modifiers of power-ups aan staan", "qWarnBoth": "Geen quest-voortgang met deze instellingen (vereist 3 levens + Normal en geen modifiers of power-ups)", "qWarnModsBody": "Er staan modifiers of power-ups aan. Quests tellen alleen mee zonder.", "qFixMods": "Zet modifiers uit", "qFixBoth": "Zet op 3 levens + Normal, modifiers uit"});
+Object.assign(TR.de,{"qWarnMods": "Kein Quest-Fortschritt, solange Modifikatoren oder Power-ups aktiv sind", "qWarnBoth": "Kein Quest-Fortschritt mit diesen Einstellungen (3 Leben + Normal, ohne Modifikatoren oder Power-ups nötig)", "qWarnModsBody": "Modifikatoren oder Power-ups sind aktiv. Quests zählen nur ohne sie.", "qFixMods": "Modifikatoren ausschalten", "qFixBoth": "Auf 3 Leben + Normal, Modifikatoren aus"});
+Object.assign(TR.fr,{"qWarnMods": "Pas de progression des quêtes tant que des modificateurs ou power-ups sont actifs", "qWarnBoth": "Pas de progression des quêtes avec ces réglages (3 vies + Normal, sans modificateurs ni power-ups)", "qWarnModsBody": "Des modificateurs ou power-ups sont actifs. Les quêtes ne comptent que sans eux.", "qFixMods": "Désactiver les modificateurs", "qFixBoth": "3 vies + Normal, modificateurs désactivés"});
+Object.assign(TR.es,{"qWarnMods": "Sin progreso de misiones mientras haya modificadores o power-ups activos", "qWarnBoth": "Sin progreso de misiones con esta configuración (3 vidas + Normal, sin modificadores ni power-ups)", "qWarnModsBody": "Hay modificadores o power-ups activos. Las misiones solo cuentan sin ellos.", "qFixMods": "Desactivar modificadores", "qFixBoth": "3 vidas + Normal y modificadores desactivados"});
+Object.assign(TR.en,{"rulesTitle": "Game rules", "tabMods": "Modifiers", "tabPups": "Power-ups", "rulesHelp": "Tap a tile to switch it on or off.", "pupSoon": "Power-ups are coming soon."});
+Object.assign(TR.nl,{"rulesTitle": "Spelregels", "tabMods": "Modifiers", "tabPups": "Power-ups", "rulesHelp": "Tik op een tegel om hem aan of uit te zetten.", "pupSoon": "Power-ups komen binnenkort."});
+Object.assign(TR.de,{"rulesTitle": "Spielregeln", "tabMods": "Modifikatoren", "tabPups": "Power-ups", "rulesHelp": "Tippe auf eine Kachel, um sie ein- oder auszuschalten.", "pupSoon": "Power-ups kommen bald."});
+Object.assign(TR.fr,{"rulesTitle": "Règles du jeu", "tabMods": "Modificateurs", "tabPups": "Power-ups", "rulesHelp": "Touche une tuile pour l’activer ou la désactiver.", "pupSoon": "Les power-ups arrivent bientôt."});
+Object.assign(TR.es,{"rulesTitle": "Reglas del juego", "tabMods": "Modificadores", "tabPups": "Power-ups", "rulesHelp": "Toca una casilla para activarla o desactivarla.", "pupSoon": "Los power-ups llegarán pronto."});
+Object.assign(TR.en,{"modsShow": "Show", "modsHide": "Hide"});
+Object.assign(TR.nl,{"modsShow": "Uitklappen", "modsHide": "Inklappen"});
+Object.assign(TR.de,{"modsShow": "Ausklappen", "modsHide": "Einklappen"});
+Object.assign(TR.fr,{"modsShow": "Déplier", "modsHide": "Replier"});
+Object.assign(TR.es,{"modsShow": "Mostrar", "modsHide": "Ocultar"});
+Object.assign(TR.en,{"modsTitle": "Modifiers", "modsAll": "All on", "modsNone": "All off", "modsShort": " · {0} modifiers", "modsNote": "Quest progress does not count while modifiers are on.", "mod_lowg": "Moon gravity", "modd_lowg": "Float and jump much higher.", "mod_turbo": "Turbo", "modd_turbo": "The whole fight runs 30% faster.", "mod_heavy": "Heavy hits", "modd_heavy": "Every attack launches much farther.", "mod_glass": "Glass fighters", "modd_glass": "You are KO’d at half the damage.", "mod_fast": "Super speed", "modd_fast": "Fighters run 35% faster.", "mod_fly": "Endless jumping", "modd_fly": "Jump in mid-air as often as you like.", "mod_regen": "Self-heal", "modd_regen": "Damage slowly heals over time.", "mod_noshield": "No shields", "modd_noshield": "Blocking is off. Dodge instead."});
+Object.assign(TR.nl,{"modsTitle": "Modifiers", "modsAll": "Alles aan", "modsNone": "Alles uit", "modsShort": " · {0} modifiers", "modsNote": "Quest-voortgang telt niet mee zolang er modifiers aan staan.", "mod_lowg": "Maanzwaartekracht", "modd_lowg": "Zweef en spring veel hoger.", "mod_turbo": "Turbo", "modd_turbo": "Het hele gevecht draait 30% sneller.", "mod_heavy": "Zware klappen", "modd_heavy": "Elke aanval slaat veel verder weg.", "mod_glass": "Glazen vechters", "modd_glass": "Je gaat al KO bij de helft van de schade.", "mod_fast": "Supersnelheid", "modd_fast": "Vechters rennen 35% sneller.", "mod_fly": "Eindeloos springen", "modd_fly": "Spring zo vaak je wilt in de lucht.", "mod_regen": "Zelfherstel", "modd_regen": "Schade herstelt langzaam na verloop van tijd.", "mod_noshield": "Geen schilden", "modd_noshield": "Blokkeren kan niet. Ontwijk liever."});
+Object.assign(TR.de,{"modsTitle": "Modifikatoren", "modsAll": "Alle an", "modsNone": "Alle aus", "modsShort": " · {0} Modifikatoren", "modsNote": "Quest-Fortschritt zählt nicht, solange Modifikatoren aktiv sind.", "mod_lowg": "Mondschwerkraft", "modd_lowg": "Schweben und viel höher springen.", "mod_turbo": "Turbo", "modd_turbo": "Der ganze Kampf läuft 30 % schneller.", "mod_heavy": "Harte Treffer", "modd_heavy": "Jeder Angriff schleudert viel weiter.", "mod_glass": "Glaskämpfer", "modd_glass": "K.o. schon bei halbem Schaden.", "mod_fast": "Superspeed", "modd_fast": "Kämpfer rennen 35 % schneller.", "mod_fly": "Endlos springen", "modd_fly": "Springe in der Luft, so oft du willst.", "mod_regen": "Selbstheilung", "modd_regen": "Schaden heilt mit der Zeit langsam.", "mod_noshield": "Keine Schilde", "modd_noshield": "Blocken geht nicht. Weiche lieber aus."});
+Object.assign(TR.fr,{"modsTitle": "Modificateurs", "modsAll": "Tout activer", "modsNone": "Tout désactiver", "modsShort": " · {0} modificateurs", "modsNote": "La progression des quêtes ne compte pas quand des modificateurs sont actifs.", "mod_lowg": "Gravité lunaire", "modd_lowg": "Flotte et saute beaucoup plus haut.", "mod_turbo": "Turbo", "modd_turbo": "Tout le combat va 30 % plus vite.", "mod_heavy": "Coups lourds", "modd_heavy": "Chaque attaque projette beaucoup plus loin.", "mod_glass": "Combattants en verre", "modd_glass": "K.O. dès la moitié des dégâts.", "mod_fast": "Super vitesse", "modd_fast": "Les combattants courent 35 % plus vite.", "mod_fly": "Sauts infinis", "modd_fly": "Saute en l’air autant que tu veux.", "mod_regen": "Auto-soin", "modd_regen": "Les dégâts guérissent lentement avec le temps.", "mod_noshield": "Sans bouclier", "modd_noshield": "Impossible de parer. Esquive plutôt."});
+Object.assign(TR.es,{"modsTitle": "Modificadores", "modsAll": "Activar todo", "modsNone": "Desactivar todo", "modsShort": " · {0} modificadores", "modsNote": "El progreso de las misiones no cuenta mientras haya modificadores activos.", "mod_lowg": "Gravedad lunar", "modd_lowg": "Flota y salta mucho más alto.", "mod_turbo": "Turbo", "modd_turbo": "Todo el combate va un 30 % más rápido.", "mod_heavy": "Golpes pesados", "modd_heavy": "Cada ataque lanza mucho más lejos.", "mod_glass": "Luchadores de cristal", "modd_glass": "K.O. con la mitad del daño.", "mod_fast": "Supervelocidad", "modd_fast": "Los luchadores corren un 35 % más rápido.", "mod_fly": "Saltos infinitos", "modd_fly": "Salta en el aire tantas veces como quieras.", "mod_regen": "Autocuración", "modd_regen": "El daño se cura lentamente con el tiempo.", "mod_noshield": "Sin escudos", "modd_noshield": "No se puede bloquear. Esquiva mejor."});
+Object.assign(TR.en,{"instTitle": "Play on your phone", "instNote": "Add Rumble Rift to your home screen so it opens like a real app.", "instApple": "Apple", "instAndroid": "Android", "iosT": "Install on iPhone / iPad", "iosS": "Open the game in Safari (other browsers may not offer the option).|Tap the Share button (the square with an arrow pointing up) at the bottom or top of the screen.|Scroll down and tap “Add to Home Screen”.|Tap “Add” in the top right corner.|From now on, open Rumble Rift with the new icon on your home screen.", "iosN": "Tip: turn your device sideways (landscape) for the best experience. Note: the home screen app can have its own storage, so progress saved in Safari may not carry over.", "andT": "Install on Android", "andS": "Open the game in Chrome.|Tap the menu button (three dots) in the top right corner.|Choose “Install app” or “Add to Home screen”.|Confirm with “Install” or “Add”.|From now on, open Rumble Rift with the new icon on your home screen.", "andN": "Tip: turn your phone sideways (landscape) for the best experience.", "instClose": "Got it"});
+Object.assign(TR.nl,{"instTitle": "Speel op je telefoon", "instNote": "Zet Rumble Rift op je beginscherm zodat het opent als een echte app.", "instApple": "Apple", "instAndroid": "Android", "iosT": "Installeren op iPhone / iPad", "iosS": "Open het spel in Safari (andere browsers bieden de optie soms niet aan).|Tik op de Deel-knop (het vierkantje met een pijl omhoog) onderaan of bovenaan het scherm.|Scrol omlaag en tik op “Zet op beginscherm”.|Tik rechtsboven op “Voeg toe”.|Open Rumble Rift voortaan via het nieuwe icoon op je beginscherm.", "iosN": "Tip: draai je toestel naar landschap voor de beste ervaring. Let op: de app op je beginscherm kan een eigen opslag hebben, dus voortgang uit Safari wordt mogelijk niet meegenomen.", "andT": "Installeren op Android", "andS": "Open het spel in Chrome.|Tik rechtsboven op de menuknop (drie puntjes).|Kies “App installeren” of “Toevoegen aan startscherm”.|Bevestig met “Installeren” of “Toevoegen”.|Open Rumble Rift voortaan via het nieuwe icoon op je startscherm.", "andN": "Tip: draai je telefoon naar landschap voor de beste ervaring.", "instClose": "Begrepen"});
+Object.assign(TR.de,{"instTitle": "Auf dem Handy spielen", "instNote": "Füge Rumble Rift zum Startbildschirm hinzu, damit es wie eine echte App startet.", "instApple": "Apple", "instAndroid": "Android", "iosT": "Auf iPhone / iPad installieren", "iosS": "Öffne das Spiel in Safari (andere Browser bieten die Option manchmal nicht an).|Tippe auf das Teilen-Symbol (das Quadrat mit Pfeil nach oben) am unteren oder oberen Bildschirmrand.|Scrolle nach unten und tippe auf „Zum Home-Bildschirm“.|Tippe oben rechts auf „Hinzufügen“.|Öffne Rumble Rift ab jetzt über das neue Symbol auf deinem Home-Bildschirm.", "iosN": "Tipp: Drehe dein Gerät ins Querformat für das beste Erlebnis. Hinweis: Die App auf dem Home-Bildschirm kann einen eigenen Speicher haben, daher wird der Fortschritt aus Safari eventuell nicht übernommen.", "andT": "Auf Android installieren", "andS": "Öffne das Spiel in Chrome.|Tippe oben rechts auf das Menü (drei Punkte).|Wähle „App installieren“ oder „Zum Startbildschirm hinzufügen“.|Bestätige mit „Installieren“ oder „Hinzufügen“.|Öffne Rumble Rift ab jetzt über das neue Symbol auf deinem Startbildschirm.", "andN": "Tipp: Drehe dein Handy ins Querformat für das beste Erlebnis.", "instClose": "Verstanden"});
+Object.assign(TR.fr,{"instTitle": "Jouer sur ton téléphone", "instNote": "Ajoute Rumble Rift à ton écran d’accueil pour l’ouvrir comme une vraie appli.", "instApple": "Apple", "instAndroid": "Android", "iosT": "Installer sur iPhone / iPad", "iosS": "Ouvre le jeu dans Safari (les autres navigateurs ne proposent pas toujours l’option).|Touche le bouton Partager (le carré avec une flèche vers le haut) en bas ou en haut de l’écran.|Fais défiler et touche « Sur l’écran d’accueil ».|Touche « Ajouter » en haut à droite.|Ouvre désormais Rumble Rift avec la nouvelle icône de ton écran d’accueil.", "iosN": "Astuce : mets ton appareil en mode paysage pour une meilleure expérience. Remarque : l’appli de l’écran d’accueil peut avoir son propre stockage, la progression de Safari n’est donc peut-être pas reprise.", "andT": "Installer sur Android", "andS": "Ouvre le jeu dans Chrome.|Touche le bouton de menu (trois points) en haut à droite.|Choisis « Installer l’application » ou « Ajouter à l’écran d’accueil ».|Confirme avec « Installer » ou « Ajouter ».|Ouvre désormais Rumble Rift avec la nouvelle icône de ton écran d’accueil.", "andN": "Astuce : mets ton téléphone en mode paysage pour une meilleure expérience.", "instClose": "Compris"});
+Object.assign(TR.es,{"instTitle": "Juega en tu móvil", "instNote": "Añade Rumble Rift a tu pantalla de inicio para abrirlo como una app de verdad.", "instApple": "Apple", "instAndroid": "Android", "iosT": "Instalar en iPhone / iPad", "iosS": "Abre el juego en Safari (otros navegadores no siempre ofrecen la opción).|Toca el botón Compartir (el cuadrado con una flecha hacia arriba) en la parte inferior o superior de la pantalla.|Desplázate hacia abajo y toca «Añadir a pantalla de inicio».|Toca «Añadir» arriba a la derecha.|A partir de ahora, abre Rumble Rift con el nuevo icono de tu pantalla de inicio.", "iosN": "Consejo: gira el dispositivo en horizontal para la mejor experiencia. Nota: la app de la pantalla de inicio puede tener su propio almacenamiento, así que el progreso de Safari puede no trasladarse.", "andT": "Instalar en Android", "andS": "Abre el juego en Chrome.|Toca el botón de menú (tres puntos) arriba a la derecha.|Elige «Instalar aplicación» o «Añadir a la pantalla de inicio».|Confirma con «Instalar» o «Añadir».|A partir de ahora, abre Rumble Rift con el nuevo icono de tu pantalla de inicio.", "andN": "Consejo: gira el teléfono en horizontal para la mejor experiencia.", "instClose": "Entendido"});
 Object.assign(TR.en,{musicTitle:'Music',musicToggle:'Music playback',musicOn:'On',musicOff:'Off',musicVolume:'Volume',musicVolumeAria:'Music volume',musicGame:'Play music during a match'});
 Object.assign(TR.nl,{musicTitle:'Muziek',musicToggle:'Muziek afspelen',musicOn:'Aan',musicOff:'Uit',musicVolume:'Volume',musicVolumeAria:'Muziekvolume',musicGame:'Muziek afspelen tijdens een gevecht'});
 Object.assign(TR.de,{musicTitle:'Musik',musicToggle:'Musikwiedergabe',musicOn:'Ein',musicOff:'Aus',musicVolume:'Lautstärke',musicVolumeAria:'Musiklautstärke',musicGame:'Musik während eines Kampfes abspielen'});
@@ -721,6 +811,7 @@ function applyStatic(){
   document.querySelectorAll('[data-i18n-aria]').forEach(e=>{const v=tx(e.dataset.i18nAria);e.setAttribute('aria-label',v);if(e.tagName==='BUTTON')e.title=v;});
   updMute();
   refreshResumeToast();
+  try{NET.txt();}catch(e){}
 }
 function setLang(l){
   if(!LANGS.includes(l))return;
@@ -862,8 +953,12 @@ function qAdd(k,n){Q.p[k]=(Q.p[k]||0)+(n===undefined?1:n);qDirty=true;}
 /* counts only in fights against the CPU (not training, not 2 players) */
 function qVs(){return !!(game&&game.players&&game.qOk&&game.players[1].ai&&!game.players[1].dummy&&!game.players[0].ai);}
 /* quests only count with 3 lives + Normal difficulty (Bossfight Road has its own fixed settings) */
-const qSetOk=()=>cfg.stocks===3&&cfg.diff==='normal';
-function qFixSettings(){cfg.stocks=3;cfg.diff='normal';saveSet();try{renderSettings();}catch(e){}renderMenu();}
+/* quests only count with default rules: 3 lives, Normal, and no modifiers / power-ups (add power-ups to qRulesOn when they exist) */
+const qRulesOn=()=>modCount(sel.mods);
+const qLivesOk=()=>cfg.stocks===3&&cfg.diff==='normal';
+const qSetOk=()=>qLivesOk()&&!qRulesOn();
+const qFixKey=()=>qLivesOk()?'qFixMods':(qRulesOn()?'qFixBoth':'qFix');
+function qFixSettings(){cfg.stocks=3;cfg.diff='normal';for(const d of MODDEF)sel.mods[d.k]=false;saveSet();saveSel();try{renderSettings();}catch(e){}renderMenu();}
 function qProg(d){
   if(d.stat==='fighters')return Q.fw.length;
   if(d.stat==='maps')return Q.mw.length;
@@ -993,6 +1088,13 @@ function setMap(m){
   bg=buildBG(m,S*CAMZ);
 }
 const GRAV=.52,FALL=11.5,FAST=15;
+let MODS={};
+const COIN="<svg class=\"coin\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><circle cx=\"12\" cy=\"12\" r=\"10.5\" fill=\"#ffc23d\" stroke=\"#8a5d00\" stroke-width=\"1.6\"/><circle cx=\"12\" cy=\"12\" r=\"7.4\" fill=\"#ffd978\" stroke=\"#c98a12\" stroke-width=\"1.2\"/><path d=\"M12 7.2l3.6 4.8-3.6 4.8-3.6-4.8z\" fill=\"#c98a12\"/><path d=\"M6.4 8.6a7.4 7.4 0 0 1 4-3\" fill=\"none\" stroke=\"#fff\" stroke-opacity=\".8\" stroke-width=\"1.4\" stroke-linecap=\"round\"/></svg>";
+const coinify=t=>String(t).split('🪙').join(COIN);
+const escHTML=t=>String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const MODDEF=[{k:'lowg',e:"<svg class=\"mi\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z\" fill=\"#ffd24a\" stroke=\"#b5851a\" stroke-width=\"1.5\" stroke-linejoin=\"round\"/><circle cx=\"16.5\" cy=\"6.5\" r=\"1.1\" fill=\"#fff\"/><circle cx=\"20\" cy=\"3.8\" r=\".8\" fill=\"#fff\"/><circle cx=\"8.6\" cy=\"14.2\" r=\"1.3\" fill=\"#e0a928\"/><circle cx=\"12.6\" cy=\"17.6\" r=\".9\" fill=\"#e0a928\"/></svg>"},{k:'turbo',e:"<svg class=\"mi\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M13.5 2.5L5 13.5h6l-1.2 8L19 10h-6z\" fill=\"#ffd24a\" stroke=\"#b5851a\" stroke-width=\"1.5\" stroke-linejoin=\"round\"/></svg>"},{k:'heavy',e:"<svg class=\"mi\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><polygon points=\"12.00,1.00 14.14,6.83 19.78,4.22 17.17,9.86 23.00,12.00 17.17,14.14 19.78,19.78 14.14,17.17 12.00,23.00 9.86,17.17 4.22,19.78 6.83,14.14 1.00,12.00 6.83,9.86 4.22,4.22 9.86,6.83\" fill=\"#ff6359\" stroke=\"#a02a22\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><circle cx=\"12\" cy=\"12\" r=\"3.2\" fill=\"#ffd24a\" stroke=\"#a02a22\" stroke-width=\"1.1\"/></svg>"},{k:'glass',e:"<svg class=\"mi\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M6 3h12l4 6-10 12L2 9z\" fill=\"#9fe6ff\" stroke=\"#2f86a8\" stroke-width=\"1.5\" stroke-linejoin=\"round\"/><path d=\"M2 9h20M8 3l4 6 4-6M12 21L8 9m4 12l4-12\" fill=\"none\" stroke=\"#2f86a8\" stroke-width=\"1\" stroke-linejoin=\"round\" opacity=\".8\"/><path d=\"M5.5 6.2l1.6-1.6\" stroke=\"#fff\" stroke-width=\"1.4\" stroke-linecap=\"round\"/></svg>"},{k:'fast',e:"<svg class=\"mi\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5.5 6l6 6-6 6M12.5 6l6 6-6 6\" fill=\"none\" stroke=\"#6be08a\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M1.8 9h2.2M1.8 15h2.2\" stroke=\"#6be08a\" stroke-width=\"1.8\" stroke-linecap=\"round\" opacity=\".65\"/></svg>"},{k:'fly',e:"<svg class=\"mi\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><g fill=\"none\" stroke=\"#c4a8ff\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 9.5l6-5 6 5\"/><path d=\"M6 14.5l6-5 6 5\" opacity=\".7\"/><path d=\"M6 19.5l6-5 6 5\" opacity=\".4\"/></g></svg>"},{k:'regen',e:"<svg class=\"mi\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7z\" fill=\"#4ee08a\" stroke=\"#1f9a52\" stroke-width=\"1.5\" stroke-linejoin=\"round\"/><path d=\"M12 8v6M9 11h6\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linecap=\"round\"/></svg>"},{k:'noshield',e:"<svg class=\"mi\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\" fill=\"#6aa8ff\" stroke=\"#2f5fb3\" stroke-width=\"1.5\" stroke-linejoin=\"round\"/><path d=\"M4.5 4.5l15 15\" stroke=\"#fff\" stroke-width=\"4.6\" stroke-linecap=\"round\"/><path d=\"M4.5 4.5l15 15\" stroke=\"#ff6359\" stroke-width=\"2.6\" stroke-linecap=\"round\"/></svg>"}];
+let modsOpen=false,rulesTab='mods';
+function modCount(m){let n=0;if(m)for(const d of MODDEF)if(m[d.k])n++;return n;}
 const END={atk:22,upspc:24,fire:26,orb:40,lunge:32,punch:44,quake:34,blink:30,tri:34,spin:36,burst:30,slam:44,gust:28,flurry:28,rock:36,rise:26,bolt:62,roll:30,mine:26,rocket:22,rain:30,puff:26,needles:24,curl:28,beam:30,sunfall:34,granite:38,pillars:44,pogo:46,grenade:24,bubtrap:26,snare:30,singular:46,static:24,overload:36,freeze:30,crescent:26,orbit:56,prism:34,geode:28,turret:26,phase:28,haunt:30,comet:30,supernova:40,sunwheel:28,corona:48,coins:24,verdict:44,hornrush:34,warcry:40};
 function orbR(t){return t<6?0:Math.min(1,(t-6)/10)*74*(t>42?Math.max(0,(50-t)/8):1);}
 const COOL={bolt:200,pillars:240,grenade:180,bubtrap:300,snare:240,singular:300,static:60,overload:120,freeze:120,turret:300,orbit:200,haunt:180,comet:80,supernova:240,corona:220,verdict:260,hornrush:90,warcry:180,slam:100,mine:180}; // cooldown frames (60/s), only for newly added moves
@@ -1098,6 +1200,45 @@ function bindSliders(box){
     labs.forEach(b=>b.addEventListener('click',()=>{glide(+b.dataset.i);inp.focus();}));
   });
 }
+
+const IC_APPLE='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>';
+const IC_ANDROID='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.2 9.5h11.6v8.3a1.2 1.2 0 0 1-1.2 1.2h-1.1v2.5a1.4 1.4 0 0 1-2.8 0V19h-1.4v2.5a1.4 1.4 0 0 1-2.8 0V19H7.4a1.2 1.2 0 0 1-1.2-1.2zM3.6 9.6a1.4 1.4 0 0 1 2.8 0v5.6a1.4 1.4 0 0 1-2.8 0zm14 0a1.4 1.4 0 0 1 2.8 0v5.6a1.4 1.4 0 0 1-2.8 0zM6.4 8.6a5.6 5.6 0 0 1 11.2 0z"/><path d="M8.2 2.2l1.1 1.7M15.8 2.2l-1.1 1.7" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" fill="none"/></svg>';
+let instReturn=null;
+function closeInstall(instant){
+  const o=$('instOv');if(!o)return;
+  document.removeEventListener('keydown',instKey,true);
+  if(instant===true){o.remove();}
+  else if(!o.classList.contains('out')){o.classList.add('out');setTimeout(()=>o.remove(),220);}
+  if(instReturn&&document.contains(instReturn))instReturn.focus();instReturn=null;
+}
+function instKey(e){
+  if(e.code==='Escape'){e.preventDefault();e.stopPropagation();closeInstall();return;}
+  if(e.code==='Tab'){
+    const f=[...$('instOv').querySelectorAll('button')];if(!f.length)return;
+    const i=f.indexOf(document.activeElement);
+    if(e.shiftKey&&i<=0){e.preventDefault();f[f.length-1].focus();}
+    else if(!e.shiftKey&&i===f.length-1){e.preventDefault();f[0].focus();}
+    return;
+  }
+  e.stopPropagation();
+}
+function openInstall(os){
+  closeInstall(true);
+  instReturn=document.activeElement;
+  const p=os==='ios'?'ios':'and';
+  const o=document.createElement('div');o.id='instOv';
+  o.innerHTML='<div class="inst-box" role="dialog" aria-modal="true" aria-labelledby="instH">'+
+    '<button type="button" class="ghost inst-x" id="instX" aria-label="'+tx('instClose')+'">&times;</button>'+
+    '<h2 id="instH">'+tx(p+'T')+'</h2><p class="inst-sub">'+tx('instNote')+'</p>'+
+    '<ol>'+tx(p+'S').split('|').map((s,i)=>'<li style="--i:'+i+'">'+s+'</li>').join('')+'</ol>'+
+    '<p class="inst-note">'+tx(p+'N')+'</p>'+
+    '<button type="button" class="cta inst-ok" id="instOk" style="font-size:18px;padding:12px 20px">'+tx('instClose')+'</button></div>';
+  o.addEventListener('click',e=>{if(e.target===o)closeInstall();});
+  document.body.appendChild(o);
+  $('instX').addEventListener('click',closeInstall);$('instOk').addEventListener('click',closeInstall);
+  document.addEventListener('keydown',instKey,true);
+  $('instOk').focus();
+}
 function renderSettings(){
   const box=$('settings');
   box.innerHTML=
@@ -1117,6 +1258,7 @@ function renderSettings(){
    '</div></div>'+
    '<div class="setrow"><button type="button" class="ghost ibtn" id="resetKeys" aria-label="'+tx('resetKeys')+'" title="'+tx('resetKeys')+'">'+IC_KBD+IC_RESET_S+'</button><span class="hint" id="keyMsg" aria-live="polite">'+(keyMsg||tx('keyHelp'))+'</span></div>'+
    '<div><h3>'+tx('codeTitle')+'</h3><form class="setrow" id="codeForm" autocomplete="off"><input type="text" id="codeIn" class="sel" inputmode="numeric" maxlength="20" placeholder="'+tx('codeLabel')+'" aria-label="'+tx('codeLabel')+'"><button type="submit" class="ghost">'+tx('codeBtn')+'</button><span class="hint" id="codeMsg" aria-live="polite">'+codeMsg+'</span></form></div>'+
+   '<div><h3>'+tx('instTitle')+'</h3><div class="inst-btns"><button type="button" class="ghost inst-btn" id="instApple">'+IC_APPLE+tx('instApple')+'</button><button type="button" class="ghost inst-btn" id="instAndroid">'+IC_ANDROID+tx('instAndroid')+'</button></div></div>'+
    '<div><h3>'+tx('resetTitle')+'</h3><p class="hint" style="margin:0 0 10px">'+tx('resetNote')+'</p>'+
    (resetAsk?'<div class="setrow"><span class="hint" role="alert">'+tx('resetConfirm')+'</span><button type="button" class="ghost danger" id="resetYes">'+tx('resetYes')+'</button><button type="button" class="ghost" id="resetNo">'+tx('resetNo')+'</button></div>':'<button type="button" class="ghost danger ibtn" id="resetAll" aria-label="'+tx('resetGame')+'" title="'+tx('resetGame')+'">'+IC_RESET+'</button>')+'</div>';
   box.querySelectorAll('[data-lg]').forEach(b=>b.addEventListener('click',()=>{setLang(b.dataset.lg);const n=box.querySelector('[data-lg="'+lang+'"]');if(n)n.focus();}));
@@ -1155,12 +1297,13 @@ function renderSettings(){
     }else codeMsg=tx('codeBad');
     renderSettings();renderMenu();
   });
+  $('instApple').addEventListener('click',()=>openInstall('ios'));$('instAndroid').addEventListener('click',()=>openInstall('and'));
   const ra=$('resetAll');if(ra)ra.addEventListener('click',()=>{resetAsk=true;renderSettings();const n=$('resetNo');if(n)n.focus();});
   const rn=$('resetNo');if(rn)rn.addEventListener('click',()=>{resetAsk=false;renderSettings();const n=$('resetAll');if(n)n.focus();});
   const ry=$('resetYes');if(ry)ry.addEventListener('click',()=>{resetAll();const n=$('resetAll');if(n)n.focus();});
 }
 const keys=new Set(), vk={};
-let sel={mode:1,p1:0,p2:1,map:0,lvl:0,train:false};
+let sel={mode:1,p1:0,p2:1,map:0,lvl:0,train:false,mods:{}};
 try{const o=JSON.parse(localStorage.getItem('rr_sel')||'null');if(o){
   const ok=(v,a,b)=>Number.isInteger(v)&&v>=a&&v<=b;
   if(ok(o.mode,1,3))sel.mode=o.mode;
@@ -1171,6 +1314,7 @@ try{const o=JSON.parse(localStorage.getItem('rr_sel')||'null');if(o){
   if(sel.mode===3&&!lvlOpen(sel.lvl))sel.lvl=autoLvl();
   if(sel.mode===3)sel.mode=1;
   sel.train=o.train===true&&sel.mode===1;
+  if(o.mods&&typeof o.mods==='object')for(const d of MODDEF)sel.mods[d.k]=o.mods[d.k]===true;
 }}catch(e){}
 function saveSel(){try{localStorage.setItem('rr_sel',JSON.stringify(sel));}catch(e){}}
 function resetAll(){
@@ -1179,7 +1323,7 @@ function resetAll(){
   unl=[];coins=0;own=[];cosOwn=[];cosEq={};shopTab='chest';lang='en';cfg.diff='normal';cfg.stocks=3;cfg.music=false;cfg.musicGame=true;cfg.musicVolume=25;
   applyMusicSettings();
   for(let p=0;p<2;p++)for(const k of NAMES)MAP[p][k]=DEFKEYS[p][k].slice();
-  sel={mode:1,p1:0,p2:1,map:0,lvl:0,train:false};
+  sel={mode:1,p1:0,p2:1,map:0,lvl:0,train:false,mods:{}};
   rebind=null;resetAsk=false;hideResumeToast();
   applyStatic();
   keyMsg=tx('resetDone');
@@ -2539,31 +2683,33 @@ function buildBG(m,sc){const Z=m.zoom||1,W=960*Z,H=540*Z,GY=H-70*Z;
 
 /* ---------- Game objects ---------- */
 /* Percent limit: each life has a hidden random KO threshold between 200% and 300% */
-function rollDmgLimit(){return 200+Math.random()*100;}
+function rollDmgLimit(){return (200+rndSim()*100)*(MODS.glass?.5:1);}
 function mkPlayer(idx,fi,ai){
   return {idx,f:FIGHTERS[fi],ai,x:0,y:0,vx:0,vy:0,face:1,dmg:0,dmgLim:rollDmgLimit(),stocks:3,onGround:false,plat:null,jumps:0,upUsed:false,wall:0,slide:false,wallG:0,wkCd:0,wkLock:0,wkAnim:0,wkDir:0,wkSame:0,wkLast:0,wallB:null,aiClimb:0,aiClimbB:null,aiClimbDir:0,
     act:null,t:0,atkDir:'fwd',hitSet:new Set(),hitstun:0,stun:0,invuln:0,flash:0,dropT:0,shielding:false,shieldHP:60,
     respawn:0,dead:false,prev:{},aiJumpCd:0,aiSh:0,squash:0,vis:null,anim:0,ledge:0,ledgeT:0,ledgeCd:0,ax:0,cd:{},armor:0,bubble:0,frozen:0};
 }
 function startGame(){
+  const O=NET.on&&NET.cfg||null;
   const op=FIGHTERS.map((f,i)=>i).filter(i=>!isLocked(i));
   const rf=v=>v<0?op[(Math.random()*op.length)|0]:(isLocked(v)?0:v);
-  if(sel.mode===3&&!lvlOpen(sel.lvl))sel.lvl=autoLvl();
-  const rd=sel.mode===3,lv=rd?ROAD[sel.lvl]:null;
-  const mi=rd?MAPS.findIndex(m=>m.id===lv.map):(sel.map<0?(Math.random()*MAPS.length)|0:sel.map);
+  if(!O&&sel.mode===3&&!lvlOpen(sel.lvl))sel.lvl=autoLvl();
+  const rd=!O&&sel.mode===3,lv=rd?ROAD[sel.lvl]:null;
+  MODS=O?Object.assign({},O.mods):rd?{}:Object.assign({},sel.mods);
+  const mi=O?O.map:rd?MAPS.findIndex(m=>m.id===lv.map):(sel.map<0?(Math.random()*MAPS.length)|0:sel.map);
   setMap(MAPS[mi]);
-  const p1=mkPlayer(0,rf(sel.p1),false),p2=mkPlayer(1,rd?bossIdx(lv.boss):rf(sel.p2),sel.mode!==2);
-  if(sel.mode===1&&sel.train&&!rd)p2.dummy=true;
-  if(rd)p2.aiM=lv.aiM;else{p2.aiM=DIFFM[cfg.diff];p1.stocks=p2.stocks=cfg.stocks;}
+  const p1=mkPlayer(0,O?O.p1:rf(sel.p1),false),p2=mkPlayer(1,O?O.p2:rd?bossIdx(lv.boss):rf(sel.p2),O?false:sel.mode!==2);
+  if(!O&&sel.mode===1&&sel.train&&!rd)p2.dummy=true;
+  if(O){p1.stocks=p2.stocks=O.stocks;}else if(rd)p2.aiM=lv.aiM;else{p2.aiM=DIFFM[cfg.diff];p1.stocks=p2.stocks=cfg.stocks;}
   p1.maxSt=p1.stocks;p2.maxSt=p2.stocks;
   p1.x=VW/2-100;p2.x=VW/2+100;p1.y=p2.y=MAIN.y;p2.face=-1;
-  game={mi:mi,mvs:PLATS.filter(q=>q.mv),th:MAPS[mi].theme,mode:sel.mode,road:rd?sel.lvl:-1,players:[p1,p2],proj:[],parts:[],freeze:0,shake:0,countdown:170,over:null,overT:0,paused:false,resumeCd:0,tick:0};
-  if(pendingResume){applySave(pendingResume,p1,p2);game.resumed=true;}else{clearSave();hideResumeToast();}
-  game.qOk=rd||(pendingResume?(p1.maxSt===3&&cfg.diff==='normal'):qSetOk());
+  game={mi:mi,mvs:PLATS.filter(q=>q.mv),th:MAPS[mi].theme,mode:O?2:sel.mode,road:rd?sel.lvl:-1,players:[p1,p2],proj:[],parts:[],freeze:0,shake:0,countdown:170,over:null,overT:0,paused:false,resumeCd:0,tick:0,mods:MODS};
+  if(pendingResume&&!O){applySave(pendingResume,p1,p2);game.resumed=true;}else{clearSave();hideResumeToast();}
+  game.qOk=!O&&(rd||(pendingResume?(p1.maxSt===3&&cfg.diff==='normal'):qSetOk()))&&!modCount(MODS);
   hideResumeToast();
   if(!cfg.musicGame&&musicAudio)musicAudio.pause();
   $('menu').hidden=true;$('road').hidden=true;$('game').hidden=false;$('setBtn').hidden=true;$('coinPill').hidden=true;$('setpage').hidden=true;$('chestpage').hidden=true;$('questpage').hidden=true;inSet=false;inChest=false;inQuest=false;rebind=null;
-  $('modeLabel').textContent=(rd?tx('modeRoad',sel.lvl+1,p2.f.name):(p2.dummy?tx('modeTrain'):sel.mode===1?tx('modeCpu',DIFFN[cfg.diff]):tx('modeP2')))+tx('arenaSfx',mn(MAPS[mi]));
+  $('modeLabel').textContent=(O?onl('modeOn'):rd?tx('modeRoad',sel.lvl+1,p2.f.name):(p2.dummy?tx('modeTrain'):sel.mode===1?tx('modeCpu',DIFFN[cfg.diff]):tx('modeP2')))+tx('arenaSfx',mn(MAPS[mi]))+(modCount(MODS)?tx('modsShort',modCount(MODS)):'');
   $('pad').hidden=!TOUCH;document.body.classList.add('in-game');document.body.classList.toggle('mgame',TOUCH);goLandscape();
   hideOv();
   window.scrollTo(0,0);
@@ -2583,12 +2729,13 @@ function leaveLandscape(){
   try{screen.orientation&&screen.orientation.unlock&&screen.orientation.unlock();}catch(e){}
   try{if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen().catch(()=>{});else if(document.webkitFullscreenElement&&document.webkitExitFullscreen)document.webkitExitFullscreen();}catch(e){}
 }
-function toMenu(){if(qDirty)qSave();clearSave();document.body.classList.remove('mgame','in-game');leaveLandscape();running=false;game=null;startMusic();$('game').hidden=true;$('menu').hidden=false;$('setBtn').hidden=false;$('coinPill').hidden=false;renderMenu();}
+function toMenu(){NET.close();if(qDirty)qSave();clearSave();document.body.classList.remove('mgame','in-game');leaveLandscape();running=false;game=null;startMusic();$('game').hidden=true;$('menu').hidden=false;$('setBtn').hidden=false;$('coinPill').hidden=false;renderMenu();}
 
 function other(p){return game.players[1-p.idx];}
 
 /* ---------- Input ---------- */
 function readKeys(p){
+  if(NET.on)return NET.get(p.idx);
   const sets=(game.mode!==2&&p.idx===0)?[MAP[0],MAP[1]]:[MAP[p.idx]];
   const o={};
   for(const k of NAMES){o[k]=sets.some(m=>m[k].some(c=>keys.has(c)))||(p.idx===0&&!!vk[k]);}
@@ -2631,7 +2778,7 @@ function aiStandPlat(o){
   return best;
 }
 function aiReach(p){
-  const f=p.f,G=GRAV*(f.gm||1),h1=f.jump*f.jump/(2*G),h2=(f.jump*.92)*(f.jump*.92)/(2*G),h3=f.up*f.up/(2*G);
+  const f=p.f,G=GRAV*(f.gm||1)*(MODS.lowg?.55:1),h1=f.jump*f.jump/(2*G),h2=(f.jump*.92)*(f.jump*.92)/(2*G),h3=f.up*f.up/(2*G);
   const a=h1+2*h2*.8-10;
   return {a:a,b:a+h3*.8};
 }
@@ -2868,7 +3015,8 @@ function applyHit(att,tgt,dmg,base,sc,dx,dy){
   tgt.dmg=Math.min(999,tgt.dmg+dmg);
   if(att===game.players[0]&&tgt!==att&&qVs()){qAdd('hits');qAdd('dmg',Math.round(dmg));if(!att.onGround)qAdd('airhits');}
   let kb=(base+tgt.dmg*sc)*Math.pow(100/tgt.f.weight,.55);
-  kb=Math.min(kb,21);
+  if(MODS.heavy)kb*=1.45;
+  kb=Math.min(kb,MODS.heavy?27:21);
   const n=Math.hypot(dx,dy)||1;
   tgt.vx=dx/n*kb;tgt.vy=dy/n*kb;
   tgt.hitstun=Math.min(52,Math.round(8+kb*2.4));
@@ -3378,14 +3526,14 @@ function updatePlayer(p,o){
   if(p.invuln>0)p.invuln--;if(p.flash>0)p.flash--;if(p.dropT>0)p.dropT--;if(p.aiJumpCd>0)p.aiJumpCd--;if(p.squash>0)p.squash--;
   if(p.ledgeCd>0)p.ledgeCd--;
   if(p.ledge){p.wall=0;p.slide=false;hangStep(p,inp,press);p.prev=inp;return;}
-  const gm=f.gm||1;let grav=GRAV*gm;
+  const gm=f.gm||1;let grav=GRAV*gm*(MODS.lowg?.55:1);
   if(p.hitstun>0){
-    p.hitstun--;grav=.38*gm;p.vx*=.982;p.act=null;p.shielding=false;p.wkAnim=0;
+    p.hitstun--;grav=.38*gm*(MODS.lowg?.6:1);p.vx*=.982;p.act=null;p.shielding=false;p.wkAnim=0;
     if(p.onGround)p.vx*=.9;
   }else if(p.stun>0){
     p.stun--;p.vx*=.8;p.act=null;p.shielding=false;
   }else{
-    p.shielding=!!inp.sh&&p.onGround&&!p.act&&p.shieldHP>0;
+    p.shielding=!!inp.sh&&p.onGround&&!p.act&&p.shieldHP>0&&!MODS.noshield;
     if(p.shielding){p.shieldHP-=.4;if(p.shieldHP<=0){p.stun=80;p.shielding=false;p.shieldHP=30;}}
     else p.shieldHP=Math.min(60,p.shieldHP+.25);
     if(!p.act&&!p.shielding){
@@ -3406,7 +3554,7 @@ function updatePlayer(p,o){
         p.wkAnim=22;p.wkDir=-w;p.wkCd=8;p.wkLock=9;p.wall=0;p.wallG=0;p.slide=false;p.jumps=Math.min(p.jumps,1);
         sfx.jump();spark(p.x+w*f.w/2,p.y-f.h*.5,'#fff',12,4.5);spark(p.x+w*f.w/2,p.y-f.h*.5,f.color,8,3);ring(p.x+w*f.w/2,p.y-f.h*.5);ring(p.x,p.y-f.h*.5);game.shake=Math.max(game.shake||0,3);
       }
-      else if(p.jumps<2){p.vy=-f.jump*.92;p.jumps++;sfx.jump();ring(p.x,p.y-f.h*.3);}
+      else if(p.jumps<2||MODS.fly){p.vy=-f.jump*.92;p.jumps++;sfx.jump();ring(p.x,p.y-f.h*.3);}
       if(p.onGround){p.jumps=1;p.onGround=false;}
     }
     if(press('d')&&p.onGround&&p.plat&&!p.plat.solid){p.dropT=16;p.y+=2;p.onGround=false;}
@@ -3416,7 +3564,8 @@ function updatePlayer(p,o){
       const acc=p.onGround?.75:.32;
       const dd=(p.wkLock>0&&dir===-p.wkDir)?0:dir;
       if(dd){
-        if(dd*p.vx<f.speed){p.vx+=dd*acc;if(dd*p.vx>f.speed)p.vx=dd*f.speed;}else p.vx*=.97;
+        const sp=f.speed*(MODS.fast?1.35:1);
+        if(dd*p.vx<sp){p.vx+=dd*acc;if(dd*p.vx>sp)p.vx=dd*sp;}else p.vx*=.97;
         p.face=dd;
       }else p.vx*=p.onGround?.78:.985;
     }
@@ -3652,6 +3801,7 @@ function step(){
   }
   const [a,b]=game.players;
   updatePlayer(a,b);updatePlayer(b,a);
+  if(MODS.regen&&!game.over&&game.tick%20===0)for(const q of game.players)if(!q.dead&&!q.ko&&!(q.hitstun>0))q.dmg=Math.max(0,q.dmg-1);
   updateProj();updateParts();
   if(!game.over){
     const alive=game.players.filter(p=>!p.dead);
@@ -3663,7 +3813,8 @@ function frame(ts){
   requestAnimationFrame(frame);
   const dt=Math.min(100,ts-last);last=ts;acc+=dt;
   let n=0;
-  while(acc>=16.667&&n<5){if(!game.paused&&!$('ov').dataset.lock)step();acc-=16.667;n++;}
+  const STP=16.667/(MODS.turbo?1.3:1);
+  while(acc>=STP&&n<5){if(!game.paused&&!$('ov').dataset.lock){if(NET.on){if(!NET.pre()){if(acc>STP*6)acc=STP*6;break;}step();NET.adv();}else step();}acc-=STP;n++;}
   if(n>=5)acc=0;
   render();
 }
@@ -3716,7 +3867,7 @@ function drawMini(CAM){
     if(p.dead||p.respawn>0||p.ko)continue;
     const f=p.f;
     m.save();m.translate(p.x,p.y);m.scale(p.face*K,K);
-    drawFighter(m,f,{flash:p.flash>0,t:p.anim,cos:p.ai?{}:undefined,wph:p.wph||0,mv:0});
+    drawFighter(m,f,{flash:p.flash>0,t:p.anim,cos:cosFor(p),wph:p.wph||0,mv:0});
     m.restore();
     m.fillStyle=p.idx?'#3cc8ff':'#ff6359';m.strokeStyle='#fff';m.lineWidth=3/k*.6;
     m.beginPath();m.arc(p.x,p.y-f.h*K-14,8,0,7);m.fill();m.stroke();
@@ -3764,7 +3915,7 @@ function render(){
     if(pr.k==='coin'){const cw=Math.max(.2,Math.abs(Math.cos(game.tick*.25+pr.x*.05)));c.fillStyle='#b8860b';c.beginPath();c.ellipse(pr.x,pr.y,pr.r*cw,pr.r,0,0,7);c.fill();c.fillStyle='#ffd23f';c.beginPath();c.ellipse(pr.x,pr.y,pr.r*cw*.78,pr.r*.78,0,0,7);c.fill();continue;}
     if(pr.k==='minispook'){const hf=pr.owner.f,sc=.6,sg=pr.vx>=0?1:-1;
       c.globalAlpha=.3;c.fillStyle=pr.color;c.beginPath();c.arc(pr.x,pr.y,pr.r*1.9,0,7);c.fill();c.globalAlpha=1;
-      c.save();c.translate(pr.x,pr.y+hf.h*sc*.5);c.scale(sg*sc,sc);drawFighter(c,hf,{t:game.tick+(pr.x|0)%7,cos:pr.owner.ai?{}:undefined});c.restore();continue;}
+      c.save();c.translate(pr.x,pr.y+hf.h*sc*.5);c.scale(sg*sc,sc);drawFighter(c,hf,{t:game.tick+(pr.x|0)%7,cos:cosFor(pr.owner)});c.restore();continue;}
     if(pr.k==='elec'){const T=FXT[pr.owner.f.id]||{},A=T.a||'#fff',B=T.b||pr.color,d=pr.vx>=0?1:-1,L=84,N=10,tk=game.tick;
       const pt=[];for(let i=0;i<=N;i++){const u=i/N;pt.push([pr.x-d*L*u,pr.y+(i?(i%2?1:-1)*(4+4*Math.abs(Math.sin(tk*1.9+i*2.3)))*(u<.12?.5:1):0)]);}
       c.save();c.lineCap='round';c.lineJoin='round';
@@ -3816,7 +3967,7 @@ function render(){
     }else if(p.slide){
       c.translate(0,-f.h*.5);c.rotate(.38);c.scale(.9,1.06);c.translate(0,f.h*.5);
     }
-    drawFighter(c,f,{sx:1/sy,sy,flash:p.flash>0,t:p.anim,arm,hang:!!p.ledge,cos:p.ai?{}:undefined,wph:p.wph||0,mv});
+    drawFighter(c,f,{sx:1/sy,sy,flash:p.flash>0,t:p.anim,arm,hang:!!p.ledge,cos:cosFor(p),wph:p.wph||0,mv});
     c.restore();
     if(atk){c.save();c.translate(AP.ox,0);atkFx(c,f,p.t,up);c.restore();}
     else if(spc){c.save();c.translate(AP.ox,0);actFx(c,f,p.act,p.t,{bx:((p.bx0===undefined?p.x:p.bx0)-p.x)*p.face,ax:((p.ax===undefined?p.x:p.ax)-p.x)*p.face,ay:(p.act==='snare'&&p.snY!==undefined)?p.snY-p.y:0,fc:p.face});c.restore();}
@@ -3965,7 +4116,7 @@ const IC_LEAVE='<svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusabl
 const IC_REMATCH='<svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>';
 function showOv(title,btns){
   const ov=$('ov');ov.innerHTML='';ov.hidden=false;
-  const h=document.createElement('h2');h.textContent=title;ov.appendChild(h);
+  const h=document.createElement('h2');if(String(title).includes('🪙'))h.innerHTML=coinify(escHTML(title));else h.textContent=title;ov.appendChild(h);
   const row=document.createElement('div');row.className='row';
   btns.forEach((b,i)=>{const e=document.createElement('button');e.type='button';e.className=(i===0?'cta':'ghost')+(b[2]?' ibtn':'');if(b[2]){e.innerHTML=b[2];e.setAttribute('aria-label',b[0]);e.title=b[0];}else e.textContent=b[0];e.addEventListener('click',b[1]);row.appendChild(e);});
   ov.appendChild(row);
@@ -3973,6 +4124,7 @@ function showOv(title,btns){
 }
 function hideOv(){const ov=$('ov');ov.hidden=true;ov.innerHTML='';delete ov.dataset.lock;}
 function showResult(){
+  if(NET.on){NET.result();return;}
   const g=game;let ttl=tx('draw'),btns=[[tx('again'),startGame,IC_REMATCH],[tx('toMenu'),toMenu,IC_LEAVE]];
   if(g.over&&g.over!=='draw'){const w=g.over;ttl=tx('wins',w.ai?'CPU':tx('player',w.idx+1),w.f.name);}
   if(g.road>=0){
@@ -3995,6 +4147,7 @@ function showResult(){
 }
 function togglePause(){
   if(!game||!running||game.over)return;
+  if(NET.on){NET.menuOv();return;}
   game.paused=!game.paused;game.resumeCd=game.paused?0:150;
   if(game.paused)showOv(tx('pause'),[[tx('resume'),togglePause,IC_PLAY],[tx('toMenu'),toMenu,IC_LEAVE]]);else hideOv();
 }
@@ -4010,6 +4163,63 @@ function paintFighter(c,i,locked,cos){
   c.restore();
 }
 function p2dummy(){return !!(game&&game.players&&game.players[1]&&game.players[1].dummy);}
+function updateQWarn(){
+  const w=$('qwarnMenu');if(!w)return;
+  w.hidden=!(sel.mode===1&&!sel.train&&!qSetOk());
+  if(w.hidden)return;
+  $('qwarnTxt').textContent=tx(qLivesOk()?'qWarnMods':(qRulesOn()?'qWarnBoth':'qWarnShort'));
+  $('qwarnBtn').textContent=tx(qFixKey());
+}
+function renderMods(){
+  const box=$('modsel');if(!box)return;
+  const n=modCount(sel.mods),all=n===MODDEF.length,isM=rulesTab==='mods';
+  const act=MODDEF.filter(d=>sel.mods[d.k]);
+  const tile=(d,i)=>'<button type="button" class="mod'+(sel.mods[d.k]?' on':'')+'" style="--i:'+i+'" aria-pressed="'+!!sel.mods[d.k]+'" data-mod="'+d.k+'" title="'+tx('modd_'+d.k)+'"><span class="mod-e" aria-hidden="true">'+d.e+'</span><b>'+tx('mod_'+d.k)+'</b><i class="mod-sw" aria-hidden="true"></i></button>';
+  box.innerHTML='<div class="pick" style="--pc:var(--gold)"><div class="pickhead"><h2>'+tx('rulesTitle')+(n?' <span class="modcount">'+n+'/'+MODDEF.length+'</span>':'')+'</h2>'+
+    '<div class="rulesum" aria-hidden="true">'+act.map(d=>'<span>'+d.e+'</span>').join('')+'</div>'+
+    '<button type="button" class="ghost modtog" id="modTog" aria-expanded="'+modsOpen+'" aria-controls="modBody"><span>'+(modsOpen?tx('modsHide'):tx('modsShow'))+'</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></button></div>'+
+    '<div id="modBody" class="modwrap'+(modsOpen?' open':'')+'"><div class="modin">'+
+    '<div class="ruletop"><div class="seg" role="radiogroup" aria-label="'+tx('rulesTitle')+'">'+
+      [['mods',tx('tabMods')],['pups',tx('tabPups')]].map(([k,l])=>'<button type="button" role="radio" aria-checked="'+(rulesTab===k)+'" data-rt="'+k+'">'+l+'</button>').join('')+'</div>'+
+      '<button type="button" class="ghost modall" id="modAll"'+(isM?'':' hidden')+'>'+(all?tx('modsNone'):tx('modsAll'))+'</button></div>'+
+    (isM
+      ?'<div class="modgrid" role="group" aria-label="'+tx('tabMods')+'">'+MODDEF.map(tile).join('')+'</div><p class="hint rulehint" id="ruleHint" aria-live="polite">'+tx('rulesHelp')+'</p>'
+      :'<div class="rulesoon">'+tx('pupSoon')+'</div>')+
+    '</div></div></div>';
+  updateQWarn();
+  const hint=$('ruleHint');
+  $('modTog').addEventListener('click',()=>{
+    modsOpen=!modsOpen;
+    const w=$('modBody'),tg=$('modTog');
+    w.classList.toggle('open',modsOpen);w.classList.remove('fresh');
+    if(modsOpen){void w.offsetWidth;w.classList.add('fresh');clearTimeout(w._t);w._t=setTimeout(()=>w.classList.remove('fresh'),1100);}
+    tg.setAttribute('aria-expanded',modsOpen);
+    tg.querySelector('span').textContent=modsOpen?tx('modsHide'):tx('modsShow');
+  });
+  box.querySelectorAll('[data-rt]').forEach(b=>b.addEventListener('click',()=>{
+    if(rulesTab===b.dataset.rt)return;
+    rulesTab=b.dataset.rt;renderMods();
+    const nb=box.querySelector('[data-rt="'+rulesTab+'"]');if(nb)nb.focus();
+    stagIn(box.querySelectorAll('.mod,.rulesoon'));
+  }));
+  box.querySelectorAll('.mod').forEach(b=>{
+    const show=()=>{if(hint)hint.textContent=tx('modd_'+b.dataset.mod);};
+    b.addEventListener('pointerenter',e=>{if(e.pointerType!=='touch')show();});
+    b.addEventListener('focus',show);
+    b.addEventListener('click',()=>{
+      const k=b.dataset.mod;sel.mods[k]=!sel.mods[k];saveSel();renderMods();
+      const nb=box.querySelector('[data-mod="'+k+'"]');
+      if(nb){nb.focus();nb.classList.add('pop');const h=$('ruleHint');if(h)h.textContent=tx('modd_'+k);}
+    });
+  });
+  const ma=$('modAll');
+  if(ma)ma.addEventListener('click',()=>{
+    const on=modCount(sel.mods)!==MODDEF.length;
+    for(const d of MODDEF)sel.mods[d.k]=on;
+    saveSel();renderMods();const e=$('modAll');if(e)e.focus();
+    box.querySelectorAll('.mod').forEach(x=>x.classList.add('pop'));
+  });
+}
 function renderMenu(){
   renderControls();saveSel();
   if(sel.p1>=0&&isLocked(sel.p1))sel.p1=0;
@@ -4018,9 +4228,9 @@ function renderMenu(){
   $('m5').classList.toggle('on',!!sel.train);$('m5').setAttribute('aria-pressed',!!sel.train);
   $('m1').setAttribute('aria-checked',M===1&&!sel.train);$('m2').setAttribute('aria-checked',M===2);
   if(!game){$('menu').hidden=M===3||inSet||inChest||inQuest;$('road').hidden=M!==3||inSet||inChest||inQuest;$('setpage').hidden=!inSet;$('chestpage').hidden=!inChest;$('questpage').hidden=!inQuest;$('setBtn').hidden=inSet||inChest||inQuest;$('coinPill').hidden=false;}
-  $('coinPill').textContent='🪙 '+coins;
+  $('coinPill').innerHTML=COIN+coins;
   {const n=qReady().length,e=$('qdot');if(e){e.hidden=!n;e.textContent=n;}}
-  {const w=$('qwarnMenu');if(w){w.hidden=!(M===1&&!sel.train&&!qSetOk());$('qwarnTxt').textContent=tx('qWarnShort');$('qwarnBtn').textContent=tx('qFix');}}
+  updateQWarn();
   if(inChest&&!game)renderChest();
   if(inQuest&&!game)renderQuests();
   $('start').textContent=tx('startFight');
@@ -4039,13 +4249,13 @@ function renderMenu(){
     return '<div class="pick" style="--pc:'+col+'"><div class="pickhead"><h2>'+title+'</h2><button type="button" class="ghost seeall" data-all="'+k+'" aria-expanded="'+open+'">'+(open?tx('showLess'):tx('seeAll'))+'</button></div>'+
       (open
         ?'<div class="'+openCls+'" role="radiogroup" aria-label="'+aria+'">'+ord.map(card).join('')+'</div>'
-        :'<div class="strip"><button type="button" class="ghost arrow" data-sc="-1" aria-label="'+tx('scrollL')+'">◀</button><div class="cards row" role="radiogroup" aria-label="'+aria+'">'+ord.map(card).join('')+'</div><button type="button" class="ghost arrow" data-sc="1" aria-label="'+tx('scrollR')+'">▶</button></div>')+
+        :'<div class="strip"><button type="button" class="ghost arrow" data-sc="-1" aria-label="'+tx('scrollL')+'"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg></button><div class="cards row" role="radiogroup" aria-label="'+aria+'">'+ord.map(card).join('')+'</div><button type="button" class="ghost arrow" data-sc="1" aria-label="'+tx('scrollR')+'"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg></button></div>')+
       '</div>';
   };
   const fall=FIGHTERS.map((f,i)=>i).filter(i=>!FIGHTERS[i].boss).concat(FIGHTERS.map((f,i)=>i).filter(i=>FIGHTERS[i].boss),[-1]),mall=MAPS.map((m,i)=>i).concat([-1]);
   const pickHTML=(k,name,col)=>rowHTML(k,name,col,tx('fighterAria',name),sel[k],fall,i=>fcard(k,i),'cards');
   if(M===3){
-    $('picks').innerHTML='';$('mapsel').innerHTML='';
+    $('picks').innerHTML='';$('mapsel').innerHTML='';$('modsel').innerHTML='';
     $('roadpick').innerHTML=pickHTML('p1',tx('player',1),'var(--p1)');
     const done=ROAD.filter(r=>unl.includes(r.boss)).length;
     $('roadmap').innerHTML='<div class="roadscroll"><div class="roadin" style="--prog:'+Math.min(done,ROAD.length-1)+'" role="radiogroup" aria-label="'+tx('levelAria')+'">'+
@@ -4056,6 +4266,7 @@ function renderMenu(){
     $('roadpick').innerHTML='';$('roadmap').innerHTML='';
     $('picks').innerHTML=[['p1',tx('player',1),'var(--p1)']].concat([['p2',sel.train?tx('dummyName'):M===1?'CPU':tx('player',2),'var(--p2)']]).map(([k,n,c])=>pickHTML(k,n,c)).join('');
     $('mapsel').innerHTML=rowHTML('map',tx('arena'),'var(--gold)',tx('arena'),sel.map,mall,mcard,'mapcards');
+    renderMods();
   }
   document.querySelectorAll('.seeall').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.all;showAll[k]=!showAll[k];renderMenu();const n=document.querySelector('.seeall[data-all="'+k+'"]');if(n){n.focus();const pk=n.closest('.pick');if(pk){pk.classList.add('toggled');playIn(pk);clearTimeout(pk._tt);pk._tt=setTimeout(()=>pk.classList.remove('toggled'),900);}}}));
   document.querySelectorAll('.strip').forEach(st=>{
@@ -4121,6 +4332,13 @@ function showTip(b){
 }
 addEventListener('pointerdown',e=>{if(infoOpen&&!(e.target.closest&&e.target.closest('.infobtn')))hideTip();});
 addEventListener('scroll',hideTip,true);
+function stagIn(els){
+  els=[...els];if(!els.length)return;
+  els.forEach((e,i)=>{e.style.setProperty('--i',Math.min(i,14));e.classList.remove('sin');});
+  void document.body.offsetWidth;
+  els.forEach(e=>e.classList.add('sin'));
+  clearTimeout(stagIn._t);stagIn._t=setTimeout(()=>els.forEach(e=>e.classList.remove('sin')),1300);
+}
 function playIn(root){
   root.querySelectorAll('.card,.mcard,.node,.setpanel>div,.setpanel>.setrow').forEach((e,i)=>e.style.setProperty('--i',Math.min(i,14)));
   root.classList.remove('animin');void root.offsetWidth;root.classList.add('animin');
@@ -4150,7 +4368,7 @@ function updateChestSel(){
   box.querySelectorAll('[data-co]').forEach(b=>b.setAttribute('aria-checked',String(+b.dataset.co===chestSel)));
   const ob=box.querySelector('.ob');
   if(ob){
-    if(sc){ob.dataset.ct=chestSel;ob.classList.toggle('gold2',chestSel>0);ob.textContent=tx(chestSel?'openChest2':'openChest',sc.cost);ob.disabled=coins<sc.cost;}
+    if(sc){ob.dataset.ct=chestSel;ob.classList.toggle('gold2',chestSel>0);ob.innerHTML=coinify(tx(chestSel?'openChest2':'openChest',sc.cost));ob.disabled=coins<sc.cost;}
     else ob.disabled=true;
     ob.classList.toggle('off',!sc);
   }
@@ -4163,7 +4381,7 @@ function renderChest(){
   const box=$('chestbox'),cf=chestIdx();
   const tws=CHESTS.map(ch=>cf.reduce((a,i)=>a+chW(ch,cf,i),0));
   const all=cf.every(i=>own.includes(FIGHTERS[i].id)),op=cs.phase==='opening';
-  const opts=(sm)=>all?'<div class="row2"><div class="chestIcon" aria-hidden="true">'+CHESTS[0].icon+'</div><div class="chestIcon" aria-hidden="true">'+CHESTS[1].icon+'</div></div>':'<div class="chestPick" role="radiogroup" aria-label="'+tx('chestBtn')+'">'+CHESTS.map((ch,k)=>'<button type="button" class="chestOpt'+(sm?' sm':'')+'" role="radio" aria-checked="'+(chestSel===k)+'" data-co="'+k+'"'+(op?' disabled':'')+'><span class="ci" aria-hidden="true">'+ch.icon+'</span><b>'+tx('chName'+k)+'</b><span class="cc">'+ch.cost+' 🪙</span></button>').join('')+'</div>';
+  const opts=(sm)=>all?'<div class="row2"><div class="chestIcon" aria-hidden="true">'+CHESTS[0].icon+'</div><div class="chestIcon" aria-hidden="true">'+CHESTS[1].icon+'</div></div>':'<div class="chestPick" role="radiogroup" aria-label="'+tx('chestBtn')+'">'+CHESTS.map((ch,k)=>'<button type="button" class="chestOpt'+(sm?' sm':'')+'" role="radio" aria-checked="'+(chestSel===k)+'" data-co="'+k+'"'+(op?' disabled':'')+'><span class="ci" aria-hidden="true">'+ch.icon+'</span><b>'+tx('chName'+k)+'</b><span class="cc">'+ch.cost+' '+COIN+'</span></button>').join('')+'</div>';
   let stage;
   if(op){
     stage='<div class="reel"><div class="reelmark"></div><div class="reeltrack" id="reelTrack">'+cs.reel.map(i=>{const f=FIGHTERS[i],col=RARC[f.rar];
@@ -4174,8 +4392,8 @@ function renderChest(){
   }else stage=opts(false)+'<div class="hint chp'+(chestSel<0?'':' off')+'" role="status">'+tx('chPick')+'</div>';
   const sc=CHESTS[chestSel];
   const btns=all?'<button type="button" class="cta" disabled>'+tx('allOwned')+'</button>':
-    '<button type="button" class="cta ob'+(chestSel>0?' gold2':'')+(sc?'':' off')+'" data-ct="'+(sc?chestSel:0)+'"'+((!sc||coins<sc.cost||op)?' disabled':'')+'>'+(op?tx('opening'):tx(chestSel>0?'openChest2':'openChest',(sc||CHESTS[0]).cost))+'</button>';
-  box.innerHTML=tabsHTML()+'<div><div class="coinbig">🪙 '+coins+'</div><p class="hint" style="margin:6px 0 0">'+tx('chestInfo',CHESTS[1].cost,WIN_COINS,BOSS_COINS)+'</p></div>'+
+    '<button type="button" class="cta ob'+(chestSel>0?' gold2':'')+(sc?'':' off')+'" data-ct="'+(sc?chestSel:0)+'"'+((!sc||coins<sc.cost||op)?' disabled':'')+'>'+(op?tx('opening'):coinify(tx(chestSel>0?'openChest2':'openChest',(sc||CHESTS[0]).cost)))+'</button>';
+  box.innerHTML=tabsHTML()+'<div><div class="coinbig">'+COIN+' '+coins+'</div><p class="hint" style="margin:6px 0 0">'+tx('chestInfo',CHESTS[1].cost,WIN_COINS,BOSS_COINS)+'</p></div>'+
    '<div class="chestStage">'+stage+'</div>'+
    '<div class="startbar">'+btns+(all?'':'<span class="hint nh'+(sc&&coins<sc.cost?'':' off')+'">'+tx('notEnough')+'</span>')+'</div>'+
    '<div><h3>'+tx('collection')+' · '+tx('chances')+'</h3><div class="cards">'+cf.map(i=>{const f=FIGHTERS[i],ow=own.includes(f.id),col=RARC[f.rar];
@@ -4212,6 +4430,7 @@ function bindTabs(box){
     if(cs.phase==='opening'||shopTab===b.dataset.tab)return;
     shopTab=b.dataset.tab;cs={phase:'idle'};renderMenu();
     const n=$('chestbox').querySelector('[data-tab="'+shopTab+'"]');if(n)n.focus();
+    stagIn([...$('chestbox').children].filter(c=>!c.querySelector('[data-tab]')));
   }));
 }
 function cosSwap(){
@@ -4233,13 +4452,13 @@ function renderCos(){
   const box=$('chestbox'),ops=FIGHTERS.map((f,i)=>i).filter(i=>!isLocked(i)).sort((a,b)=>(!!FIGHTERS[a].boss)-(!!FIGHTERS[b].boss));
   if(cosSel<0||cosSel>=FIGHTERS.length||isLocked(cosSel))cosSel=0;
   const fid=FIGHTERS[cosSel].id,eq=cosEq[fid]||(cosEq[fid]={});
-  let h=tabsHTML()+'<div><div class="coinbig">🪙 '+coins+'</div><p class="hint" style="margin:6px 0 0">'+tx('cosInfo')+'</p></div>'+
+  let h=tabsHTML()+'<div><div class="coinbig">'+COIN+' '+coins+'</div><p class="hint" style="margin:6px 0 0">'+tx('cosInfo')+'</p></div>'+
    '<div class="chestStage"><canvas id="cosPrev" width="288" height="288"></canvas><div class="rname">'+FIGHTERS[cosSel].name+'</div></div>'+
    '<div><h3>'+tx('cosFighter')+'</h3><div class="dd" id="cosDD"><button type="button" class="dd-btn" id="cosFighter" aria-haspopup="listbox" aria-expanded="false" aria-label="'+tx('cosFighter')+'"><canvas class="dd-ic" id="cosDDic" width="144" height="144"></canvas><span class="dd-name" id="cosDDname">'+FIGHTERS[cosSel].name+'</span><svg class="dd-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="dd-list" role="listbox" aria-label="'+tx('cosFighter')+'">'+ops.map((i,k)=>'<button type="button" class="dd-opt" role="option" aria-selected="'+(i===cosSel)+'" data-v="'+i+'" style="animation-delay:'+Math.min(k*16,240)+'ms"><canvas width="144" height="144" data-dd="'+i+'"></canvas><span>'+FIGHTERS[i].name+'</span></button>').join('')+'</div></div></div>';
   for(const sl of ['hat','face','body']){
     h+='<div><h3>'+tx('slot_'+sl)+'</h3><div class="cards">'+COS.filter(x=>x.slot===sl).map(x=>{
       const ow=cosOwn.includes(x.id),on=eq[sl]===x.id;
-      return '<div class="card" style="'+(on?'border-color:var(--gold)':'')+'"><canvas width="144" height="144" data-cos="'+x.id+'"></canvas><b>'+tx('cos_'+x.id)+'</b><span>'+(ow?tx('owned'):'🪙 '+x.price)+'</span><button type="button" class="ghost" data-act="'+x.id+'"'+(!ow&&coins<x.price?' disabled':'')+'>'+(!ow?tx('buy'):(on?tx('unequip'):tx('equip')))+'</button></div>';
+      return '<div class="card" style="'+(on?'border-color:var(--gold)':'')+'"><canvas width="144" height="144" data-cos="'+x.id+'"></canvas><b>'+tx('cos_'+x.id)+'</b><span>'+(ow?tx('owned'):COIN+' '+x.price)+'</span><button type="button" class="ghost" data-act="'+x.id+'"'+(!ow&&coins<x.price?' disabled':'')+'>'+(!ow?tx('buy'):(on?tx('unequip'):tx('equip')))+'</button></div>';
     }).join('')+'</div></div>';
   }
   box.innerHTML=h;
@@ -4292,7 +4511,7 @@ function renderQuests(){
   const box=$('questbox');if(!box)return;
   const ready=QUESTS.filter(d=>!Q.c.includes(d.id)&&qDone(d)),busy=QUESTS.filter(d=>!Q.c.includes(d.id)&&!qDone(d)),done=QUESTS.filter(d=>Q.c.includes(d.id));
   const tot=ready.reduce((a,d)=>a+d.coins,0),C=213.63;
-  const act=(d,st)=>st==='claimed'?'':st==='ready'?'<button type="button" class="qclaim" data-q="'+d.id+'">'+tx('claim')+' +'+d.coins+' 🪙</button>':'<span class="qrew">🪙 '+d.coins+'</span>';
+  const act=(d,st)=>st==='claimed'?'':st==='ready'?'<button type="button" class="qclaim" data-q="'+d.id+'">'+tx('claim')+' +'+d.coins+' '+COIN+'</button>':'<span class="qrew">'+COIN+' '+d.coins+'</span>';
   const row=(d,st)=>{
     const pr=Math.min(d.goal,qProg(d)),pc=Math.round(pr/d.goal*100);
     const right=st==='claimed'?'<span class="qok" aria-hidden="true">✓</span>':act(d,st);
@@ -4308,9 +4527,9 @@ function renderQuests(){
   };
   const sec=(k,a,st)=>a.length?'<div class="qsec"><h3>'+tx(k)+' ('+a.length+')</h3>'+(qView==='grid'?'<div class="qgrid">'+a.map(d=>card(d,st)).join('')+'</div>':a.map(d=>row(d,st)).join(''))+'</div>':'';
   const ico={list:'<svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 6h12M8 12h12M8 18h12"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></svg>',grid:'<svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></svg>'};
-  const warn=qSetOk()?'':'<div class="qwarn" role="alert"><div><div>⚠ '+tx('qWarnTitle')+'</div><div class="qwsub">'+tx('qWarnBody',cfg.stocks,DIFFN[cfg.diff])+'</div></div><button type="button" class="qfix">'+tx('qFix')+'</button></div>';
-  box.innerHTML='<div><div class="coinbig">🪙 '+coins+'</div><p class="hint" style="margin:6px 0 0">'+tx('questInfo')+'</p></div>'+warn+
-    '<div class="qsum"><span>'+tx('qCount',done.length,QUESTS.length)+'</span><div class="qview">'+(ready.length?'<button type="button" class="qall">'+tx('claimAll',tot)+'</button>':'')+
+  const warn=qSetOk()?'':'<div class="qwarn" role="alert"><div><div class="wline"><svg class="ico wico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5l9.5 16.5h-19z"/><path d="M12 10v4.5M12 17.2v.2"/></svg>'+tx('qWarnTitle')+'</div><div class="qwsub">'+(qLivesOk()?'':tx('qWarnBody',cfg.stocks,DIFFN[cfg.diff]))+(!qLivesOk()&&qRulesOn()?' ':'')+(qRulesOn()?tx('qWarnModsBody'):'')+'</div></div><button type="button" class="qfix">'+tx(qFixKey())+'</button></div>';
+  box.innerHTML='<div><div class="coinbig">'+COIN+' '+coins+'</div><p class="hint" style="margin:6px 0 0">'+tx('questInfo')+'</p></div>'+warn+
+    '<div class="qsum"><span>'+tx('qCount',done.length,QUESTS.length)+'</span><div class="qview">'+(ready.length?'<button type="button" class="qall">'+coinify(tx('claimAll',tot))+'</button>':'')+
     '<div class="seg" role="radiogroup" aria-label="'+tx('qViewAria')+'">'+['grid','list'].map(v=>'<button type="button" role="radio" aria-checked="'+(qView===v)+'" data-qv="'+v+'" title="'+tx('qView_'+v)+'" aria-label="'+tx('qView_'+v)+'">'+ico[v]+'</button>').join('')+'</div></div></div>'+
     sec('qReady',ready,'ready')+sec('qBusy',busy,'busy')+sec('qClaimed',done,'claimed');
   requestAnimationFrame(()=>requestAnimationFrame(()=>{
@@ -4326,6 +4545,7 @@ function renderQuests(){
     if(qView===b.dataset.qv)return;
     qView=b.dataset.qv;try{localStorage.setItem('rr_qview',qView);}catch(e){}
     renderQuests();const n=box.querySelector('[data-qv="'+qView+'"]');if(n)n.focus();
+    stagIn(box.querySelectorAll('.qcard,.qrow'));
   }));
 }
 function openQuestPage(){if(game)return;inQuest=true;inChest=false;inSet=false;renderMenu();window.scrollTo(0,0);const b=$('questBack');if(b)b.focus();}
@@ -4333,13 +4553,16 @@ function closeQuest(){inQuest=false;renderMenu();window.scrollTo(0,0);}
 $('m6').addEventListener('click',openQuestPage);
 $('questBack').addEventListener('click',closeQuest);
 $('qwarnBtn').addEventListener('click',qFixSettings);
-function setPlayers(n){
-  if(sel.mode===n&&!sel.train)return;
-  sel.train=false;sel.mode=n;renderMenu();
+function swapPicks(){
   const pk=$('picks');pk.classList.remove('swap');void pk.offsetWidth;pk.classList.add('swap');
   clearTimeout(pk._t);pk._t=setTimeout(()=>pk.classList.remove('swap'),700);
 }
-$('m5').addEventListener('click',()=>{if(sel.train){setPlayers(1);return;}sel.mode=1;sel.train=true;renderMenu();});
+function setPlayers(n){
+  if(sel.mode===n&&!sel.train)return;
+  sel.train=false;sel.mode=n;renderMenu();
+  swapPicks();
+}
+$('m5').addEventListener('click',()=>{if(sel.train){setPlayers(1);return;}sel.mode=1;sel.train=true;renderMenu();swapPicks();});
 $('m1').addEventListener('click',()=>setPlayers(1));
 $('m2').addEventListener('click',()=>setPlayers(2));
 function openSet(){inChest=false;inQuest=false;inSet=true;rebind=null;keyMsg='';resetAsk=false;renderSettings();renderMenu();window.scrollTo(0,0);const b=$('setBack');if(b)b.focus();}
@@ -4593,11 +4816,11 @@ const SAVE_KEY='rr_save';
 let pendingResume=null,rtData=null;
 function clearSave(){try{localStorage.removeItem(SAVE_KEY);}catch(e){}}
 function saveGame(){
-  if(!game||!running)return;
+  if(!game||!running||NET.on)return;
   if(game.over){clearSave();return;}
   if(game.fin||game.players.some(p=>p.ko))return; // tijdens een KO-animatie blijft de vorige autosave staan
   try{
-    const d={v:1,ts:Date.now(),mode:game.mode,train:!!p2dummy(),road:game.road,mi:game.mi,tick:game.tick,diff:cfg.diff,
+    const d={v:1,ts:Date.now(),mode:game.mode,train:!!p2dummy(),mods:game.mods||{},road:game.road,mi:game.mi,tick:game.tick,diff:cfg.diff,
       pl:game.players.map(p=>({fi:FIGHTERS.indexOf(p.f),x:p.x,y:p.y,vx:p.vx,vy:p.vy,face:p.face,dmg:p.dmg,dmgLim:p.dmgLim,stocks:p.stocks,maxSt:p.maxSt,
         dead:!!p.dead,respawn:p.respawn,shieldHP:p.shieldHP,jumps:p.jumps,upUsed:!!p.upUsed,aiM:p.aiM,cd:p.cd}))};
     localStorage.setItem(SAVE_KEY,JSON.stringify(d));
@@ -4648,6 +4871,7 @@ function resumeSaved(){
   if(splashOpen)closeSplash();
   initAudio();
   Object.assign(sel,{mode:d.mode,p1:d.pl[0].fi,p2:d.pl[1].fi,map:d.mi});sel.train=!!d.train&&d.mode===1;
+  sel.mods={};if(d.mods&&typeof d.mods==='object')for(const m of MODDEF)sel.mods[m.k]=d.mods[m.k]===true;
   if(d.mode===3)sel.lvl=d.road;
   pendingResume=d;
   const bd=cfg.diff;if(DIFFM[d.diff]!==undefined)cfg.diff=d.diff;
@@ -4666,6 +4890,7 @@ const BLOCK=['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space','Slash','Per
 addEventListener('keydown',e=>{
   initAudio();
   if(splashOpen){if(e.code==='Enter'||e.code==='NumpadEnter'||e.code==='Space'){e.preventDefault();closeSplash();}return;}
+  if(NET.lobbyOpen){if(e.code==='Escape'){e.preventDefault();NET.closeLobby();}return;}
   if(infoOpen&&e.code==='Escape')hideTip();
   if(rebind){e.preventDefault();doRebind(e);return;}
   if(inSet&&!game&&e.code==='Escape'){e.preventDefault();closeSet();return;}
@@ -4677,7 +4902,7 @@ addEventListener('keydown',e=>{
   if(e.code==='Enter'&&!game&&!inChest&&!inQuest&&(!$('menu').hidden||!$('road').hidden)&&!(document.activeElement&&document.activeElement.tagName==='BUTTON')){startGame();}
 });
 addEventListener('keyup',e=>keys.delete(e.code));
-addEventListener('blur',()=>{keys.clear();for(const k in vk)vk[k]=false;if(game&&running&&!game.over&&!game.paused)togglePause();});
+addEventListener('blur',()=>{keys.clear();for(const k in vk)vk[k]=false;if(game&&running&&!game.over&&!game.paused&&!NET.on)togglePause();});
 (function(){
   const st=$('stick');if(!st)return;const kn=st.querySelector('.knob');let pid=null;
   const clear=()=>{pid=null;vk.l=vk.r=vk.u=vk.d=false;st.classList.remove('on');kn.style.transform='translate(-50%,-50%)';};
@@ -4703,8 +4928,161 @@ document.querySelectorAll('#pad button').forEach(b=>{
   b.addEventListener('pointerdown',on);b.addEventListener('pointerup',off);b.addEventListener('pointercancel',off);b.addEventListener('lostpointercapture',off);
   b.addEventListener('contextmenu',e=>e.preventDefault());
 });
-try{matchMedia('(orientation:portrait)').addEventListener('change',e=>{if(e.matches&&TOUCH&&game&&running&&!game.over&&!game.paused)togglePause();});}catch(_){}
+try{matchMedia('(orientation:portrait)').addEventListener('change',e=>{if(e.matches&&TOUCH&&game&&running&&!game.over&&!game.paused&&!NET.on)togglePause();});}catch(_){}
 try{document.fonts&&document.fonts.load('20px Bungee');document.fonts.ready.then(()=>{if(!game)renderMenu();});}catch(_){}
+/* ---------- Online multiplayer (PeerJS / WebRTC, lockstep) ---------- */
+const ONL={
+en:{btn:'Online',title:'Online match',create:'Create room',join:'Join room',making:'Creating room…',share:'Share this code with your friend',wait:'Waiting for your friend…',conn:'Friend connected!',start:'Start match',enter:'Enter room code',go:'Join',joining:'Connecting…',waitHost:'Connected! Waiting for the host to start…',nf:'Room not found. Check the code.',net:'Connection problem. Try again.',left:'Your friend left.',lost:'Connection lost.',rematch:'Rematch',waitRm:'Waiting for friend…',menu:'Online match',modeOn:'Online match',noLib:'The online service could not be loaded.',desync:'Games drifted out of sync. Start a rematch if it feels off.',hint:'You play with the Player 1 fighter from the menu. The host picks arena and rules.',copy:'Copy code',copied:'Copied!',back:'Back',close:'Close',stall:'Waiting for opponent…'},
+nl:{btn:'Online',title:'Online wedstrijd',create:'Kamer maken',join:'Kamer joinen',making:'Kamer maken…',share:'Deel deze code met je vriend',wait:'Wachten op je vriend…',conn:'Vriend is verbonden!',start:'Start wedstrijd',enter:'Vul de kamercode in',go:'Join',joining:'Verbinden…',waitHost:'Verbonden! Wachten tot de host start…',nf:'Kamer niet gevonden. Controleer de code.',net:'Verbindingsprobleem. Probeer opnieuw.',left:'Je vriend is weggegaan.',lost:'Verbinding verbroken.',rematch:'Revanche',waitRm:'Wachten op vriend…',menu:'Online wedstrijd',modeOn:'Online wedstrijd',noLib:'De onlinedienst kon niet geladen worden.',desync:'De spellen liepen uit de pas. Start een revanche als het raar voelt.',hint:'Je speelt met de Speler 1-vechter uit het menu. De host kiest arena en regels.',copy:'Kopieer code',copied:'Gekopieerd!',back:'Terug',close:'Sluiten',stall:'Wachten op tegenstander…'},
+de:{btn:'Online',title:'Online-Match',create:'Raum erstellen',join:'Raum beitreten',making:'Raum wird erstellt…',share:'Teile diesen Code mit deinem Freund',wait:'Warte auf deinen Freund…',conn:'Freund verbunden!',start:'Match starten',enter:'Raumcode eingeben',go:'Beitreten',joining:'Verbinde…',waitHost:'Verbunden! Warte auf den Host…',nf:'Raum nicht gefunden. Code prüfen.',net:'Verbindungsproblem. Versuche es erneut.',left:'Dein Freund hat verlassen.',lost:'Verbindung verloren.',rematch:'Rückkampf',waitRm:'Warte auf Freund…',menu:'Online-Match',modeOn:'Online-Match',noLib:'Der Online-Dienst konnte nicht geladen werden.',desync:'Die Spiele sind asynchron. Starte einen Rückkampf.',hint:'Du spielst mit dem Spieler-1-Kämpfer aus dem Menü. Der Host wählt Arena und Regeln.',copy:'Code kopieren',copied:'Kopiert!',back:'Zurück',close:'Schließen',stall:'Warte auf Gegner…'},
+fr:{btn:'En ligne',title:'Match en ligne',create:'Créer un salon',join:'Rejoindre',making:'Création du salon…',share:'Partage ce code avec ton ami',wait:'En attente de ton ami…',conn:'Ami connecté !',start:'Lancer le match',enter:'Entre le code du salon',go:'Rejoindre',joining:'Connexion…',waitHost:'Connecté ! En attente de l’hôte…',nf:'Salon introuvable. Vérifie le code.',net:'Problème de connexion. Réessaie.',left:'Ton ami est parti.',lost:'Connexion perdue.',rematch:'Revanche',waitRm:'En attente de l’ami…',menu:'Match en ligne',modeOn:'Match en ligne',noLib:'Le service en ligne n’a pas pu être chargé.',desync:'Les parties sont désynchronisées. Lance une revanche.',hint:'Tu joues avec le combattant du Joueur 1 du menu. L’hôte choisit l’arène et les règles.',copy:'Copier le code',copied:'Copié !',back:'Retour',close:'Fermer',stall:'En attente de l’adversaire…'},
+es:{btn:'Online',title:'Partida online',create:'Crear sala',join:'Unirse a sala',making:'Creando sala…',share:'Comparte este código con tu amigo',wait:'Esperando a tu amigo…',conn:'¡Amigo conectado!',start:'Empezar partida',enter:'Introduce el código',go:'Unirse',joining:'Conectando…',waitHost:'¡Conectado! Esperando al anfitrión…',nf:'Sala no encontrada. Revisa el código.',net:'Problema de conexión. Inténtalo de nuevo.',left:'Tu amigo se fue.',lost:'Conexión perdida.',rematch:'Revancha',waitRm:'Esperando al amigo…',menu:'Partida online',modeOn:'Partida online',noLib:'No se pudo cargar el servicio online.',desync:'Las partidas se desincronizaron. Pide una revancha.',hint:'Juegas con el luchador del Jugador 1 del menú. El anfitrión elige arena y reglas.',copy:'Copiar código',copied:'¡Copiado!',back:'Atrás',close:'Cerrar',stall:'Esperando al rival…'}};
+function onl(k){return (ONL[lang]&&ONL[lang][k])||ONL.en[k]||k;}
+function mkRng(s){let a=s>>>0;return()=>{a=(a+0x6D2B79F5)>>>0;let t=a;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;};}
+function cosFor(p){return NET.on?((NET.cos&&NET.cos[p.idx])||{}):p.ai?{}:undefined;}
+function rndSim(){return NET.on&&NET.rng?NET.rng():Math.random();}
+function simHash(){let h=0;for(const p of game.players)for(const v of [p.x,p.y,p.vx,p.vy,p.dmg,p.stocks,p.t,p.hitstun,p.dmgLim])h=(Math.imul(h,31)+Math.round((v||0)*100))|0;return h;}
+const NET={
+  on:false,cos:[{},{}],gc:{},lobbyOpen:false,peer:null,conn:null,isHost:false,me:0,cfg:null,base:null,gf:0,gid:0,n:0,sn:-1,D:4,buf:[{},{}],rm:[0,0],hs:{},ds:0,rng:null,code:'',st:'menu',msg:'',el:null,sT:0,pfx:'rumblerift-',
+  txt(){const b=$('m7');if(b){b.setAttribute('aria-label',onl('btn'));b.title=onl('btn');}if(this.lobbyOpen)this.ui();},
+  note(t){const d=document.createElement('div');d.className='onn';d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),5000);},
+  send(o){try{if(this.conn&&this.conn.open)this.conn.send(o);}catch(e){}},
+  /* lobby */
+  openLobby(){
+    if(game)return;
+    if(!this.el){
+      const s=document.createElement('style');s.textContent='#onl{position:fixed;inset:0;z-index:250;background:rgba(8,8,26,.88);display:flex;align-items:center;justify-content:center;padding:12px;overflow:auto}#onl .onc{background:var(--panel);border:2px solid var(--gold);border-radius:14px;padding:20px 24px;max-width:380px;width:100%;text-align:center;display:flex;flex-direction:column;gap:12px;color:#fff}#onl h2{margin:0;font:400 28px var(--display)}#onl p{margin:0}#onl .onr{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}#onl .oncode{font:400 44px var(--display);letter-spacing:.18em;color:var(--gold)}#onl input{font:400 32px var(--display);letter-spacing:.2em;text-align:center;text-transform:uppercase;padding:8px;border-radius:8px;border:2px solid var(--line);background:#0b0c1c;color:#fff;width:100%;box-sizing:border-box}#onl.in{animation:fadeIn .25s ease-out}#onl.in .onc{animation:ovPop .35s ease-out both}#onl .cta{font-size:18px;padding:10px 22px}#onl .cta:disabled{opacity:.5}#onw,.onn{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:260;background:rgba(0,0,0,.78);color:#fff;padding:6px 14px;border-radius:20px;font-weight:700}';
+      document.head.appendChild(s);
+      const el=this.el=document.createElement('div');el.id='onl';el.hidden=true;document.body.appendChild(el);
+      el.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b&&!b.disabled)this.act(b.dataset.a);});
+      el.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='onCode')this.act('go');});
+    }
+    this.lobbyOpen=true;this.el.hidden=false;
+    this.el.classList.remove('in');void this.el.offsetWidth;this.el.classList.add('in');clearTimeout(this.at);this.at=setTimeout(()=>this.el.classList.remove('in'),450);
+    if(!window.Peer){this.st='err';this.msg=onl('noLib');}else this.st='menu';
+    this.ui();
+  },
+  closeLobby(){this.lobbyOpen=false;if(this.el)this.el.hidden=true;if(!this.on)this.close();},
+  ui(){
+    const el=this.el;if(!el)return;const T=onl,st=this.st;
+    let h='<div class="onc" role="dialog" aria-label="'+T('title')+'"><h2>'+T('title')+'</h2>';
+    if(st==='menu')h+='<p>'+T('hint')+'</p><div class="onr"><button type="button" class="cta" data-a="create">'+T('create')+'</button><button type="button" class="cta" data-a="joinui">'+T('join')+'</button></div>';
+    else if(st==='joinui')h+='<p>'+T('enter')+'</p><input id="onCode" maxlength="5" autocomplete="off" autocapitalize="characters" spellcheck="false"><div class="onr"><button type="button" class="cta" data-a="go">'+T('go')+'</button></div>';
+    else if(st==='creating'||st==='joining')h+='<p>'+T(st==='creating'?'making':'joining')+'</p>';
+    else if(st==='wait'||st==='conn'){h+='<p>'+T('share')+'</p><div class="oncode">'+this.code+'</div><div class="onr"><button type="button" class="ghost" data-a="copy">'+T('copy')+'</button></div><p>'+T(st==='conn'?'conn':'wait')+'</p><div class="onr"><button type="button" class="cta" data-a="start"'+(st==='conn'?'':' disabled')+'>'+T('start')+'</button></div>';}
+    else if(st==='gwait')h+='<p>'+T('waitHost')+'</p>';
+    else if(st==='err')h+='<p>'+this.msg+'</p><div class="onr"><button type="button" class="cta" data-a="menu">'+T('back')+'</button></div>';
+    h+='<div class="onr"><button type="button" class="ghost" data-a="close">'+T('close')+'</button></div></div>';
+    el.innerHTML=h;
+    const i=el.querySelector('#onCode');if(i)i.focus();
+  },
+  act(a){
+    if(a==='create')this.createRoom();
+    else if(a==='joinui'){this.st='joinui';this.ui();}
+    else if(a==='go'){const i=this.el.querySelector('#onCode');this.join(i?i.value:'');}
+    else if(a==='copy'){try{navigator.clipboard.writeText(this.code);const b=this.el.querySelector('[data-a=copy]');if(b)b.textContent=onl('copied');}catch(e){}}
+    else if(a==='start')this.startMatch();
+    else if(a==='menu'){this.teardown();this.st=window.Peer?'menu':'err';this.msg=onl('noLib');this.ui();}
+    else if(a==='close')this.closeLobby();
+  },
+  err(k){this.teardown();this.st='err';this.msg=onl(k);this.ui();},
+  teardown(){const c=this.conn,p=this.peer;this.conn=null;this.peer=null;clearTimeout(this.jt);try{c&&c.close();}catch(e){}try{p&&p.destroy();}catch(e){}},
+  close(){this.teardown();this.on=false;this.cfg=null;this.base=null;this.rng=null;this.rm=[0,0];this.sT=0;const w=$('onw');if(w)w.remove();},
+  /* connection */
+  createRoom(){
+    this.teardown();this.isHost=true;this.me=0;this.gf=0;this.st='creating';this.ui();this.tryId(0);
+  },
+  tryId(k){
+    const A='ABCDEFGHJKMNPQRSTUVWXYZ23456789';let code='';for(let i=0;i<5;i++)code+=A[(Math.random()*A.length)|0];
+    let p;try{p=new Peer(this.pfx+code);}catch(e){this.err('net');return;}
+    this.peer=p;this.code=code;
+    p.on('open',()=>{if(p!==this.peer)return;this.st='wait';this.ui();});
+    p.on('connection',c=>{if(p!==this.peer)return;if(this.conn){c.on('open',()=>c.close());return;}this.attach(c);});
+    p.on('error',e=>{if(p!==this.peer)return;if(e.type==='unavailable-id'&&k<4){this.peer=null;try{p.destroy();}catch(x){}this.tryId(k+1);}else this.err('net');});
+  },
+  join(raw){
+    const code=String(raw).toUpperCase().replace(/[^A-Z0-9]/g,'');if(code.length<5)return;
+    this.teardown();this.isHost=false;this.me=1;this.code=code;this.st='joining';this.ui();
+    let p;try{p=new Peer();}catch(e){this.err('net');return;}
+    this.peer=p;
+    this.jt=setTimeout(()=>{if(p===this.peer&&this.st==='joining')this.err('net');},15000);
+    p.on('open',()=>{if(p!==this.peer)return;this.attach(p.connect(this.pfx+code,{reliable:true,serialization:'json'}));});
+    p.on('error',e=>{if(p!==this.peer)return;this.err(e.type==='peer-unavailable'?'nf':'net');});
+  },
+  attach(c){
+    this.conn=c;
+    const op=()=>{if(c!==this.conn)return;clearTimeout(this.jt);if(this.isHost){this.st='conn';}else{this.st='gwait';this.send({k:'hi',f:this.myF(),c:cosOf(FIGHTERS[this.myF()].id)});}this.ui();};
+    c.on('open',op);c.on('data',d=>{if(c===this.conn)this.recv(d);});
+    c.on('close',()=>{if(c===this.conn)this.lost();});c.on('error',()=>{if(c===this.conn)this.lost();});
+    if(c.open)op();
+  },
+  lost(){
+    if(this.on&&game){
+      const p=this.peer;this.conn=null;this.peer=null;try{p&&p.destroy();}catch(e){}
+      $('ov').dataset.lock='1';showOv(onl(game.over?'left':'lost'),[[tx('toMenu'),toMenu]]);
+    }else if(this.lobbyOpen)this.err('left');else this.teardown();
+  },
+  /* match setup */
+  fighterPick(v){const op=FIGHTERS.map((f,i)=>i).filter(i=>!isLocked(i));return v<0?op[(Math.random()*op.length)|0]:(isLocked(v)?0:v);},
+  myF(){return this.fighterPick(sel.p1);},
+  mkBase(){const f1=this.fighterPick(sel.p1);return{p1:f1,p2:this.gf,cs:[cosOf(FIGHTERS[f1].id),this.gc],map:sel.map<0?(Math.random()*MAPS.length)|0:sel.map,mods:Object.assign({},sel.mods),stocks:cfg.stocks};},
+  startMatch(){
+    if(!this.isHost||!this.conn)return;
+    if(!this.base)this.base=this.mkBase();
+    const c=Object.assign({},this.base,{g:this.gid+1,seed:(Math.random()*4294967296)>>>0});
+    this.send({k:'start',c});this.launch(c);
+  },
+  launch(c){
+    this.on=true;this.cfg=c;this.cos=c.cs||[{},{}];this.gid=c.g;this.rng=mkRng(c.seed);this.rm=[0,0];this.hs={};this.ds=0;this.sT=0;
+    this.n=0;this.sn=-1;this.buf=[{},{}];for(let i=0;i<this.D;i++)this.buf[0][i]=this.buf[1][i]=0;
+    this.lobbyOpen=false;if(this.el)this.el.hidden=true;
+    startGame();
+  },
+  rematch(){
+    this.rm[this.me]=1;this.send({k:'rm'});
+    const b=document.querySelector('#ov .cta');if(b){b.disabled=true;b.textContent=onl('waitRm');}
+    this.tryStart();
+  },
+  tryStart(){if(this.isHost&&this.rm[0]&&this.rm[1])this.startMatch();},
+  result(){
+    const g=game;let t=tx('draw');
+    if(g.over&&g.over!=='draw'){const w=g.over;t=tx('wins',tx('player',w.idx+1),w.f.name);}
+    $('ov').dataset.lock='1';showOv(t,[[onl('rematch'),()=>NET.rematch()],[tx('toMenu'),toMenu]]);
+  },
+  menuOv(){const ov=$('ov');if(ov.dataset.lock)return;if(!ov.hidden){hideOv();return;}showOv(onl('menu'),[[tx('resume'),hideOv,IC_PLAY],[tx('toMenu'),toMenu,IC_LEAVE]]);},
+  recv(d){
+    if(!d)return;
+    if(d.k==='in'){if(d.g===this.gid)this.buf[1-this.me][d.n]=d.b;}
+    else if(d.k==='hi'){this.gf=d.f|0;this.gc=d.c||{};if(this.st==='wait'||this.st==='conn'){this.st='conn';this.ui();}}
+    else if(d.k==='start'&&!this.isHost)this.launch(d.c);
+    else if(d.k==='h'){if(d.g===this.gid)this.chk(d.n,d.h,0);}
+    else if(d.k==='rm'){this.rm[1-this.me]=1;this.tryStart();}
+  },
+  /* lockstep */
+  local(){let b=0;const sets=[MAP[0],MAP[1]];NAMES.forEach((k,i)=>{if(sets.some(m=>m[k].some(c=>keys.has(c)))||vk[k])b|=1<<i;});return b;},
+  get(idx){const b=this.buf[idx][this.n]|0,o={};NAMES.forEach((k,i)=>{o[k]=!!((b>>i)&1);});return o;},
+  pre(){
+    if(this.sn!==this.n){this.sn=this.n;const b=this.local();this.buf[this.me][this.n+this.D]=b;this.send({k:'in',g:this.gid,n:this.n+this.D,b});}
+    const ok=this.buf[1-this.me][this.n]!==undefined,now=performance.now();
+    if(ok){this.sT=0;const w=$('onw');if(w&&w.dataset.s)w.remove();return true;}
+    if(!this.sT)this.sT=now;
+    const d=now-this.sT;
+    if(d>1000&&!$('onw')){const w=document.createElement('div');w.id='onw';w.dataset.s='1';w.textContent=onl('stall');document.body.appendChild(w);}
+    if(d>20000){this.sT=0;const w=$('onw');if(w)w.remove();this.lost();}
+    return false;
+  },
+  adv(){
+    delete this.buf[0][this.n];delete this.buf[1][this.n];
+    if(this.n%120===119&&game){const h=simHash(),k=this.n;this.chk(k,h,1);this.send({k:'h',g:this.gid,n:k,h});}
+    this.n++;
+  },
+  chk(n,h,mine){
+    const s=this.hs[n]||(this.hs[n]={});s[mine?'a':'b']=h;
+    if(s.a!==undefined&&s.b!==undefined){if(s.a!==s.b&&!this.ds){this.ds=1;this.note(onl('desync'));}delete this.hs[n];}
+  }
+};
+$('m7').addEventListener('click',()=>NET.openLobby());
+
 applyStatic();renderMenu();
 splInit();
 })();
