@@ -56,7 +56,7 @@ body{
 #menuBackdrop{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
 #menuBackdrop video{width:100%;height:100%;display:block;object-fit:cover}
 body.splashing #menuBackdrop,body.in-game #menuBackdrop{display:none}
-#menuBackdrop::after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,transparent 0%,rgba(14,15,34,.55) 5%,var(--bg) 12%,var(--bg) 88%,rgba(14,15,34,.55) 95%,transparent 100%)}
+#menuBackdrop::after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,transparent calc(50% - 780px),rgba(14,15,34,.5) calc(50% - 660px),var(--bg) calc(50% - 530px),var(--bg) calc(50% + 530px),rgba(14,15,34,.5) calc(50% + 660px),transparent calc(50% + 780px))}
 button{font:inherit;color:inherit;cursor:pointer}
 button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .wrap{position:relative;z-index:1;max-width:1040px;margin:0 auto;display:grid;gap:18px}
