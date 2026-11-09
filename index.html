@@ -6716,8 +6716,8 @@ const ICE_SERVERS=[
    2) Dashboard > TURN Server: copy your app name (the part before .metered.live) and the API key.
    3) Paste them below. The game then fetches fresh TURN credentials every time you open the Online menu.
    Until you fill these in, the old shared servers are used (unreliable). */
-const TURN_APP='';   /* e.g. 'rumblerift'  -> https://rumblerift.metered.live */
-const TURN_KEY='';   /* your Metered API key */
+const TURN_APP='rumble-rift';   /* e.g. 'rumblerift'  -> https://rumblerift.metered.live */
+const TURN_KEY='pk_live_8ffe1fd6f484ceaea744adc32c8b401683389153';   /* your Metered API key */
 let ICE_LIVE=null;
 function refreshIce(){
   if(!TURN_APP||!TURN_KEY||!window.fetch)return;
