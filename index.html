@@ -6708,19 +6708,22 @@ Object.assign(ONL.es,{kick:'Expulsar',promote:'Hacer anfitrión',kicked:'El anfi
    Default: free Open Relay servers (shared, rate-limited). For a reliable setup create a free account at
    metered.ca (or Cloudflare Calls TURN) and replace the TURN entries below with your own credentials. */
 const ICE_SERVERS=[
-  {urls:['stun:stun.l.google.com:19302','stun:global.stun.twilio.com:3478','stun:openrelay.metered.ca:80']},
-  {urls:['turn:openrelay.metered.ca:80','turn:openrelay.metered.ca:443','turn:openrelay.metered.ca:443?transport=tcp','turns:openrelay.metered.ca:443?transport=tcp'],username:'openrelayproject',credential:'openrelayproject'}
+  {urls:['stun:stun.relay.metered.ca:80','stun:stun.l.google.com:19302']},
+  {urls:'turn:global.relay.metered.ca:80',username:"a783d61e826462da86d9d848",credential:"TOyRCBlM8pA9xE4b"},
+  {urls:'turn:global.relay.metered.ca:80?transport=tcp',username:"a783d61e826462da86d9d848",credential:"TOyRCBlM8pA9xE4b"},
+  {urls:'turn:global.relay.metered.ca:443',username:"a783d61e826462da86d9d848",credential:"TOyRCBlM8pA9xE4b"},
+  {urls:'turns:global.relay.metered.ca:443?transport=tcp',username:"a783d61e826462da86d9d848",credential:"TOyRCBlM8pA9xE4b"}
 ];
 /* === TURN SETUP (needed for 4G/5G and public networks) ===
    1) Make a free account at https://www.metered.ca  (Open Relay, 20 GB/month free).
    2) Dashboard > TURN Server: copy your app name (the part before .metered.live) and the API key.
    3) Paste them below. The game then fetches fresh TURN credentials every time you open the Online menu.
    Until you fill these in, the old shared servers are used (unreliable). */
-const TURN_APP='rumble-rift';   /* e.g. 'rumblerift'  -> https://rumblerift.metered.live */
-const TURN_KEY='pk_live_8ffe1fd6f484ceaea744adc32c8b401683389153';   /* your Metered API key */
-let ICE_LIVE=null,ICE_ST='no key',TURN_PR=null;
+const TURN_APP='';   /* e.g. 'rumblerift'  -> https://rumblerift.metered.live */
+const TURN_KEY='';   /* your Metered API key */
+let ICE_LIVE=null,ICE_ST='fixed',TURN_PR=null;
 function refreshIce(){
-  if(!TURN_APP||!TURN_KEY||!window.fetch){ICE_ST='no key';return Promise.resolve();}
+  if(!TURN_APP||!TURN_KEY||!window.fetch){ICE_ST='fixed';return Promise.resolve();}
   ICE_ST='loading';
   TURN_PR=new Promise(res=>{
     let ctl=null,t=0;
