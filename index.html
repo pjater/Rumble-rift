@@ -6741,6 +6741,7 @@ function withIce(cb){
   if(ICE_LIVE||!TURN_PR||ICE_ST!=='loading'){if(!ICE_LIVE&&TURN_APP&&TURN_KEY&&ICE_ST.indexOf('failed')===0){refreshIce().then(()=>cb());return;}cb();return;}
   let done=false;const go=()=>{if(!done){done=true;cb();}};TURN_PR.then(go);setTimeout(go,4000);
 }
+const SIGERR=/^(network|socket-error|socket-closed|server-error|disconnected)$/;
 const peerOpts=()=>({config:{iceServers:ICE_LIVE||ICE_SERVERS,iceCandidatePoolSize:4,sdpSemantics:'unified-plan'}});
 refreshIce();
 function onl(k){return (ONL[lang]&&ONL[lang][k])||ONL.en[k]||k;}
@@ -6972,7 +6973,7 @@ const NET={
     else if(a==='close'||a==='leave')this.closeLobby();
   },
   err(k){this.teardown();this.st='err';this.msg=onl(k);this.ui();},
-  teardown(){const c=this.conn,p=this.peer;this.conn=null;this.peer=null;clearTimeout(this.jt);try{c&&c.close();}catch(e){}try{p&&p.destroy();}catch(e){}},
+  teardown(){const c=this.conn,p=this.peer;this.conn=null;this.peer=null;clearTimeout(this.jt);clearTimeout(this.rt);try{c&&c.close();}catch(e){}try{p&&p.destroy();}catch(e){}},
   close(){this.teardown();this.on=false;this.gj=false;this.R=null;this.cfg=null;this.base=null;this.rng=null;this.rm=[0,0];this.sT=0;const w=$('onw');if(w)w.remove();},
   /* connection */
   createRoom(){
@@ -6980,13 +6981,15 @@ const NET={
   },
   tryId(k){
     const A='ABCDEFGHJKMNPQRSTUVWXYZ23456789';let code='';for(let i=0;i<5;i++)code+=A[(Math.random()*A.length)|0];
+    if(!this.wk){this.wk=1;const w=()=>this.sigRe();document.addEventListener('visibilitychange',()=>{if(!document.hidden)w();});addEventListener('pageshow',w);addEventListener('online',w);}
     this.dgReset();const me=this.tk=(this.tk||0)+1;
     withIce(()=>{if(me!==this.tk||this.st!=='creating'&&this.st!=='room')return;
     let p;try{p=new Peer(this.pfx+code,peerOpts());}catch(e){this.err('net');return;}
     this.peer=p;this.code=code;
     p.on('open',()=>{if(p!==this.peer)return;this.dgSet('sg','open');this.st='room';this.ui();});
     p.on('connection',c=>{if(p!==this.peer)return;if(this.conn){c.on('open',()=>c.close());return;}this.attach(c);});
-    p.on('error',e=>{if(p!==this.peer)return;this.dgSet('sg','err '+e.type);if(e.type==='unavailable-id'&&k<4){this.peer=null;try{p.destroy();}catch(x){}this.tryId(k+1);}else this.err('net');});
+    p.on('disconnected',()=>{if(p!==this.peer)return;this.dgSet('sg','disconnected');this.sigRe();});
+    p.on('error',e=>{if(p!==this.peer)return;this.dgSet('sg','err '+e.type);if(this.st==='room'&&(e.type==='unavailable-id'||SIGERR.test(e.type))){if(!(this.conn&&this.conn.open))this.sigRe();return;}if(e.type==='unavailable-id'&&k<4){this.peer=null;try{p.destroy();}catch(x){}this.tryId(k+1);}else this.err('net');});
     });
   },
   join(raw){
@@ -6998,10 +7001,19 @@ const NET={
     this.peer=p;
     this.jt=setTimeout(()=>{if(p===this.peer&&this.st==='joining')this.err('net');},25000);
     p.on('open',()=>{if(p!==this.peer)return;this.dgSet('sg','open');this.attach(p.connect(this.pfx+code,{reliable:true,serialization:'json'}));});
-    p.on('error',e=>{if(p!==this.peer)return;this.dgSet('sg','err '+e.type);this.err(e.type==='peer-unavailable'?'nf':'net');});
+    p.on('error',e=>{if(p!==this.peer)return;this.dgSet('sg','err '+e.type);if(this.conn&&this.conn.open&&SIGERR.test(e.type))return;this.err(e.type==='peer-unavailable'?'nf':'net');});
     });
   },
   dgReset(){this.dg={c:{host:0,srflx:0,prflx:0,relay:0},s:'-',g:'-',e:'',sg:'-',o:'-'};this.dgUpd();},
+  /* host: the signaling socket drops when the phone app goes to the background; re-register the SAME room code instead of closing the room */
+  sigRe(n){
+    n=n|0;const p=this.peer;clearTimeout(this.rt);
+    if(!this.isHost||!p||p.destroyed||!p.disconnected||(this.st!=='room'&&this.st!=='creating'))return;
+    if(n>=10){this.err('net');return;}
+    this.dgSet('sg','reconnect '+(n+1));
+    try{p.reconnect();}catch(e){}
+    this.rt=setTimeout(()=>{if(p===this.peer)this.sigRe(n+1);},2500);
+  },
   dgSet(k,v){if(!this.dg)this.dgReset();this.dg[k]=v;this.dgUpd();},
   dgUpd(){
     let el=document.getElementById('onDg');
