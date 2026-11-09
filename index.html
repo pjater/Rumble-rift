@@ -137,6 +137,8 @@ header{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .settings-note{margin:16px 0 0!important;padding-top:4px}
 #m4{padding:10px 14px}
 .seg button{background:transparent;border:0;padding:10px 20px;font-weight:700;letter-spacing:.03em;color:var(--muted)}
+.seg #m5{border-left:2px solid var(--line)}
+.seg #m5.on{background:var(--gold);color:#1b1500}
 .seg button[aria-checked=true]{background:var(--gold);color:#1b1500}
 .pick{display:grid;gap:10px;min-width:0}
 .pick h2{margin:0;font:700 15px var(--body);text-transform:uppercase;letter-spacing:.14em;color:var(--pc)}
@@ -425,6 +427,12 @@ header{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .inst-btns{display:flex;flex-wrap:wrap;gap:12px}
 .inst-btn{display:inline-flex;align-items:center;gap:10px;font-weight:700;padding:10px 18px}
 .inst-btn svg{width:20px;height:20px;fill:currentColor;flex:none}
+#cfOv{position:fixed;inset:0;z-index:1100;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(5,6,18,.78);animation:fadeIn .2s ease-out both}
+#cfOv .cf-box{background:var(--panel);border:2px solid var(--line);border-radius:14px;max-width:420px;width:100%;padding:22px 20px 18px;text-align:center;box-shadow:0 12px 40px rgba(0,0,0,.55);animation:instIn .3s cubic-bezier(.2,.9,.3,1.15) both}
+#cfOv h2{margin:0 0 8px;font:400 22px var(--display);letter-spacing:.03em}
+#cfOv p{margin:0 0 18px;color:var(--muted)}
+#cfOv .cf-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.chestClaim{min-width:200px}
 #instOv{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top,0px)) 16px max(16px,env(safe-area-inset-bottom,0px));background:rgba(5,6,18,.78)}
 #instOv .inst-box{position:relative;background:var(--panel);border:2px solid var(--line);border-radius:14px;max-width:460px;width:100%;max-height:100%;overflow:auto;padding:20px 20px 18px;box-shadow:0 12px 40px rgba(0,0,0,.55)}
 #instOv h2{margin:0 0 4px;padding-right:36px;font:400 22px var(--display);letter-spacing:.03em}
@@ -570,15 +578,15 @@ body.mgame #pad button.on{background:rgba(255,194,61,.9)}
     </div>
     <div class="modebar">
       <button type="button" class="roadbtn" id="m3"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.5 8.5C4.5 7.5 3.5 5.5 4 3c1.8.8 3.3 2 4.2 3.7"/><path d="M17.5 8.5c2-1 3-3 2.5-5.5-1.8.8-3.3 2-4.2 3.7"/><path d="M12 7c-4.4 0-7 2.6-7 6.2 0 2 .9 3.3 2 4.1V20h10v-2.7c1.1-.8 2-2.1 2-4.1C19 9.6 16.4 7 12 7z"/><path d="M8 12l3 1.5-2.5 1.3z" fill="currentColor"/><path d="M16 12l-3 1.5 2.5 1.3z" fill="currentColor"/><path d="M10 20v-2M12 20v-2M14 20v-2"/></svg><span data-i18n="m3">Bossfight Road</span></button>
-      <button type="button" class="roadbtn" id="m8" data-i18n-aria="rankBtn"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M12 8l1.2 2.6 2.8.3-2.1 1.9.6 2.8L12 14.2 9.5 15.6l.6-2.8L8 10.9l2.8-.3L12 8z" fill="currentColor"/></svg><span data-i18n="rankBtn">Ranked Road</span><span class="qdot" id="rdot" hidden></span></button>
+      <button type="button" class="roadbtn" id="m8"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M12 8l1.2 2.6 2.8.3-2.1 1.9.6 2.8L12 14.2 9.5 15.6l.6-2.8L8 10.9l2.8-.3L12 8z" fill="currentColor"/></svg><span data-i18n="rankBtn">Ranked Road</span><span class="qdot" id="rdot" hidden></span></button>
       <button type="button" class="roadbtn" id="m4" data-i18n-aria="chestBtn"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg></button>
       <button type="button" class="roadbtn" id="m6" data-i18n-aria="questBtn"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 4h6l1 2h3v15H5V6h3l1-2z"/><path d="M8.5 13.5l2.5 2.5 4.5-5.5"/></svg><span class="qdot" id="qdot" hidden></span></button>
     </div>
     <div class="modebar">
-      <button type="button" class="roadbtn" id="m5" aria-pressed="false" data-i18n-aria="trainBtn"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></button>
       <div class="seg" role="radiogroup" aria-label="Spelmodus" data-i18n-aria="modeAria">
         <button type="button" role="radio" id="m1" aria-checked="true" data-i18n-aria="m1"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4.5 21c0-4.4 3.4-7 7.5-7s7.5 2.6 7.5 7"/></svg></button>
         <button type="button" role="radio" id="m2" aria-checked="false" data-i18n-aria="m2"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="8.5" cy="8.5" r="3.4"/><path d="M2 20c0-3.8 2.9-6 6.5-6s6.5 2.2 6.5 6"/><circle cx="17" cy="9" r="2.8"/><path d="M16.5 14.2c3.4-.2 5.5 1.8 5.5 5.3"/></svg></button>
+        <button type="button" id="m5" aria-pressed="false" data-i18n-aria="trainBtn"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></button>
       </div>
       <button type="button" class="roadbtn" id="m7"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg><span id="m7t">Online</span></button>
     </div>
@@ -824,6 +832,10 @@ Object.assign(TR.nl,{chestInfo:'Win een gevecht tegen de CPU en krijg {1} munten
 Object.assign(TR.en,{codeTitle:'Secret code',codeLabel:'Enter code',codeBtn:'Redeem',codeOk:'Code accepted: all fighters unlocked and 99999 coins!',codeBad:'Invalid code.'});
 Object.assign(TR.nl,{codeTitle:'Geheime code',codeLabel:'Vul een code in',codeBtn:'Inwisselen',codeOk:'Code geaccepteerd: alle vechters ontgrendeld en 99999 munten!',codeBad:'Ongeldige code.'});
 Object.assign(TR.en,{chName0:'Chest',chName1:'Gold chest',chPick:'Choose a chest to open'});
+Object.assign(TR.nl,{rar_uncommon:'Ongewoon',rar_rare:'Zeldzaam',rar_epic:'Episch',rar_mythic:'Mythisch',rar_legendary:'Legendarisch'});
+Object.assign(TR.de,{rar_uncommon:'Ungewöhnlich',rar_rare:'Selten',rar_epic:'Episch',rar_mythic:'Mythisch',rar_legendary:'Legendär'});
+Object.assign(TR.fr,{rar_uncommon:'Peu commun',rar_rare:'Rare',rar_epic:'Épique',rar_mythic:'Mythique',rar_legendary:'Légendaire'});
+Object.assign(TR.es,{rar_uncommon:'Poco común',rar_rare:'Raro',rar_epic:'Épico',rar_mythic:'Mítico',rar_legendary:'Legendario'});
 Object.assign(TR.nl,{chName0:'Kist',chName1:'Gouden kist',chPick:'Kies een kist om te openen'});
 Object.assign(TR.de,{chName0:'Truhe',chName1:'Goldene Truhe',chPick:'Wähle eine Truhe zum Öffnen'});
 Object.assign(TR.fr,{chName0:'Coffre',chName1:'Coffre doré',chPick:'Choisis un coffre à ouvrir'});
@@ -852,39 +864,43 @@ const fx=(f,i,k)=>{const o=FT[lang];return o&&o[f.id]?o[f.id].split('|')[i]:f[k]
 const fd=f=>fx(f,0,'desc'),fs=f=>fx(f,1,'spn'),fe=f=>fx(f,2,'exn');
 /* Arena texts: 'name|description' */
 const MT={
-en:{arcade:'Glitch Arcade|Inside a broken arcade cabinet. Now and then the screen glitches and the platforms swap places.',rift:'Rumble Rift|The classic: wide stage, two platforms.',neon:'Neon City|Narrow stage, three high platforms.',lava:'Lava Cave|Extra wide stage with a high platform.',ice:'Ice Peak|Four floating ice platforms. Open and slippery.',megaarena:'MEGA Arena|Gigantic stage with five platforms.',megajungle:'MEGA Jungle|Wide and full of small platforms in the trees.',megasunset:'MEGA Sunset|Nearly screen-wide stage and a platform pyramid.'},
-de:{arcade:'Glitch-Arcade|In einem kaputten Spielautomaten. Hin und wieder glitcht der Bildschirm und die Plattformen wechseln ihren Platz.',rift:'Rumble Rift|Der Klassiker: breite Bühne, zwei Plattformen.',neon:'Neonstadt|Schmale Bühne, drei hohe Plattformen.',lava:'Lavahöhle|Extrabreite Bühne mit einer hohen Plattform.',ice:'Eisgipfel|Vier schwebende Eisplattformen. Offen und glatt.',megaarena:'MEGA Arena|Riesige Bühne mit fünf Plattformen.',megajungle:'MEGA Dschungel|Breit und voller kleiner Plattformen in den Bäumen.',megasunset:'MEGA Sonnenuntergang|Fast bildschirmbreite Bühne und eine Plattformpyramide.'},
-fr:{arcade:'Glitch Arcade|Dans une borne d’arcade cassée. De temps en temps l’écran glitche et les plateformes changent de place.',rift:'Rumble Rift|Le classique : grande scène, deux plateformes.',neon:'Ville néon|Scène étroite, trois plateformes hautes.',lava:'Grotte de lave|Scène extra large avec une plateforme haute.',ice:'Sommet glacé|Quatre plateformes de glace flottantes. Ouvert et glissant.',megaarena:'MEGA Arène|Scène gigantesque avec cinq plateformes.',megajungle:'MEGA Jungle|Large et pleine de petites plateformes dans les arbres.',megasunset:'MEGA Coucher de soleil|Scène presque aussi large que l’écran et une pyramide de plateformes.'},
-es:{arcade:'Glitch Arcade|Dentro de una máquina recreativa rota. De vez en cuando la pantalla falla y las plataformas cambian de sitio.',rift:'Rumble Rift|El clásico: escenario amplio, dos plataformas.',neon:'Ciudad neón|Escenario estrecho, tres plataformas altas.',lava:'Cueva de lava|Escenario extra ancho con una plataforma alta.',ice:'Cima helada|Cuatro plataformas de hielo flotantes. Abierto y resbaladizo.',megaarena:'MEGA Arena|Escenario gigantesco con cinco plataformas.',megajungle:'MEGA Jungla|Ancho y lleno de pequeñas plataformas en los árboles.',megasunset:'MEGA Atardecer|Escenario casi tan ancho como la pantalla y una pirámide de plataformas.'}
+en:{arcade:'Glitch Arcade|Inside a broken arcade cabinet. Platforms swap places.',rift:'Rumble Rift|The classic: wide stage, two platforms.',neon:'Neon City|Narrow stage, three high platforms.',lava:'Lava Cave|Extra wide stage with a high platform.',ice:'Ice Peak|Four floating ice platforms. Open and slippery.',megaarena:'MEGA Arena|Gigantic stage with five platforms.',megajungle:'MEGA Jungle|Wide and full of small platforms in the trees.',megasunset:'MEGA Sunset|Nearly screen-wide stage and a platform pyramid.'},
+de:{arcade:'Glitch-Arcade|In einem kaputten Spielautomaten. Plattformen wechseln den Platz.',rift:'Rumble Rift|Der Klassiker: breite Bühne, zwei Plattformen.',neon:'Neonstadt|Schmale Bühne, drei hohe Plattformen.',lava:'Lavahöhle|Extrabreite Bühne mit einer hohen Plattform.',ice:'Eisgipfel|Vier schwebende Eisplattformen. Offen und glatt.',megaarena:'MEGA Arena|Riesige Bühne mit fünf Plattformen.',megajungle:'MEGA Dschungel|Breit und voller kleiner Plattformen in den Bäumen.',megasunset:'MEGA Sonnenuntergang|Fast bildschirmbreite Bühne und eine Plattformpyramide.'},
+fr:{arcade:'Glitch Arcade|Dans une borne d’arcade cassée. Les plateformes changent de place.',rift:'Rumble Rift|Le classique : grande scène, deux plateformes.',neon:'Ville néon|Scène étroite, trois plateformes hautes.',lava:'Grotte de lave|Scène extra large avec une plateforme haute.',ice:'Sommet glacé|Quatre plateformes de glace flottantes. Ouvert et glissant.',megaarena:'MEGA Arène|Scène gigantesque avec cinq plateformes.',megajungle:'MEGA Jungle|Large et pleine de petites plateformes dans les arbres.',megasunset:'MEGA Coucher de soleil|Scène presque aussi large que l’écran et une pyramide de plateformes.'},
+es:{arcade:'Glitch Arcade|Dentro de una recreativa rota. Las plataformas cambian de sitio.',rift:'Rumble Rift|El clásico: escenario amplio, dos plataformas.',neon:'Ciudad neón|Escenario estrecho, tres plataformas altas.',lava:'Cueva de lava|Escenario extra ancho con una plataforma alta.',ice:'Cima helada|Cuatro plataformas de hielo flotantes. Abierto y resbaladizo.',megaarena:'MEGA Arena|Escenario gigantesco con cinco plataformas.',megajungle:'MEGA Jungla|Ancho y lleno de pequeñas plataformas en los árboles.',megasunset:'MEGA Atardecer|Escenario casi tan ancho como la pantalla y una pirámide de plataformas.'}
 };
-Object.assign(MT.en,{icethrone:'Frozen Throne|The Ice King\u2019s throne: slippery ice, blizzard gusts that blow you away, and icicles that freeze you solid.',colossus:'Colossus Gorge|The Stone Golem\u2019s realm: boulders crash down and keep rolling, and earthquakes launch everyone on the ground. Jump!',shadowkeep:'Shadow Keep|The Shadow Knight\u2019s dark fortress: shadow hands aim at you, grab you and pin you in place.',dragonlair:'Dragon Lair|The Fire Dragon\u2019s den: geysers launch you skyward and the whole floor can turn to magma. Find the platforms!',starforge:'Star Forge|The Star Lord\u2019s forge: low gravity, meteor showers and a black hole that drags you into its deadly core.'});
-Object.assign(MT.en,{spikes:'Spike Edge|Spikes on both sides of the stage. Stay in the middle!',skydrift:'Sky Drift|Small stage with floating islands that drift back and forth.'});
-Object.assign(MT.de,{icethrone:'Gefrorener Thron|Thron des Eiskönigs: glattes Eis, Sturmböen, die dich wegwehen, und Eiszapfen, die dich einfrieren.',colossus:'Koloss-Schlucht|Reich des Steingolems: Felsbrocken stürzen herab und rollen weiter, Erdbeben schleudern alle am Boden hoch. Spring!',shadowkeep:'Schattenburg|Dunkle Festung des Schattenritters: Schattenhände zielen auf dich, greifen zu und halten dich fest.',dragonlair:'Drachenhöhle|Die Höhle des Feuerdrachen: Geysire schleudern dich hoch und der ganze Boden kann zu Magma werden. Such die Plattformen!',starforge:'Sternenschmiede|Schmiede des Sternenherrschers: wenig Schwerkraft, Meteore und ein Schwarzes Loch, das dich in seinen Kern zieht.'});
-Object.assign(MT.de,{spikes:'Stachelrand|Stacheln an beiden Seiten der Bühne. Bleib in der Mitte!',skydrift:'Himmelsdrift|Kleine Bühne mit schwebenden Inseln, die hin und her driften.'});
-Object.assign(MT.fr,{icethrone:'Trône gelé|Le trône du Roi de glace : glace glissante, rafales qui vous emportent et stalactites qui vous gèlent.',colossus:'Gorge du Colosse|Le royaume du Golem de pierre : les rochers tombent et continuent de rouler, les séismes projettent tout ce qui touche le sol. Sautez !',shadowkeep:'Forteresse d’ombre|La sombre forteresse du Chevalier d’ombre : des mains d’ombre vous visent, vous agrippent et vous immobilisent.',dragonlair:'Antre du dragon|La tanière du Dragon de feu : des geysers vous propulsent et tout le sol peut se couvrir de magma. Cherchez les plateformes !',starforge:'Forge stellaire|La forge du Seigneur des étoiles : faible gravité, météores et un trou noir qui vous attire vers son noyau mortel.'});
-Object.assign(MT.fr,{spikes:'Bord piquant|Des piques des deux côtés de la scène. Reste au milieu !',skydrift:'Dérive céleste|Petite scène avec des îles flottantes qui dérivent d’un côté à l’autre.'});
-Object.assign(MT.es,{icethrone:'Trono helado|El trono del Rey de Hielo: hielo resbaladizo, ráfagas que te empujan y carámbanos que te congelan.',colossus:'Garganta Coloso|El reino del Golem de piedra: las rocas caen y siguen rodando, y los terremotos lanzan a todos por los aires. ¡Salta!',shadowkeep:'Fortaleza sombría|La oscura fortaleza del Caballero Sombra: manos de sombra te apuntan, te agarran y te inmovilizan.',dragonlair:'Guarida del dragón|La guarida del Dragón de fuego: los géiseres te lanzan al cielo y todo el suelo puede llenarse de magma. ¡Busca las plataformas!',starforge:'Forja estelar|La forja del Señor de las Estrellas: poca gravedad, meteoros y un agujero negro que te arrastra a su núcleo mortal.'});
-Object.assign(MT.es,{spikes:'Borde de púas|Púas a ambos lados del escenario. ¡Quédate en el centro!',skydrift:'Deriva celeste|Escenario pequeño con islas flotantes que se desplazan de un lado a otro.'});
-Object.assign(MT.en,{fort:"SUPER Fort|Giant arena with two tall hollow towers and bridges to the island. The camera zooms out."});
-Object.assign(MT.en,{supercity:'SUPER Neon City|Huge stage with an underground tunnel. The camera zooms out.',supercave:'SUPER Crystal Cavern|Giant cavern with crystals and a deep underground. The camera zooms out.',superruins:'SUPER Tower Ruins|Lopsided ruins with a tall tower, stairs on the left, a disc on the right and a big cavern below. The camera zooms out.'});
-Object.assign(MT.de,{fort:"SUPER Festung|Riesige Arena mit zwei hohen hohlen Türmen und Brücken zur Insel. Die Kamera zoomt heraus."});
-Object.assign(MT.de,{supercity:'SUPER Neonstadt|Riesige Bühne mit unterirdischem Tunnel. Die Kamera zoomt heraus.',supercave:'SUPER Kristallhöhle|Gigantische Höhle mit Kristallen und tiefem Untergrund. Die Kamera zoomt heraus.',superruins:'SUPER Turmruine|Schiefe Ruine mit hohem Turm, Treppe links, Scheibe rechts und großer Höhle darunter. Die Kamera zoomt heraus.'});
-Object.assign(MT.fr,{fort:"SUPER Fort|Arène géante avec deux hautes tours creuses reliées à l'île par des ponts. La caméra dézoome."});
-Object.assign(MT.fr,{supercity:'SUPER Ville néon|Scène géante avec un tunnel souterrain. La caméra dézoome.',supercave:'SUPER Grotte de cristal|Grotte géante avec cristaux et sous-sol profond. La caméra dézoome.',superruins:'SUPER Ruines de la tour|Ruines asymétriques avec une haute tour, un escalier à gauche, un disque à droite et une grande grotte en dessous. La caméra dézoome.'});
-Object.assign(MT.es,{fort:"SUPER Fuerte|Arena gigante con dos torres altas y huecas y puentes a la isla. La cámara se aleja."});
-Object.assign(MT.es,{supercity:'SUPER Ciudad neón|Escenario enorme con un túnel subterráneo. La cámara se aleja.',supercave:'SUPER Cueva de cristal|Cueva gigante con cristales y subsuelo profundo. La cámara se aleja.',superruins:'SUPER Ruinas de la torre|Ruinas torcidas con una torre alta, escaleras a la izquierda, un disco a la derecha y una gran cueva debajo. La cámara se aleja.'});
-Object.assign(MT.en,{library:'The Magic Library|A living super arena: every minute a giant book turns a page and the genre of the map changes.'});
-Object.assign(MT.de,{library:'Die Magische Bibliothek|Eine lebendige Super-Arena: Jede Minute blättert ein Riesenbuch um und das Genre der Karte wechselt.'});
-Object.assign(MT.fr,{library:'La Bibliothèque magique|Une super arène vivante : chaque minute un livre géant tourne une page et le genre de la carte change.'});
-Object.assign(MT.es,{library:'La Biblioteca mágica|Una súper arena viva: cada minuto un libro gigante pasa una página y cambia el género del mapa.'});
-Object.assign(MT.en,{ascension:'Ascension Engine|The Mad Scientist’s lift: fight on the glass roof while platforms rush past. The lift accelerates (you feel heavier) and slams the emergency brake at full speed. Later it travels back down. Fall off and it leaves you behind in the depths.'});
-Object.assign(MT.de,{ascension:'Ascension Engine|Der Lift des Mad Scientist: Kämpfe auf dem Glasdach, während Plattformen vorbeirauschen. Der Lift beschleunigt (du fühlst dich schwerer) und zieht bei voller Fahrt die Notbremse. Danach fährt er wieder hinunter. Fällst du runter, lässt er dich in der Tiefe zurück.'});
-Object.assign(MT.fr,{ascension:'Ascension Engine|L’ascenseur du savant fou : bats-toi sur le toit de verre pendant que des plateformes défilent. L’ascenseur accélère (tu es plus lourd) et tire le frein d’urgence à pleine vitesse. Ensuite il redescend. Si tu tombes, il te laisse dans les profondeurs.'});
-Object.assign(MT.es,{ascension:'Ascension Engine|El ascensor del científico loco: lucha en el techo de cristal mientras pasan plataformas a toda velocidad. El ascensor acelera (pesas más) y frena en seco a máxima velocidad. Luego vuelve a bajar. Si te caes, te deja atrás en las profundidades.'});
-Object.assign(MT.en,{mirror:'The Hall of Mirrors|A grand palace ballroom with a gigantic magic mirror. Now and then one fighter flashes out of the hall: invisible, they only exist in their reflection. Follow it until they flash back!'});
-Object.assign(MT.de,{mirror:'Der Spiegelsaal|Ein prunkvoller Palastsaal mit einem riesigen Zauberspiegel. Hin und wieder blitzt ein Kämpfer aus dem Saal weg: unsichtbar, existiert er nur noch im Spiegelbild. Folge ihm, bis er zurückblitzt!'});
-Object.assign(MT.fr,{mirror:'La Salle des Miroirs|Une grande salle de bal de palais avec un immense miroir magique. De temps en temps un combattant disparaît dans un éclair : invisible, il n’existe plus que dans son reflet. Suis-le jusqu’à son retour !'});
-Object.assign(MT.es,{mirror:'El Salón de los Espejos|Un gran salón de baile de palacio con un enorme espejo mágico. De vez en cuando un luchador desaparece en un destello: invisible, solo existe en su reflejo. ¡Síguelo hasta que reaparezca!'});
+Object.assign(MT.en,{icethrone:'Frozen Throne|Slippery ice, blizzards and freezing icicles.',colossus:'Colossus Gorge|Falling boulders and earthquakes. Jump!',shadowkeep:'Shadow Keep|Shadow hands grab you and pin you down.',dragonlair:'Dragon Lair|Geysers and magma. Find the platforms!',starforge:'Star Forge|Low gravity, meteors and a black hole.'});
+Object.assign(MT.en,{spikes:'Spike Edge|Spikes on both sides. Stay in the middle!',skydrift:'Sky Drift|Small stage with drifting islands.'});
+Object.assign(MT.de,{icethrone:'Gefrorener Thron|Glattes Eis, Schneestürme und Eiszapfen.',colossus:'Koloss-Schlucht|Stürzende Felsen und Erdbeben. Spring!',shadowkeep:'Schattenburg|Schattenhände packen dich und halten dich fest.',dragonlair:'Drachenhöhle|Geysire und Magma. Such die Plattformen!',starforge:'Sternenschmiede|Wenig Schwerkraft, Meteore und ein Schwarzes Loch.'});
+Object.assign(MT.de,{spikes:'Stachelrand|Stacheln an beiden Seiten. Bleib in der Mitte!',skydrift:'Himmelsdrift|Kleine Bühne mit driftenden Inseln.'});
+Object.assign(MT.fr,{icethrone:'Trône gelé|Glace glissante, blizzards et stalactites givrantes.',colossus:'Gorge du Colosse|Rochers qui tombent et séismes. Saute !',shadowkeep:'Forteresse d’ombre|Des mains d’ombre t’agrippent et te retiennent.',dragonlair:'Antre du dragon|Geysers et magma. Cherche les plateformes !',starforge:'Forge stellaire|Faible gravité, météores et trou noir.'});
+Object.assign(MT.fr,{spikes:'Bord piquant|Des piques des deux côtés. Reste au milieu !',skydrift:'Dérive céleste|Petite scène avec des îles à la dérive.'});
+Object.assign(MT.es,{icethrone:'Trono helado|Hielo resbaladizo, ventiscas y carámbanos helados.',colossus:'Garganta Coloso|Rocas que caen y terremotos. ¡Salta!',shadowkeep:'Fortaleza sombría|Manos de sombra te agarran e inmovilizan.',dragonlair:'Guarida del dragón|Géiseres y magma. ¡Busca las plataformas!',starforge:'Forja estelar|Poca gravedad, meteoros y un agujero negro.'});
+Object.assign(MT.es,{spikes:'Borde de púas|Púas a ambos lados. ¡Quédate en el centro!',skydrift:'Deriva celeste|Escenario pequeño con islas a la deriva.'});
+Object.assign(MT.en,{fort:"SUPER Fort|Two hollow towers with bridges to the island."});
+Object.assign(MT.en,{supercity:'SUPER Neon City|Huge stage with an underground tunnel.',supercave:'SUPER Crystal Cavern|Giant crystal cavern with a deep underground.',superruins:'SUPER Tower Ruins|Lopsided ruins with a tall tower and big cavern.'});
+Object.assign(MT.de,{fort:"SUPER Festung|Zwei hohle Türme mit Brücken zur Insel."});
+Object.assign(MT.de,{supercity:'SUPER Neonstadt|Riesige Bühne mit unterirdischem Tunnel.',supercave:'SUPER Kristallhöhle|Gigantische Kristallhöhle mit tiefem Untergrund.',superruins:'SUPER Turmruine|Schiefe Ruine mit hohem Turm und großer Höhle.'});
+Object.assign(MT.fr,{fort:"SUPER Fort|Deux tours creuses reliées à l’île par des ponts."});
+Object.assign(MT.fr,{supercity:'SUPER Ville néon|Scène géante avec un tunnel souterrain.',supercave:'SUPER Grotte de cristal|Grotte de cristal géante au sous-sol profond.',superruins:'SUPER Ruines de la tour|Ruines penchées avec haute tour et grande grotte.'});
+Object.assign(MT.es,{fort:"SUPER Fuerte|Dos torres huecas con puentes a la isla."});
+Object.assign(MT.es,{supercity:'SUPER Ciudad neón|Escenario enorme con un túnel subterráneo.',supercave:'SUPER Cueva de cristal|Cueva de cristal gigante con subsuelo profundo.',superruins:'SUPER Ruinas de la torre|Ruinas torcidas con torre alta y gran cueva.'});
+Object.assign(MT.en,{library:'The Magic Library|Every minute a giant book turns a page.'});
+Object.assign(MT.de,{library:'Die Magische Bibliothek|Jede Minute blättert ein Riesenbuch um.'});
+Object.assign(MT.fr,{library:'La Bibliothèque magique|Chaque minute, un livre géant tourne une page.'});
+Object.assign(MT.es,{library:'La Biblioteca mágica|Cada minuto, un libro gigante pasa una página.'});
+Object.assign(MT.en,{ascension:'Ascension Engine|Fight on the roof of a racing lift.'});
+Object.assign(MT.de,{ascension:'Ascension Engine|Kämpfe auf dem Dach eines rasenden Lifts.'});
+Object.assign(MT.fr,{ascension:'Ascension Engine|Combat sur le toit d’un ascenseur lancé à pleine vitesse.'});
+Object.assign(MT.es,{ascension:'Ascension Engine|Lucha en el techo de un ascensor a toda velocidad.'});
+Object.assign(MT.en,{mirror:'The Hall of Mirrors|Now and then a fighter flashes into the mirror.'});
+Object.assign(MT.de,{mirror:'Der Spiegelsaal|Hin und wieder blitzt ein Kämpfer in den Spiegel.'});
+Object.assign(MT.fr,{mirror:'La Salle des Miroirs|De temps en temps, un combattant file dans le miroir.'});
+Object.assign(MT.es,{mirror:'El Salón de los Espejos|De vez en cuando un luchador salta al espejo.'});
+Object.assign(MT.en,{stampfab:'Stationery Stampede|A conveyor belt and a giant stamp: stickers make you slide, glue sticks you down.'});
+Object.assign(MT.de,{stampfab:'Stempel- und Aufkleberfabrik|Ein Förderband und ein Riesenstempel: Aufkleber lassen dich rutschen, Kleber hält dich fest.'});
+Object.assign(MT.fr,{stampfab:'L’Usine à Tampons et Autocollants|Un tapis roulant et un tampon géant : les autocollants font glisser, la colle t’englue.'});
+Object.assign(MT.es,{stampfab:'La Fábrica de Sellos y Pegatinas|Una cinta transportadora y un sello gigante: las pegatinas te hacen resbalar, el pegamento te pega.'});
 const mx=(m,i,k)=>{const o=MT[lang];return o&&o[m.id]?o[m.id].split('|')[i]:m[k];};
 const mn=m=>mx(m,0,'name'),md=m=>mx(m,1,'desc');
 /* Boss titles in Bossfight Road, in ROAD order */
@@ -960,25 +976,25 @@ const MAPS=[
  {id:'megasunset',name:'MEGA Zonsondergang',desc:'Bijna schermbreed podium en een platformpiramide.',
   main:{x1:60,x2:900,y:430,y2:495,solid:true},soft:[{x1:130,x2:260,y:355},{x1:700,x2:830,y:355},{x1:260,x2:380,y:295},{x1:580,x2:700,y:295},{x1:380,x2:580,y:235},{x1:120,x2:230,y:200},{x1:730,x2:840,y:200}],
   theme:{seed:71,sky:['#1a1040','#8a2f73','#ff7a4a','#ffd28a'],decor:'sun',mt:['#5a1f5a','#33103a'],isl:['#9a5a4a','#3a1c20'],grass:'#ffe08a',plat:'#fff0c8',platDk:'#a8783a',haze:'rgba(40,10,20,.85)'}},
- {id:'spikes',name:'Stekelrand',desc:'Stekels aan beide zijkanten van het podium. Blijf in het midden!',
+ {id:'spikes',name:'Stekelrand',desc:'Stekels aan beide kanten. Blijf in het midden!',
   main:{x1:150,x2:810,y:410,y2:485,solid:true},spikes:[[120,200],[760,840]],soft:[{x1:395,x2:565,y:300},{x1:215,x2:325,y:340},{x1:635,x2:745,y:340}],
   theme:{seed:83,sky:['#14060a','#3a0d1e','#7a1a3a','#d9435a'],decor:'moon',mt:['#3a0b1e','#220612'],isl:['#5a2a4a','#1f0d1e'],grass:'#ff4d6d',plat:'#c8c8d8',platDk:'#555566',haze:'rgba(30,4,12,.85)'}},
- {id:'skydrift',name:'Zweefeilanden',desc:'Klein podium met bewegende eilanden die heen en weer drijven.',
+ {id:'skydrift',name:'Zweefeilanden',desc:'Klein podium met bewegende eilanden.',
   main:{x1:330,x2:630,y:430,y2:490,solid:true},soft:[
    {x1:140,x2:250,y:330,mv:{ax:70,ay:0,per:300,ph:0}},{x1:710,x2:820,y:330,mv:{ax:70,ay:0,per:300,ph:3.14}},
    {x1:400,x2:560,y:260,mv:{ax:0,ay:40,per:240,ph:0}},
    {x1:220,x2:320,y:190,mv:{ax:60,ay:20,per:360,ph:1}},{x1:640,x2:740,y:190,mv:{ax:60,ay:20,per:360,ph:4}}],
   theme:{seed:95,sky:['#2a6fd1','#5aa8f0','#9fd4ff','#e8f6ff'],decor:'moon',mt:['#cfe8ff','#a8d4f5'],isl:['#7a9a5a','#3a4a2a'],grass:'#7be36b',plat:'#fff6d0',platDk:'#b08a4a',haze:'rgba(40,80,140,.6)'}},
- {id:'supercity',name:'SUPER Neonstad',desc:'Enorm podium met een ondergrondse tunnel. De camera zoomt uit.',zoom:1.7,under:true,
+ {id:'supercity',name:'SUPER Neonstad',desc:'Enorm podium met een ondergrondse tunnel.',zoom:1.7,under:true,
   main:{x1:420,x2:1212,y:600,y2:635,solid:true},soft:[{x1:250,x2:400,y:490},{x1:1232,x2:1382,y:490},{x1:480,x2:660,y:405},{x1:972,x2:1152,y:405},{x1:660,x2:972,y:320},{x1:280,x2:430,y:790},{x1:1202,x2:1352,y:790},{x1:470,x2:610,y:775},{x1:1022,x2:1162,y:775},{x1:640,x2:992,y:845}],
   theme:{seed:81,sky:['#06041a','#1a0b48','#4a1b8a','#ff5ac8'],decor:'ring',city:true,glow:'#3cc8ff',isl:['#2a2a78','#100c3a'],grass:'#3cc8ff',plat:'#ff5ac8',platDk:'#7a1f5f',haze:'rgba(6,4,26,.85)'}},
- {id:'supercave',name:'SUPER Kristalgrot',desc:'Gigantische grot met kristallen en een diepe ondergrond. De camera zoomt uit.',zoom:1.6,under:true,
+ {id:'supercave',name:'SUPER Kristalgrot',desc:'Gigantische kristalgrot met diepe ondergrond.',zoom:1.6,under:true,
   main:{x1:330,x2:1206,y:590,y2:625,solid:true},soft:[{x1:180,x2:320,y:490},{x1:1216,x2:1356,y:490},{x1:400,x2:540,y:420},{x1:996,x2:1136,y:420},{x1:600,x2:936,y:340},{x1:200,x2:340,y:800},{x1:1196,x2:1336,y:800},{x1:380,x2:520,y:760},{x1:1016,x2:1156,y:760},{x1:560,x2:980,y:815}],
   theme:{seed:93,sky:['#05020f','#170a3a','#3a1a8a','#8a4fe0'],decor:'moon',mt:['#2a1a70','#150c3c'],glow:'#9ff3ff',isl:['#4a3a9a','#1a1250'],grass:'#9ff3ff',plat:'#c8b4ff',platDk:'#5a3fa0',haze:'rgba(8,4,28,.85)'}},
- {id:'superruins',name:'SUPER Torenruine',desc:'Scheef gebouwde ruine met een hoge toren, een trap links, een schijf rechts en een grote grot eronder.',zoom:1.8,under:true,tower:{x:900,w:90},
+ {id:'superruins',name:'SUPER Torenruine',desc:'Scheve ruine met hoge toren en grote grot.',zoom:1.8,under:true,tower:{x:900,w:90},
   main:{x1:560,x2:1260,y:640,y2:680,solid:true},soft:[{x1:350,x2:520,y:575},{x1:210,x2:350,y:500},{x1:90,x2:220,y:425},{x1:250,x2:380,y:340},{x1:110,x2:210,y:265},{x1:760,x2:1010,y:450},{x1:830,x2:960,y:300},{x1:1090,x2:1360,y:520},{x1:1400,x2:1520,y:450},{x1:1380,x2:1680,y:340},{x1:1560,x2:1700,y:580},{x1:300,x2:420,y:790},{x1:430,x2:570,y:830},{x1:600,x2:740,y:775},{x1:780,x2:1010,y:850},{x1:1060,x2:1190,y:790},{x1:1230,x2:1400,y:845}],
   theme:{seed:105,sky:['#0d0b1f','#2a1b4a','#a04a6a','#f0a070'],decor:'sun',mt:['#3a2150','#241238'],glow:'#ffd27a',isl:['#6a5a8a','#262040'],grass:'#ffd27a',plat:'#ffb36b',platDk:'#8a4a2a',haze:'rgba(20,10,35,.85)'}},
- {id:'fort',name:'SUPER Fort',desc:'Gigantische arena met twee hoge holle torens en bruggen naar het eiland. De camera zoomt uit.',zoom:1.7,
+ {id:'fort',name:'SUPER Fort',desc:'Twee holle torens met bruggen naar het eiland.',zoom:1.7,
   main:{x1:576,x2:1056,y:640,y2:720,solid:true},
   solids:[{x1:136,x2:406,y:640,y2:1000,grass:true,noLedge:true},
    {x1:136,x2:170,y:60,y2:640,cren:true},
@@ -1007,24 +1023,28 @@ const MAPS=[
    {x1:16,x2:126,y:480},
    {x1:1506,x2:1616,y:480}],
   theme:{seed:117,sky:['#1a1426','#3d2a4a','#8a5a5a','#e8b078'],decor:'sun',mt:['#4a3350','#2c1d36'],isl:['#7a7f8a','#2e3038'],grass:'#8fd16a',plat:'#c9b79a',platDk:'#6e5d44',haze:'rgba(24,14,30,.85)'}},
- {id:'arcade',name:'Retro Arcadekast',desc:'Binnenin een kapotte arcadekast. Af en toe glitcht het scherm en wisselen de platforms van plek.',
+ {id:'arcade',name:'Retro Arcadekast',desc:'In een kapotte arcadekast. Platforms wisselen van plek.',
   main:{x1:210,x2:750,y:400,y2:480,solid:true},soft:[{x1:270,x2:400,y:295,gl:'a'},{x1:560,x2:690,y:295,gl:'a'},{x1:395,x2:565,y:225,gl:'b'},{x1:120,x2:245,y:335,gl:'b'},{x1:715,x2:840,y:335,gl:'b'}],
   theme:{seed:131,arcade:true,sky:['#02030a','#050c24','#0a1a3a','#0d2a4a'],decor:'none',isl:['#1a1f4a','#0a0c24'],grass:'#3cf2ff',plat:'#ff3cc8',platDk:'#7a1f6a',haze:'rgba(2,3,12,.85)'}},
- {id:'library',name:'De Magische Bibliotheek',desc:'Een levende super-arena: elke minuut slaat een reusachtig boek een bladzijde om en verandert het genre van de map.',lib:true,zoom:1.7,
+ {id:'library',name:'De Magische Bibliotheek',desc:'Elke minuut slaat een reuzenboek een bladzijde om.',lib:true,zoom:1.7,
   main:{x1:-300,x2:1932,y:770,y2:1700,solid:true},thz:[[380,600],[1032,1252]],
   soft:[{x1:120,x2:300,y:670,mv:{ax:0,ay:0,per:520,ph:0.0},lax:70,lay:22,thorn:true},{x1:686,x2:946,y:670,mv:{ax:0,ay:0,per:560,ph:1.3},lax:60,lay:18,thorn:true},{x1:1332,x2:1512,y:670,mv:{ax:0,ay:0,per:500,ph:2.6},lax:70,lay:22,thorn:true},{x1:350,x2:540,y:570,mv:{ax:0,ay:0,per:480,ph:0.8},lax:80,lay:26},{x1:1092,x2:1282,y:570,mv:{ax:0,ay:0,per:540,ph:3.9},lax:80,lay:26},{x1:100,x2:270,y:470,mv:{ax:0,ay:0,per:600,ph:2.0},lax:70,lay:20},{x1:640,x2:992,y:470,mv:{ax:0,ay:0,per:450,ph:4.4},lax:65,lay:22},{x1:1362,x2:1532,y:470,mv:{ax:0,ay:0,per:580,ph:5.2},lax:70,lay:20},{x1:380,x2:570,y:365,mv:{ax:0,ay:0,per:520,ph:1.7},lax:85,lay:26},{x1:1062,x2:1252,y:365,mv:{ax:0,ay:0,per:470,ph:0.4},lax:85,lay:26},{x1:740,x2:892,y:260,mv:{ax:0,ay:0,per:430,ph:3.3},lax:70,lay:28}],
   theme:{seed:141,lib:true,sky:['#1a0f1f','#3a2216','#5a3a22','#7a5230'],decor:'none',isl:['#6b4423','#3a2412'],grass:'#3f7a4a',plat:'#c89b5a',platDk:'#7a5a2a',haze:'rgba(26,14,10,.85)'}},
- {id:'ascension',name:'De Lift van de Mad Scientist',desc:'Ascension Engine: vecht op het glazen dak van een razende lift in een eindeloze fabrieksschacht. Platforms komen aanrijden, de lift versnelt (je voelt zwaarder) en trekt vol in de noodrem. Daarna daalt hij weer. Val je eraf, dan laat hij je achter in de diepte.',lift:true,
+ {id:'ascension',name:'De Lift van de Mad Scientist',desc:'Vecht op het dak van een razende lift.',lift:true,
   main:{x1:170,x2:790,y:420,y2:482,solid:true},soft:[],
   theme:{seed:211,lift:true,sky:['#03050d','#0a1230','#13255a','#1f4a85'],decor:'none',isl:['#2d3a58','#0d1322'],glow:'#4fe3ff',grass:'#ffb02e',plat:'#4fe3ff',platDk:'#14607f',haze:'rgba(3,5,13,.85)'}},
- {id:'icethrone',name:'Bevroren Troon',desc:'De troon van de IJskoning: glad ijs, sneeuwstorm-vlagen die je wegblazen, en ijspegels die je tot een ijsblok bevriezen.',boss:'glacius',bm:'ice',slip:true,main:{x1:210,x2:750,y:410,y2:485,solid:true},soft:[{x1:110,x2:210,y:340},{x1:750,x2:850,y:340},{x1:300,x2:420,y:300},{x1:540,x2:660,y:300},{x1:410,x2:550,y:215}],theme:{seed:151,sky:['#050c24','#0f2a5a','#3a78c0','#bfe9ff'],decor:'moon',snow:true,mt:['#a8d2f0','#7fb0dc'],isl:['#8fc4ee','#2a4f8a'],grass:'#e6fbff',plat:'#9ff3ff',platDk:'#3a7fb0',haze:'rgba(10,30,70,.8)'}},
- {id:'colossus',name:'Colossus Kloof',desc:'Het rijk van de Steengolem: rotsblokken storten neer en blijven rollen, en aardbevingen slaan alles op de grond omhoog. Spring!',boss:'titanus',bm:'rock',main:{x1:160,x2:800,y:410,y2:485,solid:true},soft:[{x1:200,x2:320,y:320},{x1:640,x2:760,y:320},{x1:420,x2:540,y:250}],theme:{seed:163,sky:['#2a1d14','#5a4030','#8a6a4a','#c9a878'],decor:'none',mt:['#7a6048','#5a4632'],isl:['#7a6a5a','#3e3228'],grass:'#8a9a5a',plat:'#a89478',platDk:'#5a4a3a',haze:'rgba(40,28,18,.8)'}},
- {id:'shadowkeep',name:'Schaduwburcht',desc:'De duistere burcht van de Schaduwridder: schaduwhanden mikken op jou, grijpen je vast en houden je op je plek.',boss:'umbra',bm:'shade',main:{x1:230,x2:730,y:405,y2:485,solid:true},soft:[{x1:130,x2:230,y:330},{x1:730,x2:830,y:330},{x1:340,x2:470,y:280},{x1:490,x2:620,y:210}],theme:{seed:175,sky:['#05030f','#140a2a','#2a1650','#4a2a78'],decor:'moon',mt:['#2a1a48','#1a1030'],isl:['#3a2a5a','#150c28'],grass:'#7a4ac8',plat:'#8a6ad0',platDk:'#3a2a6a',haze:'rgba(20,8,40,.85)'}},
- {id:'dragonlair',name:'Drakenhol',desc:'Het hol van de Vuurdraak: geisers lanceren je de lucht in en de hele vloer kan in magma veranderen. Zoek de platforms!',boss:'drakar',bm:'lava',main:{x1:170,x2:790,y:405,y2:485,solid:true},soft:[{x1:240,x2:360,y:320},{x1:600,x2:720,y:320},{x1:420,x2:540,y:245}],theme:{seed:187,sky:['#1a0500','#4a1208','#8a2a10','#e0661e'],decor:'none',mt:['#5a1c0c','#3a1008'],isl:['#6a2a14','#2a0c06'],grass:'#ff7a2a',plat:'#c8582a',platDk:'#5a1c0c',haze:'rgba(80,20,5,.8)'}},
- {id:'starforge',name:'Sterrensmederij',desc:'De smederij van de Sterrenheerser: lage zwaartekracht, meteorenregen en een zwart gat dat je naar zijn dodelijke kern trekt.',boss:'nova',bm:'star',main:{x1:300,x2:660,y:420,y2:490,solid:true},soft:[{x1:120,x2:230,y:330,nobake:true,mv:{ax:0,ay:35,per:300,ph:0}},{x1:730,x2:840,y:330,nobake:true,mv:{ax:0,ay:35,per:300,ph:3.14}},{x1:260,x2:380,y:250,nobake:true,mv:{ax:50,ay:0,per:360,ph:1}},{x1:580,x2:700,y:250,nobake:true,mv:{ax:50,ay:0,per:360,ph:4}},{x1:410,x2:550,y:170,nobake:true,mv:{ax:0,ay:25,per:240,ph:2}}],theme:{seed:199,sky:['#02010a','#0a0630','#1a1060','#3a2a90'],decor:'moon',mt:['#2a2070','#18104a'],isl:['#4a3a9a','#1a1040'],grass:'#ffd24a',plat:'#ffe27a',platDk:'#7a5ac8',haze:'rgba(10,6,40,.8)'}},
- {id:'mirror',name:'De Spiegelzaal',desc:'Een chique balzaal met een reusachtige magische spiegel. Af en toe flitst één vechter weg uit de zaal: hij is dan onzichtbaar en bestaat alleen nog in zijn spiegelbeeld. Volg je reflectie tot hij weer terugflitst!',mirror:true,
+ {id:'icethrone',name:'Bevroren Troon',desc:'Glad ijs, sneeuwstormen en vriezende ijspegels.',boss:'glacius',bm:'ice',slip:true,main:{x1:210,x2:750,y:410,y2:485,solid:true},soft:[{x1:110,x2:210,y:340},{x1:750,x2:850,y:340},{x1:300,x2:420,y:300},{x1:540,x2:660,y:300},{x1:410,x2:550,y:215}],theme:{seed:151,sky:['#050c24','#0f2a5a','#3a78c0','#bfe9ff'],decor:'moon',snow:true,mt:['#a8d2f0','#7fb0dc'],isl:['#8fc4ee','#2a4f8a'],grass:'#e6fbff',plat:'#9ff3ff',platDk:'#3a7fb0',haze:'rgba(10,30,70,.8)'}},
+ {id:'colossus',name:'Colossus Kloof',desc:'Vallende rotsblokken en aardbevingen. Spring!',boss:'titanus',bm:'rock',main:{x1:160,x2:800,y:410,y2:485,solid:true},soft:[{x1:200,x2:320,y:320},{x1:640,x2:760,y:320},{x1:420,x2:540,y:250}],theme:{seed:163,sky:['#2a1d14','#5a4030','#8a6a4a','#c9a878'],decor:'none',mt:['#7a6048','#5a4632'],isl:['#7a6a5a','#3e3228'],grass:'#8a9a5a',plat:'#a89478',platDk:'#5a4a3a',haze:'rgba(40,28,18,.8)'}},
+ {id:'shadowkeep',name:'Schaduwburcht',desc:'Schaduwhanden grijpen je vast.',boss:'umbra',bm:'shade',main:{x1:230,x2:730,y:405,y2:485,solid:true},soft:[{x1:130,x2:230,y:330},{x1:730,x2:830,y:330},{x1:340,x2:470,y:280},{x1:490,x2:620,y:210}],theme:{seed:175,sky:['#05030f','#140a2a','#2a1650','#4a2a78'],decor:'moon',mt:['#2a1a48','#1a1030'],isl:['#3a2a5a','#150c28'],grass:'#7a4ac8',plat:'#8a6ad0',platDk:'#3a2a6a',haze:'rgba(20,8,40,.85)'}},
+ {id:'dragonlair',name:'Drakenhol',desc:'Geisers en magma. Zoek de platforms!',boss:'drakar',bm:'lava',main:{x1:170,x2:790,y:405,y2:485,solid:true},soft:[{x1:240,x2:360,y:320},{x1:600,x2:720,y:320},{x1:420,x2:540,y:245}],theme:{seed:187,sky:['#1a0500','#4a1208','#8a2a10','#e0661e'],decor:'none',mt:['#5a1c0c','#3a1008'],isl:['#6a2a14','#2a0c06'],grass:'#ff7a2a',plat:'#c8582a',platDk:'#5a1c0c',haze:'rgba(80,20,5,.8)'}},
+ {id:'starforge',name:'Sterrensmederij',desc:'Lage zwaartekracht, meteoren en een zwart gat.',boss:'nova',bm:'star',main:{x1:300,x2:660,y:420,y2:490,solid:true},soft:[{x1:120,x2:230,y:330,nobake:true,mv:{ax:0,ay:35,per:300,ph:0}},{x1:730,x2:840,y:330,nobake:true,mv:{ax:0,ay:35,per:300,ph:3.14}},{x1:260,x2:380,y:250,nobake:true,mv:{ax:50,ay:0,per:360,ph:1}},{x1:580,x2:700,y:250,nobake:true,mv:{ax:50,ay:0,per:360,ph:4}},{x1:410,x2:550,y:170,nobake:true,mv:{ax:0,ay:25,per:240,ph:2}}],theme:{seed:199,sky:['#02010a','#0a0630','#1a1060','#3a2a90'],decor:'moon',mt:['#2a2070','#18104a'],isl:['#4a3a9a','#1a1040'],grass:'#ffd24a',plat:'#ffe27a',platDk:'#7a5ac8',haze:'rgba(10,6,40,.8)'}},
+ {id:'mirror',name:'De Spiegelzaal',desc:'Soms flitst een vechter weg in de spiegel.',mirror:true,
   main:{x1:170,x2:790,y:420,y2:490,solid:true},soft:[{x1:240,x2:390,y:305,chand:true},{x1:570,x2:720,y:305,chand:true}],
-  theme:{seed:223,mirror:true,sky:['#1a1020','#2a1a30','#3a2438','#4a2e40'],decor:'none',isl:['#e8e2d8','#8a8494'],grass:'#d8b45a',plat:'#bfe9ff',platDk:'#6fa8d8',haze:'rgba(20,10,26,.85)'}}
+  theme:{seed:223,mirror:true,sky:['#1a1020','#2a1a30','#3a2438','#4a2e40'],decor:'none',isl:['#e8e2d8','#8a8494'],grass:'#d8b45a',plat:'#bfe9ff',platDk:'#6fa8d8',haze:'rgba(20,10,26,.85)'}},
+ {id:'stampfab',name:'De Stempel- en Stickerfabriek',desc:'Lopende band met reuzenstempel: stickers laten je glijden, lijm plakt je vast.',stamp:true,
+  main:{x1:200,x2:760,y:410,y2:485,solid:true},
+  soft:[{x1:110,x2:260,y:335,st:'r'},{x1:700,x2:850,y:335,st:'r'},{x1:300,x2:420,y:285,st:'e',mv:{ax:40,ay:0,per:360,ph:0}},{x1:540,x2:660,y:285,st:'e',mv:{ax:40,ay:0,per:360,ph:3.14}},{x1:400,x2:560,y:215,st:'r'}],
+  theme:{seed:233,stamp:true,sky:['#241f45','#43386e','#7a5a8c','#d98aa0'],decor:'none',isl:['#3b4066','#14162b'],grass:'#ffd23f',plat:'#ffd86a',platDk:'#b8862f',haze:'rgba(20,16,40,.85)'}}
 ];
 let unl=[];try{unl=JSON.parse(localStorage.getItem('rr_unl')||'[]');if(!Array.isArray(unl))unl=[];}catch(e){unl=[];}
 function saveUnl(){try{localStorage.setItem('rr_unl',JSON.stringify(unl));}catch(e){}}
@@ -1560,7 +1580,7 @@ function renderSettings(){
    '<div><h3>'+tx('codeTitle')+'</h3><form class="setrow" id="codeForm" autocomplete="off"><input type="text" id="codeIn" class="sel" inputmode="numeric" maxlength="20" placeholder="'+tx('codeLabel')+'" aria-label="'+tx('codeLabel')+'"><button type="submit" class="ghost">'+tx('codeBtn')+'</button><span class="hint" id="codeMsg" aria-live="polite">'+codeMsg+'</span></form></div>'+
    '<div><h3>'+tx('instTitle')+'</h3><div class="inst-btns"><button type="button" class="ghost inst-btn" id="instApple">'+IC_APPLE+tx('instApple')+'</button><button type="button" class="ghost inst-btn" id="instAndroid">'+IC_ANDROID+tx('instAndroid')+'</button></div></div>'+
    '<div><h3>'+tx('resetTitle')+'</h3><p class="hint" style="margin:0 0 10px">'+tx('resetNote')+'</p>'+
-   (resetAsk?'<div class="setrow"><span class="hint" role="alert">'+tx('resetConfirm')+'</span><button type="button" class="ghost danger" id="resetYes">'+tx('resetYes')+'</button><button type="button" class="ghost" id="resetNo">'+tx('resetNo')+'</button></div>':'<button type="button" class="ghost danger ibtn" id="resetAll" aria-label="'+tx('resetGame')+'" title="'+tx('resetGame')+'">'+IC_RESET+'</button>')+'</div>';
+   '<button type="button" class="ghost danger ibtn" id="resetAll" aria-label="'+tx('resetGame')+'" title="'+tx('resetGame')+'">'+IC_RESET+'</button></div>';
   box.querySelectorAll('[data-lg]').forEach(b=>b.addEventListener('click',()=>{setLang(b.dataset.lg);const n=box.querySelector('[data-lg="'+lang+'"]');if(n)n.focus();}));
   box.querySelectorAll('[data-music]').forEach(b=>b.addEventListener('click',()=>{
     cfg.music=b.dataset.music==='on';
@@ -1598,9 +1618,7 @@ function renderSettings(){
     renderSettings();renderMenu();
   });
   $('instApple').addEventListener('click',()=>openInstall('ios'));$('instAndroid').addEventListener('click',()=>openInstall('and'));
-  const ra=$('resetAll');if(ra)ra.addEventListener('click',()=>{resetAsk=true;renderSettings();const n=$('resetNo');if(n)n.focus();});
-  const rn=$('resetNo');if(rn)rn.addEventListener('click',()=>{resetAsk=false;renderSettings();const n=$('resetAll');if(n)n.focus();});
-  const ry=$('resetYes');if(ry)ry.addEventListener('click',()=>{resetAll();const n=$('resetAll');if(n)n.focus();});
+  const ra=$('resetAll');if(ra)ra.addEventListener('click',openResetConfirm);
 }
 const keys=new Set(), vk={};
 let sel={mode:1,p1:0,p2:1,rk:0,map:0,lvl:0,train:false,mods:{}};
@@ -1618,6 +1636,20 @@ try{const o=JSON.parse(localStorage.getItem('rr_sel')||'null');if(o){
   if(o.mods&&typeof o.mods==='object')for(const d of MODDEF)sel.mods[d.k]=o.mods[d.k]===true;
 }}catch(e){}
 function saveSel(){try{localStorage.setItem('rr_sel',JSON.stringify(sel));}catch(e){}}
+function openResetConfirm(){
+  if($('cfOv'))return;
+  const prev=document.activeElement,ov=document.createElement('div');
+  ov.id='cfOv';ov.setAttribute('role','alertdialog');ov.setAttribute('aria-modal','true');ov.setAttribute('aria-labelledby','cfT');ov.setAttribute('aria-describedby','cfD');
+  ov.innerHTML='<div class="cf-box"><h2 id="cfT">'+escHTML(tx('resetTitle'))+'</h2><p id="cfD">'+escHTML(tx('resetConfirm'))+'</p><div class="cf-row"><button type="button" class="ghost" id="cfNo">'+escHTML(tx('resetNo'))+'</button><button type="button" class="ghost danger" id="cfYes">'+escHTML(tx('resetYes'))+'</button></div></div>';
+  document.body.appendChild(ov);
+  const close=()=>{document.removeEventListener('keydown',onKey,true);ov.remove();const n=$('resetAll')||prev;if(n&&n.focus)n.focus({preventScroll:true});};
+  const onKey=e=>{if(e.key==='Escape'){e.preventDefault();e.stopPropagation();close();}else if(e.key==='Tab'){const b=[$('cfNo'),$('cfYes')],i=b.indexOf(document.activeElement);e.preventDefault();b[(i+(e.shiftKey?-1:1)+2)%2].focus();}};
+  document.addEventListener('keydown',onKey,true);
+  ov.addEventListener('click',e=>{if(e.target===ov)close();});
+  $('cfNo').addEventListener('click',close);
+  $('cfYes').addEventListener('click',()=>{document.removeEventListener('keydown',onKey,true);ov.remove();resetAll();const n=$('resetAll');if(n)n.focus({preventScroll:true});});
+  $('cfNo').focus();
+}
 function resetAll(){
   RK={rp:0,w:0,l:0,st:0,best:0,cl:[],ml:[],pk:0};rkMatch=false;
   try{['rr_unl','rr_set','rr_sel','rr_coins','rr_own','rr_cos','rr_save','rr_quest','rr_qview','rr_dq','rr_rank'].forEach(k=>localStorage.removeItem(k));}catch(e){}
@@ -3087,7 +3119,7 @@ function buildBG(m,sc){const Z=m.zoom||1,W=960*Z,H=540*Z,GY=H-70*Z;
   if(m.theme.lib){libBG(b,m,W,H,sc);return cvs;}
   if(m.theme.lift){liftBG(b,m,W,H,sc);return cvs;}
   const T=m.theme,MA=m.main;
-  if(T.mirror){mirBG(b,m,W,H,sc);return cvs;}
+  if(T.stamp){stpBG(b,m,W,H,sc);return cvs;}if(T.mirror){mirBG(b,m,W,H,sc);return cvs;}
   const g=b.createLinearGradient(0,0,0,H);
   T.sky.forEach((c,i)=>g.addColorStop(i/(T.sky.length-1),c));
   b.fillStyle=g;b.fillRect(0,0,W,H);
@@ -3741,6 +3773,268 @@ function bmDraw(c){
   }
   if(kind==='lava'){c.fillStyle='rgba(255,90,20,'+(.06+.04*Math.sin(t/30))+')';c.fillRect(0,0,VW,VH);}
 }
+/* =====================================================================
+   DE STEMPEL- EN STICKERFABRIEK (Stationery Stampede)
+   Lopende band (schuift langzaam naar links) met een reuzenstempel op de achtergrond. Om de STP.per ticks markeert de
+   stempel een vak op de band en slaat daarna naar de voorgrond. Wie eronder staat wordt platgedrukt en krijgt:
+     sticker  -> 15 seconden glijden als op ijs
+     lijm     -> plakt vast aan muren en de onderkant van platforms, loopt trager en springt bijna niet
+   Alles hangt puur af van game.tick (deterministisch, dus ook goed voor online spelen en hervatten).
+   ===================================================================== */
+const STP={per:480,off:200,warn:100,w:150,CONV:.5,slipT:900,glueT:720};
+const STT={en:{s:'STICKER!',g:'GLUE!'},nl:{s:'STICKER!',g:'LIJM!'},de:{s:'AUFKLEBER!',g:'KLEBER!'},fr:{s:'AUTOCOLLANT !',g:'COLLE !'},es:{s:'¡PEGATINA!',g:'¡PEGAMENTO!'}};
+const STC=['#ff4d9d','#3cc8ff','#8aff3c','#ffd23f','#b04dff'];
+function stpZone(k){
+  const M=MAIN,w=STP.w,lo=M.x1+w/2+20,hi=M.x2-w/2-20;
+  return {x:lo+libH(k*7.3+2.1)*(hi-lo),ty:libH(k*3.7+.9)<.5?'s':'g',c:STC[Math.floor(libH(k*5.1+3.3)*5)%5]};
+}
+/* stand van de stempel op tick t */
+function stpState(t){
+  const M=MAIN,idle=M.y-300,W=STP.warn;
+  if(t<STP.off){
+    return {k:-1,u:-1,ph:0,x:(M.x1+M.x2)/2,y:idle+Math.sin(t/50)*18*Math.min(1,(STP.off-t)/30),s:1,zone:null,live:false,dp:0};
+  }
+  const d=t-STP.off,k=Math.floor(d/STP.per),u=d-k*STP.per,Z=stpZone(k);
+  const px=k>0?stpZone(k-1).x:(M.x1+M.x2)/2;
+  const fm=Math.min(1,u/(W*.6)),x=px+(Z.x-px)*(fm*fm*(3-2*fm));
+  const rise=idle-60;let y,ph=0;
+  if(u<W){const e=u/W;y=idle+(rise-idle)*(e*e*(3-2*e));if(u>W*.7)y+=Math.sin(u*1.7)*3;ph=1;}
+  else if(u<W+8){const e=(u-W)/8;y=rise+(M.y-rise)*e*e;ph=2;}
+  else if(u<W+36){y=M.y;ph=3;}
+  else if(u<W+76){const e=(u-W-36)/40;y=M.y+(idle-M.y)*(e*e*(3-2*e));ph=4;}
+  else{const r=Math.min(1,(u-W-76)/30)*Math.min(1,(STP.per-u)/30);y=idle+Math.sin(t/50)*18*r;}
+  const dp=Math.max(0,Math.min(1,(y-idle)/(M.y-idle)));
+  return {k:k,u:u,ph:ph,x:x,y:y,s:1+.3*dp,zone:Z,live:u>=W+6&&u<=W+12,dp:dp};
+}
+function stpHurt(){
+  const S=stpState(game.tick);game.stp.S=S;
+  if(S.k<0)return;
+  const Z=S.zone;
+  if(S.u===STP.warn+6){
+    game.shake=Math.max(game.shake||0,14);sfx.boom();
+    ring(Z.x,MAIN.y-4,110);ring(Z.x,MAIN.y-4,70);
+    spark(Z.x,MAIN.y-4,Z.c,24,8);spark(Z.x,MAIN.y-4,'#fff',10,6);
+  }
+  if(!S.live)return;
+  for(const p of game.players){
+    if(p.dead||p.ko||p.respawn>0||p.invuln>0||p.ledge||p.stpK===S.k)continue;
+    if(Math.abs(p.x-Z.x)>=STP.w/2+p.f.w*.25||p.y<=MAIN.y-60||p.y>MAIN.y+10)continue;
+    p.stpK=S.k;p.shielding=false;
+    applyHit(p,p,8,1.2,.01,0,-1);
+    if(p.ko)continue;
+    p.hitstun=0;p.vx=p.vy=0;p.stun=34;p.flat=34;p.act=null;p.gst=null;
+    if(Z.ty==='s'){p.slip=STP.slipT;p.glue=0;p.stk=Z.c;}
+    else{p.glue=STP.glueT;p.slip=0;}
+    spark(p.x,p.y-p.f.h*.5,Z.c,14,5);
+  }
+}
+/* lijm: blijf hangen aan de onderkant van een platform waar je tegenaan springt (muren regelt wallState) */
+function glueStep(p,inp,press){
+  const f=p.f;
+  if(p.gst){
+    const pl=p.gst;
+    if(press('d')||press('u')||p.hitstun>0||p.stun>0||p.dead||p.ko||--p.gt<=0){
+      const j=press('u');p.gst=null;p.gcd=24;p.vy=j?-f.jump*.3:1;return;
+    }
+    p.x+=pl.dx||0;p.y=pl.y+f.h+7;p.vx*=.5;p.vy=0;p.onGround=false;p.jumps=0;p.upUsed=false;
+    return;
+  }
+  if(p.gcd>0||p.vy>=0||p.act||p.ledge)return;
+  const head=p.y-f.h,prev=head-p.vy;
+  for(const pl of PLATS){
+    if(pl.solid||p.x<pl.x1||p.x>pl.x2)continue;
+    if(prev>pl.y+6&&head<=pl.y+6){
+      p.gst=pl;p.gt=110;p.vx=0;p.vy=0;p.y=pl.y+f.h+7;
+      spark(p.x,head,'#ffb02e',8,3);sfx.shield();return;
+    }
+  }
+}
+
+/* ---------- Tekenen ---------- */
+function stpGear(b,x,y,r,n,col,rot){
+  b.save();b.translate(x,y);b.rotate(rot||0);b.fillStyle=col;b.beginPath();
+  for(let i=0;i<n;i++){
+    const a=i/n*6.2832,h=3.1416/n*.5;
+    b.lineTo(Math.cos(a-h*1.3)*r*.82,Math.sin(a-h*1.3)*r*.82);
+    b.lineTo(Math.cos(a-h*.6)*r,Math.sin(a-h*.6)*r);
+    b.lineTo(Math.cos(a+h*.6)*r,Math.sin(a+h*.6)*r);
+    b.lineTo(Math.cos(a+h*1.3)*r*.82,Math.sin(a+h*1.3)*r*.82);
+  }
+  b.closePath();b.fill();
+  b.fillStyle='rgba(0,0,0,.45)';b.beginPath();b.arc(0,0,r*.3,0,7);b.fill();
+  b.restore();
+}
+/* liniaal ('r') of gum ('e') als platform */
+function stpPlat(c,pl,x1,x2,y){
+  const w=x2-x1;c.save();
+  c.fillStyle='rgba(0,0,0,.2)';c.beginPath();c.roundRect(x1+3,y+10,w-6,6,3);c.fill();
+  if(pl.st==='e'){
+    const sl=w*.62;
+    c.fillStyle='#2f5fc4';c.beginPath();c.roundRect(x1,y-4,sl,16,[7,2,2,7]);c.fill();
+    c.fillStyle='#ff9bb8';c.beginPath();c.roundRect(x1+sl-2,y-4,w-sl+2,16,[2,7,7,2]);c.fill();
+    c.fillStyle='#fff';c.fillRect(x1+8,y+2,sl-16,3);c.fillRect(x1+8,y+7,sl-30,2);
+    c.fillStyle='rgba(255,255,255,.4)';c.fillRect(x1+4,y-4,w-8,3);
+    c.strokeStyle='#1b2a5a';c.lineWidth=1.6;c.beginPath();c.roundRect(x1,y-4,w,16,7);c.stroke();
+  }else{
+    const g=c.createLinearGradient(0,y-3,0,y+9);g.addColorStop(0,'#ffe58a');g.addColorStop(1,'#e6a83a');
+    c.fillStyle=g;c.beginPath();c.roundRect(x1,y-3,w,12,3);c.fill();
+    c.strokeStyle='#7a4f10';c.lineWidth=1.5;c.stroke();
+    c.beginPath();
+    for(let x=x1+5,i=0;x<x2-3;x+=6,i++){c.moveTo(x,y-3);c.lineTo(x,y-3+(i%5===0?7:(i%2?3:5)));}
+    c.stroke();
+  }
+  c.restore();
+}
+/* de reuzenstempel (wereldruimte). M = hoofdvloer van de kaart */
+function stpHead(c,x,y,s,col,ty,t,M){
+  const hw=STP.w/2+16;
+  c.save();c.translate(x,M.y);c.scale(s,s);c.translate(-x,-M.y);
+  // wagentje + cilinder aan de bovenrail
+  let g=c.createLinearGradient(x-45,0,x+45,0);g.addColorStop(0,'#59607f');g.addColorStop(.5,'#9aa3c8');g.addColorStop(1,'#59607f');
+  c.fillStyle=g;c.beginPath();c.roundRect(x-44,0,88,96,8);c.fill();c.strokeStyle='#1e2238';c.lineWidth=3;c.stroke();
+  c.fillStyle='#ffd23f';for(let i=0;i<4;i++)c.fillRect(x-40+i*22,84,12,8);
+  // zuiger
+  const top=96,bot=y-64;
+  if(bot>top){
+    g=c.createLinearGradient(x-13,0,x+13,0);g.addColorStop(0,'#aeb6d6');g.addColorStop(.5,'#f4f6ff');g.addColorStop(1,'#7c84a8');
+    c.fillStyle=g;c.fillRect(x-13,top,26,bot-top+4);
+    c.fillStyle='rgba(30,34,56,.45)';for(let q=top+14;q<bot;q+=26)c.fillRect(x-13,q,26,3);
+  }
+  // kop
+  g=c.createLinearGradient(0,y-64,0,y-18);g.addColorStop(0,'#8a93bb');g.addColorStop(1,'#4a5075');
+  c.fillStyle='#2b304d';c.fillRect(x-30,y-72,60,12);
+  c.fillStyle=g;c.beginPath();c.roundRect(x-hw+10,y-64,2*hw-20,46,10);c.fill();c.strokeStyle='#1e2238';c.lineWidth=3;c.stroke();
+  c.fillStyle='rgba(255,255,255,.2)';c.fillRect(x-hw+18,y-60,2*hw-36,4);
+  if(ty==='s'){fxStar(c,x,y-40,14,t*.01,'#fff');fxStar(c,x,y-40,8,t*.01,col);}
+  else if(ty==='g'){c.fillStyle='#ffb02e';c.strokeStyle='#8a5a00';c.lineWidth=1.5;for(const q of[-18,0,18]){c.beginPath();c.moveTo(x+q,y-52);c.quadraticCurveTo(x+q+9,y-40,x+q,y-30);c.quadraticCurveTo(x+q-9,y-40,x+q,y-52);c.fill();c.stroke();}}
+  // rubber
+  c.fillStyle=col;c.beginPath();c.roundRect(x-hw,y-20,2*hw,20,[3,3,8,8]);c.fill();
+  c.strokeStyle='rgba(0,0,0,.4)';c.lineWidth=2.5;c.stroke();
+  c.fillStyle='rgba(255,255,255,.35)';c.fillRect(x-hw+6,y-17,2*hw-12,3);
+  if(ty==='g'&&y>=M.y-4){c.fillStyle='#ffb02e';for(let i=0;i<7;i++){const dx=x-hw+14+i*(2*hw-28)/6,L=6+((i*5)%9);c.beginPath();c.roundRect(dx-3,y-2,6,L,3);c.fill();}}
+  c.restore();
+}
+function stpBack(c){
+  const S=game.stp.S||stpState(game.tick),Z=S.zone;
+  stpHead(c,S.x,S.y,S.s,Z?Z.c:'#9aa3c8',Z?Z.ty:null,game.tick,MAIN);
+}
+/* bewegende band + gemarkeerd vak + afdruk (voor de vechters) */
+function stpFront(c){
+  const t=game.tick,M=MAIN,S=game.stp.S||stpState(t),w=M.x2-M.x1,Z=S.zone,W=STP.warn,hw=STP.w/2;
+  c.save();c.beginPath();c.rect(M.x1,M.y-3,w,19);c.clip();
+  c.fillStyle='#4b5078';c.fillRect(M.x1,M.y-3,w,19);
+  const off=((t*STP.CONV)%30+30)%30;
+  c.strokeStyle='#2a2e4b';c.lineWidth=3;c.lineCap='round';c.lineJoin='round';
+  for(let x=M.x1-off;x<M.x2+30;x+=30){c.beginPath();c.moveTo(x+10,M.y-1);c.lineTo(x+2,M.y+6);c.lineTo(x+10,M.y+13);c.stroke();}
+  c.fillStyle='rgba(255,255,255,.22)';c.fillRect(M.x1,M.y-3,w,3);
+  c.restore();
+  // schaduw van de stempel
+  c.save();c.globalAlpha=.08+.3*(S.dp||0);c.fillStyle='#000';c.beginPath();c.ellipse(S.x,M.y+3,STP.w*.6*S.s,7,0,0,7);c.fill();c.restore();
+  if(!Z||S.k<0)return;
+  if(S.u<W+8){
+    const a=Math.min(1,S.u/20),fl=S.u<W-30?.5+.5*Math.sin(S.u*.35):.6+.4*Math.sin(S.u*1.2);
+    const gr=c.createLinearGradient(0,M.y-140,0,M.y);gr.addColorStop(0,'rgba(255,255,255,0)');gr.addColorStop(1,Z.c);
+    c.save();
+    c.globalAlpha=.28*fl*a;c.fillStyle=gr;c.fillRect(Z.x-hw,M.y-140,STP.w,140);
+    c.globalAlpha=a*.4*fl;c.fillStyle=Z.c;c.fillRect(Z.x-hw,M.y-3,STP.w,19);
+    c.globalAlpha=a*(.55+.45*fl);c.strokeStyle=Z.c;c.lineWidth=4;c.setLineDash([14,9]);c.lineDashOffset=-S.u*1.5;c.strokeRect(Z.x-hw,M.y-3,STP.w,19);c.setLineDash([]);
+    const tt=(STT[lang]||STT.en)[Z.ty],ty=M.y-34-Math.abs(Math.sin(S.u*.2))*6;
+    c.globalAlpha=a;c.textAlign='center';c.font='400 22px Bungee,Impact,sans-serif';c.lineWidth=5;c.strokeStyle='#0e0f22';c.lineJoin='round';
+    c.strokeText(tt,Z.x,ty);c.fillStyle='#fff';c.fillText(tt,Z.x,ty);
+    c.restore();
+  }else if(S.u<W+98){
+    const g=S.u-W-8,a=Math.max(0,1-g/90),sx=Z.x-g*STP.CONV;
+    c.save();c.beginPath();c.rect(M.x1,M.y-3,w,19);c.clip();c.globalAlpha=a*.9;
+    if(Z.ty==='s'){c.fillStyle=Z.c;c.beginPath();c.roundRect(sx-hw,M.y-3,STP.w,19,5);c.fill();fxStar(c,sx,M.y+6,9,0,'#fff');}
+    else{c.fillStyle='#ffb02e';c.beginPath();c.roundRect(sx-hw,M.y-3,STP.w,19,5);c.fill();c.fillStyle='rgba(255,255,255,.5)';c.fillRect(sx-hw+8,M.y-1,STP.w*.5,3);}
+    c.restore();
+  }
+}
+/* sticker / lijm op het personage (lokale ruimte van de vechter, voeten op 0,0) */
+function stpStatus(c,p,f){
+  const t=game.tick,lf=p.slip>0?p.slip:p.glue,bl=(lf<120&&((t>>2)&1))?.45:1;
+  c.save();c.globalAlpha*=bl;
+  if(p.slip>0){
+    const col=p.stk||'#3cc8ff';
+    c.save();c.translate(f.w*.05,-f.h*.42);c.rotate(-.25);
+    c.fillStyle='#fff';c.beginPath();c.arc(0,0,11,0,7);c.fill();
+    c.fillStyle=col;c.beginPath();c.arc(0,0,8.6,0,7);c.fill();
+    fxStar(c,0,0,6,0,'#fff');c.restore();
+    c.fillStyle='rgba(190,235,255,.45)';c.beginPath();c.ellipse(0,1,f.w*.7,4,0,0,7);c.fill();
+    const d=Math.sign(p.vx)||0;
+    if(d){c.strokeStyle='rgba(200,240,255,.8)';c.lineWidth=2;c.lineCap='round';
+      for(let i=0;i<3;i++){const x=-d*(f.w*.5+6+i*8);c.beginPath();c.moveTo(x,-2-i*3);c.lineTo(x-d*10,-2-i*3);c.stroke();}}
+  }
+  if(p.glue>0){
+    c.fillStyle='rgba(255,176,46,.5)';c.beginPath();c.ellipse(0,1,f.w*.65,3.5,0,0,7);c.fill();
+    const bb=[[-.3,-.2,6],[.25,-.5,7],[-.1,-.8,5],[.35,-.15,5],[-.35,-.6,4]];
+    c.fillStyle='rgba(255,176,46,.88)';c.strokeStyle='#8a5a00';c.lineWidth=1.5;
+    for(const q of bb){c.beginPath();c.arc(f.w*q[0],f.h*q[1],q[2],0,7);c.fill();c.stroke();}
+    c.strokeStyle='#ffb02e';c.lineWidth=3;c.lineCap='round';
+    for(let i=0;i<3;i++){const x=(-.3+i*.3)*f.w,y0=-f.h*(.2+i*.1),L=5+((t*.4+i*7)%12);c.beginPath();c.moveTo(x,y0);c.lineTo(x,y0+L);c.stroke();}
+    if(p.gst){c.strokeStyle='#ffb02e';c.lineWidth=4;c.beginPath();c.moveTo(0,-f.h);c.lineTo(0,-f.h-8);c.stroke();}
+  }
+  c.restore();
+}
+function stpBG(b,m,W,H,sc){
+  const T=m.theme,MA=m.main,w=MA.x2-MA.x1,cx=(MA.x1+MA.x2)/2;
+  let g=b.createLinearGradient(0,0,0,H);T.sky.forEach((c,i)=>g.addColorStop(i/(T.sky.length-1),c));b.fillStyle=g;b.fillRect(0,0,W,H);
+  // wandpanelen
+  b.strokeStyle='rgba(255,255,255,.05)';b.lineWidth=2;
+  for(let x=0;x<=W;x+=80){b.beginPath();b.moveTo(x,50);b.lineTo(x,H);b.stroke();}
+  for(let y=60;y<H;y+=70){b.beginPath();b.moveTo(0,y);b.lineTo(W,y);b.stroke();}
+  b.fillStyle='rgba(255,255,255,.1)';
+  for(let x=80;x<W;x+=80)for(let y=60;y<MA.y;y+=70){b.beginPath();b.arc(x,y,2.6,0,7);b.fill();}
+  // ramen
+  for(const wx of [130,350,610,830]){
+    const wg=b.createLinearGradient(0,70,0,200);wg.addColorStop(0,'#ffe9b8');wg.addColorStop(1,'#ff9fc2');
+    b.fillStyle='rgba(255,230,180,.05)';b.beginPath();b.moveTo(wx-50,198);b.lineTo(wx+50,198);b.lineTo(wx+120,MA.y);b.lineTo(wx-20,MA.y);b.closePath();b.fill();
+    b.fillStyle='#1d1830';b.beginPath();b.roundRect(wx-58,64,116,142,[44,44,6,6]);b.fill();
+    b.globalAlpha=.85;b.fillStyle=wg;b.beginPath();b.roundRect(wx-50,72,100,126,[38,38,4,4]);b.fill();b.globalAlpha=1;
+    b.strokeStyle='#1d1830';b.lineWidth=4;b.beginPath();b.moveTo(wx,72);b.lineTo(wx,198);b.moveTo(wx-50,140);b.lineTo(wx+50,140);b.stroke();
+  }
+  // tandwielen, stickerrollen en een achterband met stickervellen
+  stpGear(b,60,230,70,12,'rgba(20,18,40,.55)',.3);stpGear(b,W-60,250,84,14,'rgba(20,18,40,.55)',.1);
+  b.fillStyle='rgba(22,24,48,.8)';b.fillRect(0,300,W,12);
+  for(let x=14,i=0;x<W;x+=46,i++){b.globalAlpha=.3;b.fillStyle=STC[i%5];b.beginPath();b.roundRect(x,284,30,16,3);b.fill();b.globalAlpha=1;}
+  for(const q of [[44,372,34,'#ff4d9d'],[W-44,376,38,'#3cc8ff']]){
+    b.globalAlpha=.55;b.fillStyle=q[3];b.beginPath();b.arc(q[0],q[1],q[2],0,7);b.fill();b.globalAlpha=1;
+    b.fillStyle='#1b1e36';b.beginPath();b.arc(q[0],q[1],q[2]*.38,0,7);b.fill();
+    b.strokeStyle='rgba(255,255,255,.35)';b.lineWidth=2;b.beginPath();b.arc(q[0],q[1],q[2]*.7,0,7);b.stroke();
+  }
+  // portaalbalk bovenin met rail
+  g=b.createLinearGradient(0,0,0,48);g.addColorStop(0,'#5b6286');g.addColorStop(1,'#272b48');b.fillStyle=g;b.fillRect(0,0,W,48);
+  b.save();b.beginPath();b.rect(0,38,W,10);b.clip();b.fillStyle='#ffd23f';b.fillRect(0,38,W,10);b.fillStyle='#14161f';
+  for(let x=-20;x<W+20;x+=28){b.beginPath();b.moveTo(x,48);b.lineTo(x+14,48);b.lineTo(x+28,38);b.lineTo(x+14,38);b.closePath();b.fill();}
+  b.restore();
+  b.fillStyle='#1b1e36';b.fillRect(0,52,W,6);
+  for(const px of [22,W-22]){b.fillStyle='#2b304d';b.fillRect(px-10,48,20,MA.y-48);b.fillStyle='rgba(255,255,255,.08)';b.fillRect(px-10,48,4,MA.y-48);}
+  // put onder de band
+  g=b.createLinearGradient(0,MA.y2,0,H);g.addColorStop(0,'#1a1a30');g.addColorStop(1,'#07060f');b.fillStyle=g;b.fillRect(0,MA.y2-10,W,H-MA.y2+10);
+  g=b.createRadialGradient(cx,H,10,cx,H,320);g.addColorStop(0,'rgba(255,140,60,.28)');g.addColorStop(1,'rgba(255,140,60,0)');b.fillStyle=g;b.fillRect(0,MA.y2,W,H-MA.y2);
+  stpGear(b,cx-170,H-14,74,12,'#2a2d4a',.2);stpGear(b,cx+190,H-6,94,14,'#2a2d4a',.1);
+  for(const x of [MA.x1+60,MA.x2-60]){b.fillStyle='#2b304d';b.fillRect(x-14,MA.y2,28,H-MA.y2);b.fillStyle='rgba(255,255,255,.1)';b.fillRect(x-14,MA.y2,4,H-MA.y2);}
+  // de band zelf
+  g=b.createLinearGradient(0,MA.y,0,MA.y2);g.addColorStop(0,'#3b4066');g.addColorStop(1,'#14162b');
+  b.fillStyle=g;b.beginPath();b.roundRect(MA.x1,MA.y,w,MA.y2-MA.y,[0,0,16,16]);b.fill();
+  b.fillStyle='#4b5078';b.fillRect(MA.x1,MA.y-3,w,19);b.fillStyle='rgba(255,255,255,.22)';b.fillRect(MA.x1,MA.y-3,w,3);
+  for(const rx of [MA.x1+34,MA.x2-34]){
+    const rg=b.createRadialGradient(rx-6,MA.y+36,2,rx,MA.y+42,28);rg.addColorStop(0,'#c8cde8');rg.addColorStop(1,'#4a4f70');
+    b.fillStyle=rg;b.beginPath();b.arc(rx,MA.y+42,26,0,7);b.fill();b.strokeStyle='#1b1e36';b.lineWidth=3;b.stroke();
+    b.fillStyle='#1b1e36';for(let i=0;i<6;i++){const a=i/6*6.2832;b.beginPath();b.arc(rx+Math.cos(a)*15,MA.y+42+Math.sin(a)*15,2.4,0,7);b.fill();}
+  }
+  b.fillStyle='#262a48';for(let x=MA.x1+110;x<MA.x2-90;x+=70){b.beginPath();b.arc(x,MA.y+48,11,0,7);b.fill();b.strokeStyle='rgba(255,255,255,.12)';b.lineWidth=2;b.stroke();}
+  b.save();b.beginPath();b.rect(MA.x1,MA.y2-14,w,8);b.clip();b.fillStyle='#ffd23f';b.fillRect(MA.x1,MA.y2-14,w,8);b.fillStyle='#14161f';
+  for(let x=MA.x1-20;x<MA.x2+20;x+=24){b.beginPath();b.moveTo(x,MA.y2-6);b.lineTo(x+12,MA.y2-6);b.lineTo(x+24,MA.y2-14);b.lineTo(x+12,MA.y2-14);b.closePath();b.fill();}
+  b.restore();
+  // linialen en gummen (bewegende alleen in het menu-voorbeeld)
+  for(const q of m.soft){
+    if(q.mv&&sc>=1)continue;
+    stpPlat(b,q,q.bx1!==undefined?q.bx1:q.x1,q.bx1!==undefined?q.bx2:q.x2,q.by!==undefined?q.by:q.y);
+  }
+  if(sc<1)stpHead(b,cx,MA.y-280,1,'#ff4d9d','s',0,MA);
+}
+
 function libDrawFront(c){
   const t=game.tick,s=game.lib.s;if(!s)return;
   const g=s.L[1];
@@ -4033,7 +4327,7 @@ function startGame(){
   {const rv=v=>Number.isInteger(v)&&v>=0&&v<RK_LV.length;if(O){if(O.rl&&rv(O.rl[0]))p1.rl=O.rl[0];if(O.rl&&rv(O.rl[1]))p2.rl=O.rl[1];}else if(sel.mode!==2||rk)p1.rl=rkLvOf(RK.rp);}
   p2.uname=O?((O.nm&&O.nm[1])||''):'';
   p1.x=VW/2-100;p2.x=VW/2+100;p1.y=p2.y=MAIN.y;p2.face=-1;
-  game={mi:mi,mvs:PLATS.filter(q=>q.mv),gls:MAPS[mi].soft.filter(q=>q.gl),sf:MAPS[mi].soft,gl:null,lib:MAPS[mi].lib?{s:null}:null,mir:MAPS[mi].mirror?{}:null,lf:MAPS[mi].lift?{list:[],cache:{},info:null,S:0,sp:0,h:0,kbm:1}:null,bm:MAPS[mi].bm||null,th:MAPS[mi].theme,mode:O?2:(rk?1:sel.mode),rk:rk,rkLv:rk?rkLvOf(RK.rp):0,road:rd?sel.lvl:-1,players:[p1,p2],proj:[],parts:[],freeze:0,shake:0,countdown:170,over:null,overT:0,paused:false,resumeCd:0,tick:0,mods:MODS};
+  game={mi:mi,mvs:PLATS.filter(q=>q.mv),gls:MAPS[mi].soft.filter(q=>q.gl),sf:MAPS[mi].soft,gl:null,lib:MAPS[mi].lib?{s:null}:null,mir:MAPS[mi].mirror?{}:null,stp:MAPS[mi].stamp?{S:null}:null,lf:MAPS[mi].lift?{list:[],cache:{},info:null,S:0,sp:0,h:0,kbm:1}:null,bm:MAPS[mi].bm||null,th:MAPS[mi].theme,mode:O?2:(rk?1:sel.mode),rk:rk,rkLv:rk?rkLvOf(RK.rp):0,road:rd?sel.lvl:-1,players:[p1,p2],proj:[],parts:[],freeze:0,shake:0,countdown:170,over:null,overT:0,paused:false,resumeCd:0,tick:0,mods:MODS};
   if(pendingResume&&!O){applySave(pendingResume,p1,p2);game.resumed=true;}else{clearSave();hideResumeToast();}
   if(game.gls.length)glitchStep();
   if(game.lf)liftStep(true);
@@ -4809,6 +5103,7 @@ function wallState(p,inp,dir){
     if(Math.abs(p.x-f.w/2-B.x2)<=4){p.wall=-1;p.wallB=B;break;}
   }
   if(p.wall&&dir===p.wall)p.wallG=6;
+  if(p.wall&&p.glue>0&&!inp.d&&dir!==-p.wall){p.wallG=6;p.slide=true;p.face=p.wall;p.vy=0;if(p.anim%8===0)spark(p.x+p.wall*f.w*.5,p.y-f.h*.5,'#ffb02e',2,1.2);}
   if(p.wall&&p.vy>0&&dir===p.wall&&!inp.d&&!p.ai){
     p.slide=true;p.face=p.wall;if(p.vy>1.3)p.vy=1.3;
     if(p.anim%2===0)spark(p.x+p.wall*f.w*.5,p.y-f.h*(.2+Math.random()*.5),'#e8e2d0',2,1.4);
@@ -4876,7 +5171,7 @@ function updatePlayer(p,o){
   const dir=(inp.r?1:0)-(inp.l?1:0);
   if(p.wkCd>0)p.wkCd--;if(p.wkLock>0)p.wkLock--;if(p.wkAnim>0){p.wkAnim--;if(p.wkAnim%2===0)spark(p.x,p.y-f.h*.5,f.color,2,1.2);}
   if(p.invuln>0)p.invuln--;if(p.flash>0)p.flash--;if(p.dropT>0)p.dropT--;if(p.aiJumpCd>0)p.aiJumpCd--;if(p.squash>0)p.squash--;
-  if(p.ledgeCd>0)p.ledgeCd--;
+  if(p.ledgeCd>0)p.ledgeCd--;if(p.slip>0)p.slip--;if(p.glue>0){p.glue--;if(p.glue===0)p.gst=null;}if(p.flat>0)p.flat--;if(p.gcd>0)p.gcd--;
   if(p.ledge){p.wall=0;p.slide=false;hangStep(p,inp,press);p.prev=inp;return;}
   const gm=f.gm||1;let grav=GRAV*gm*(MODS.lowg?.55:1)*GRAVM;
   if(p.hitstun>0){
@@ -4897,29 +5192,29 @@ function updatePlayer(p,o){
       }
     }
     if(press('u')&&!p.shielding&&!p.act){
-      if(p.onGround){qJ(p);p.vy=-f.jump;p.jumps=0;sfx.jump();p.squash=0;spark(p.x,p.y,'#fff',5,2);}
+      if(p.onGround){qJ(p);p.vy=-f.jump*(p.glue>0?.32:1);p.jumps=0;sfx.jump();p.squash=0;spark(p.x,p.y,'#fff',5,2);}
       else if((!p.ai||p.aiWK)&&p.wall&&p.wallG>0&&(p.vy>-1||p.jumps>=2)&&!(p.wkCd>0)&&!(p.wall===p.wkLast&&p.wkSame>=2)){
         const w=p.wall;
         if(!p.ai&&p===game.players[0]&&qVs())qAdd('wallkicks');
         if(w===p.wkLast)p.wkSame++;else p.wkSame=0;
-        p.wkLast=w;p.vy=-f.jump*.96;p.vx=-w*(f.speed+2.4);p.face=-w;
+        const gk=p.glue>0?.5:1;p.wkLast=w;p.vy=-f.jump*.96*gk;p.vx=-w*(f.speed+2.4)*gk;p.face=-w;
         p.wkAnim=22;p.wkDir=-w;p.wkCd=8;p.wkLock=9;p.wall=0;p.wallG=0;p.slide=false;p.jumps=Math.min(p.jumps,1);
         sfx.jump();spark(p.x+w*f.w/2,p.y-f.h*.5,'#fff',12,4.5);spark(p.x+w*f.w/2,p.y-f.h*.5,f.color,8,3);ring(p.x+w*f.w/2,p.y-f.h*.5);ring(p.x,p.y-f.h*.5);game.shake=Math.max(game.shake||0,3);
       }
-      else if(p.jumps<2||MODS.fly){qJ(p);p.vy=-f.jump*.92;p.jumps++;sfx.jump();ring(p.x,p.y-f.h*.3);}
+      else if(p.jumps<2||MODS.fly){qJ(p);p.vy=-f.jump*.92*(p.glue>0?.32:1);p.jumps++;sfx.jump();ring(p.x,p.y-f.h*.3);}
       if(p.onGround){p.jumps=1;p.onGround=false;}
     }
     if(press('d')&&p.onGround&&p.plat&&!p.plat.solid){if(!p.ai&&p===game.players[0]&&qVs())qEv('drops');p.dropT=16;p.y+=2;p.onGround=false;}
     if(p.shielding)p.vx*=.6;
     else if(p.act)stepAct(p,inp);
     else{
-      const acc=p.onGround?(SLIP?.28:.75):.32;
+      const acc=p.onGround?((SLIP||p.slip>0)?.28:.75):.32;
       const dd=(p.wkLock>0&&dir===-p.wkDir)?0:dir;
       if(dd){
-        const sp=f.speed*(MODS.fast?1.35:1);
+        const sp=f.speed*(MODS.fast?1.35:1)*(p.glue>0?.8:1);
         if(dd*p.vx<sp){p.vx+=dd*acc;if(dd*p.vx>sp)p.vx=dd*sp;}else p.vx*=.97;
         p.face=dd;
-      }else p.vx*=p.onGround?(SLIP?.93:.78):.985;
+      }else p.vx*=p.onGround?((SLIP||p.slip>0)?.93:.78):.985;
     }
   }
   if(p.frozen>0){p.frozen--;const fmx=p.frozenMax||48,fr=p.frozen/fmx;
@@ -4938,7 +5233,7 @@ function updatePlayer(p,o){
     if(!was&&vyBefore>5){p.squash=7;spark(p.x,p.y,'#e9e6ff',6,2.5);}
     p.jumps=0;p.upUsed=false;p.wkSame=0;p.wkLast=0;
   }
-  wallState(p,inp,dir);
+  wallState(p,inp,dir);if(p.glue>0)glueStep(p,inp,press);
   if(p.spikeCd>0)p.spikeCd--;
   else if(SPIKES.length&&p.onGround&&p.plat===MAIN&&p.invuln<=0&&!p.ledge){
     for(const z of SPIKES)if(p.x>z.x1&&p.x<z.x2){
@@ -5044,7 +5339,7 @@ function kill(p){
   game.shake=20;game.freeze=10;sfx.ko();
   if(p.stocks>1&&game.cam)game.cam.hold=performance.now()+900;
   if(p.ai&&qVs())qAdd('kos');
-  p.stocks--;p.dmg=0;p.dmgLim=rollDmgLimit();p.vx=p.vy=0;p.act=null;p.shielding=false;p.ledge=0;
+  p.slip=0;p.glue=0;p.gst=null;p.flat=0;p.stocks--;p.dmg=0;p.dmgLim=rollDmgLimit();p.vx=p.vy=0;p.act=null;p.shielding=false;p.ledge=0;
   p.x=VW/2;p.y=-500;
   if(p.stocks<=0)p.dead=true;else p.respawn=75;
 }
@@ -5152,6 +5447,7 @@ function step(){
   }
   if(game.gls.length)glitchStep();
   for(const p of game.players)if(!p.dead&&p.respawn<=0&&p.onGround&&p.plat&&(p.plat.mv||p.plat.lift)&&!p.ledge){p.x+=p.plat.dx;p.y+=p.plat.dy;}
+  if(game.stp)for(const p of game.players)if(!p.dead&&p.respawn<=0&&p.onGround&&p.plat===MAIN&&!p.ledge)p.x-=STP.CONV;
   if(game.countdown>0){
     game.countdown--;
     if(game.countdown===120||game.countdown===70||game.countdown===20)sfx.beep();
@@ -5161,7 +5457,7 @@ function step(){
   updatePlayer(a,b);updatePlayer(b,a);
   if(game.lib&&!game.over)libHazards();
   if(game.lf&&!game.over)liftHazards();
-  if(game.bm&&!game.over)bmHurt();
+  if(game.bm&&!game.over)bmHurt();if(game.stp&&!game.over)stpHurt();
   if(MODS.regen&&!game.over&&game.tick%20===0)for(const q of game.players)if(!q.dead&&!q.ko&&!(q.hitstun>0))q.dmg=Math.max(0,q.dmg-1);
   updateProj();updateParts();
   if(!game.over){
@@ -5220,7 +5516,7 @@ function drawMini(CAM){
   if(game.lf)for(const pl of game.lf.list){m.fillStyle=T.plat;m.beginPath();m.roundRect(pl.x1,pl.y-3,pl.x2-pl.x1,9,4);m.fill();}
   for(const pl of game.mvs){
     const w=pl.x2-pl.x1;
-    if(T.lib){libStack(m,pl,game.tick);continue;}
+    if(T.lib){libStack(m,pl,game.tick);continue;}if(T.stamp){stpPlat(m,pl,pl.x1,pl.x2,pl.y);continue;}
     m.fillStyle=T.plat;m.beginPath();m.roundRect(pl.x1,pl.y-3,w,9,4);m.fill();
     m.fillStyle=T.grass;m.beginPath();m.roundRect(pl.x1,pl.y-3,w,4,2);m.fill();
   }
@@ -5257,6 +5553,7 @@ function render(){
   c.drawImage(bg,0,0,VW,VH);
   if(game.lib)libDrawBack(c);
   if(game.mir)mirBack(c);
+  if(game.stp)stpBack(c);
   if(game.lf)liftDraw(c);
   if(FC&&game.fin){
     const F=game.fin,fl=(F.t%8<4)?.9:.72,a=Math.min(1,FC.e*1.4)*fl;
@@ -5268,7 +5565,7 @@ function render(){
   }
   for(const pl of game.mvs){
     const T=game.th,w=pl.x2-pl.x1;
-    if(T.lib){libStack(c,pl,game.tick);continue;}
+    if(T.lib){libStack(c,pl,game.tick);continue;}if(T.stamp){stpPlat(c,pl,pl.x1,pl.x2,pl.y);continue;}
     c.globalAlpha=.2;c.fillStyle=T.plat;c.beginPath();c.roundRect(pl.x1-6,pl.y,w+12,22,8);c.fill();c.globalAlpha=1;
     c.fillStyle=T.isl[1];c.beginPath();c.moveTo(pl.x1+6,pl.y+5);c.lineTo(pl.x2-6,pl.y+5);c.lineTo((pl.x1+pl.x2)/2,pl.y+28);c.closePath();c.fill();
     c.fillStyle=T.plat;c.beginPath();c.roundRect(pl.x1,pl.y-3,w,9,4);c.fill();
@@ -5277,6 +5574,7 @@ function render(){
   }
   if(game.lib)libDrawFront(c);
   if(game.mir)mirFront(c);
+  if(game.stp)stpFront(c);
   if(game.bm)bmDraw(c);
   if(game.gls&&game.gls.length){const G=game.gl||{};for(const q of game.gls){
     if(!q.on)continue;
@@ -5326,7 +5624,7 @@ function render(){
     if(!p.onGround)sy=1+Math.max(-.08,Math.min(.14,-p.vy*.012));
     if(p.squash>0)sy=.86+.02*(7-p.squash);
     c.save();c.scale(p.face,1);
-    let arm=0;
+    let arm=0;if(p.flat>0)sy=.45+.55*(1-p.flat/34);
     if((p.act==='lunge'&&p.t>=4&&p.t<=16)||(p.act==='punch'&&p.t>=14&&p.t<=26))arm=1;
     const WK=WALKP[f.id]||{},busy=p.act||p.hitstun>0||p.stun>0||p.shielding||p.ledge;
     const mv=busy?0:((p.onGround||WK.s==='hover')?Math.min(1,Math.abs(p.vx)/2.2):0);
@@ -5381,6 +5679,7 @@ function render(){
     }
     if(p.bubble>0){const r=Math.max(f.w,f.h)*.8;c.fillStyle='rgba(191,247,212,.25)';c.beginPath();c.arc(0,-f.h*.5,r,0,7);c.fill();c.strokeStyle='#bff7d4';c.lineWidth=3;c.stroke();}
     if(p.frozen>0)drawIceberg(c,f,Math.max(0,Math.min(1,p.frozen/(p.frozenMax||48))),game.tick);
+    if(p.slip>0||p.glue>0)stpStatus(c,p,f);
     if(p.armor>0){c.strokeStyle='rgba(255,210,120,.9)';c.lineWidth=4;c.beginPath();c.roundRect(-f.w*.7,-f.h-6,f.w*1.4,f.h+12,10);c.stroke();}
     c.restore();
     // hit visual
@@ -5535,7 +5834,8 @@ function showResult(){
       btns=[[tx('retry'),startGame,IC_REMATCH],[tx('toMenu'),toMenu,IC_LEAVE]];
     }
   }
-  if(g.over&&g.over!=='draw'&&!g.over.ai&&g.players[1].ai){const gain=g.road>=0?BOSS_COINS:WIN_COINS;coins+=gain;saveCoins();ttl+=' '+tx('coinsWon',gain);}
+  if(g.over&&g.over!=='draw'&&!g.over.ai&&g.players[1].ai&&!g.players[1].dummy){const gain=g.road>=0?BOSS_COINS:WIN_COINS;coins+=gain;saveCoins();ttl+=' '+tx('coinsWon',gain);}
+  else if(g.over&&g.players[1].dummy){ttl+=' · '+tx('qWarnTrain');}
   if(g.rk&&g.over){const won=g.over!=='draw'&&!g.over.ai;if(g.over==='draw'){ttl=tx('draw')+' · 0 RP';}else{ttl+=rkApply(won);}
     btns=[[tx('again'),startGame,IC_REMATCH],[tx('rankBtn'),()=>{toMenu();openRankPage();},IC_LEAVE],[tx('toMenu'),toMenu,IC_LEAVE]];}
   qMatchEnd(g);
@@ -5562,8 +5862,11 @@ function paintFighter(c,i,locked,cos){
 function p2dummy(){return !!(game&&game.players&&game.players[1]&&game.players[1].dummy);}
 function updateQWarn(){
   const w=$('qwarnMenu');if(!w)return;
-  w.hidden=!(sel.mode===1&&!sel.train&&!qSetOk());
+  const tr=sel.mode===1&&sel.train;
+  w.hidden=!(tr||(sel.mode===1&&!qSetOk()));
   if(w.hidden)return;
+  $('qwarnBtn').hidden=tr;
+  if(tr){$('qwarnTxt').textContent=tx('qWarnTrain');return;}
   $('qwarnTxt').textContent=tx(qLivesOk()?'qWarnMods':(qRulesOn()?'qWarnBoth':'qWarnShort'));
   $('qwarnBtn').textContent=tx(qFixKey());
 }
@@ -5762,7 +6065,7 @@ function doChest(t){
   setTimeout(()=>{
     const f=FIGHTERS[pick],dup=own.includes(f.id);
     if(dup)coins+=ch.dup;else own.push(f.id);
-    saveCoins();cs={phase:'result',i:pick,dup,refund:ch.dup};
+    saveCoins();cs={phase:'result',i:pick,dup,refund:ch.dup,fresh:true};
     if(inChest&&!game)renderMenu();
   },REEL_MS+600);
 }
@@ -5791,19 +6094,21 @@ function renderChest(){
       return '<div class="ritem" style="border-color:'+col+'"><canvas width="144" height="144" data-r="'+i+'"></canvas><span style="color:'+col+'">'+f.name+'</span></div>';}).join('')+'</div></div><div class="hint" role="status">'+tx('opening')+'</div>';
   }else if(cs.phase==='result'){
     const f=FIGHTERS[cs.i],col=RARC[f.rar];
-    stage='<canvas id="chestRes" width="288" height="288"></canvas><div class="rarlbl" style="color:'+col+'">'+tx('rar_'+f.rar)+'</div><div class="rname" style="color:'+col+'">'+f.name+'</div><div class="hint" role="status">'+(cs.dup?tx('gotDup',cs.refund):tx('gotNew',f.name))+'</div>'+opts(true);
+    stage='<canvas id="chestRes" width="288" height="288"></canvas><div class="rarlbl" style="color:'+col+'">'+tx('rar_'+f.rar)+'</div><div class="rname" style="color:'+col+'">'+f.name+'</div><div class="hint" role="status">'+(cs.dup?tx('gotDup',cs.refund):tx('gotNew',f.name))+'</div><button type="button" class="cta chestClaim" id="chestClaim">'+tx('claim')+'</button>';
   }else stage=opts(false)+'<div class="hint chp'+(chestSel<0?'':' off')+'" role="status">'+tx('chPick')+'</div>';
   const sc=CHESTS[chestSel];
   const btns=all?'<button type="button" class="cta" disabled>'+tx('allOwned')+'</button>':
     '<button type="button" class="cta ob'+(chestSel>0?' gold2':'')+(sc?'':' off')+'" data-ct="'+(sc?chestSel:0)+'"'+((!sc||coins<sc.cost||op)?' disabled':'')+'>'+(op?tx('opening'):coinify(tx(chestSel>0?'openChest2':'openChest',(sc||CHESTS[0]).cost)))+'</button>';
   box.innerHTML=tabsHTML()+'<div><div class="coinbig">'+COIN+' '+coins+'</div><p class="hint" style="margin:6px 0 0">'+tx('chestInfo',CHESTS[1].cost,WIN_COINS,BOSS_COINS)+'</p></div>'+
    '<div class="chestStage">'+stage+'</div>'+
-   '<div class="startbar">'+btns+(all?'':'<span class="hint nh'+(sc&&coins<sc.cost?'':' off')+'">'+tx('notEnough')+'</span>')+'</div>'+
+   (cs.phase==='result'?'':'<div class="startbar">'+btns+(all?'':'<span class="hint nh'+(sc&&coins<sc.cost?'':' off')+'">'+tx('notEnough')+'</span>')+'</div>')+
    '<div><h3>'+tx('collection')+' · '+tx('chances')+'</h3><div class="cards">'+cf.map(i=>{const f=FIGHTERS[i],ow=own.includes(f.id),col=RARC[f.rar];
      return '<div class="card" style="border-color:'+col+'"><canvas width="144" height="144" data-i="'+i+'"></canvas><b>'+(ow?f.name:'???')+'</b><span class="rarlbl" style="color:'+col+'">'+tx('rar_'+f.rar)+'</span><span>'+CHESTS.map((ch,k)=>ch.icon+' '+Math.round(chW(ch,cf,i)/tws[k]*100)+'%').join(' · ')+'</span></div>';}).join('')+'</div></div>';
   box.querySelectorAll('canvas[data-i]').forEach(cn=>{const i=+cn.dataset.i;paintFighter(cn.getContext('2d'),i,!own.includes(FIGHTERS[i].id));});
   const rc=$('chestRes');if(rc){const c=rc.getContext('2d');c.scale(2,2);paintFighter(c,cs.i,false);}
   box.querySelectorAll('[data-ct]').forEach(b=>b.addEventListener('click',()=>doChest(+b.dataset.ct)));
+  const cb=$('chestClaim');if(cb){cb.addEventListener('click',()=>{cs={phase:'idle'};chestSel=-1;renderMenu();const n=$('chestbox').querySelector('[data-co]');if(n)n.focus({preventScroll:true});});
+    if(cs.fresh){cs.fresh=false;cb.focus({preventScroll:true});}}
   box.querySelectorAll('[data-co]').forEach(b=>b.addEventListener('click',()=>{
     if(cs.phase==='opening')return;
     chestSel=chestSel===+b.dataset.co?-1:+b.dataset.co;
@@ -6040,6 +6345,11 @@ Object.assign(TR.nl,{"qViewAria": "Weergave", "qView_grid": "Raster", "qView_lis
 Object.assign(TR.de,{"qViewAria": "Ansicht", "qView_grid": "Raster", "qView_list": "Liste"});
 Object.assign(TR.fr,{"qViewAria": "Affichage", "qView_grid": "Grille", "qView_list": "Liste"});
 Object.assign(TR.es,{"qViewAria": "Vista", "qView_grid": "Cuadrícula", "qView_list": "Lista"});
+Object.assign(TR.en,{"qWarnTrain":"Training mode: no quest progress and no coins."});
+Object.assign(TR.nl,{"qWarnTrain":"Trainingsmodus: geen quest-voortgang en geen munten."});
+Object.assign(TR.de,{"qWarnTrain":"Trainingsmodus: kein Quest-Fortschritt und keine Münzen."});
+Object.assign(TR.fr,{"qWarnTrain":"Mode entraînement : pas de progression des quêtes ni de pièces."});
+Object.assign(TR.es,{"qWarnTrain":"Modo entrenamiento: sin progreso de misiones ni monedas."});
 Object.assign(TR.en,{"dummyName": "Dummy"});
 Object.assign(TR.nl,{"dummyName": "Dummy"});
 Object.assign(TR.de,{"dummyName": "Dummy"});
@@ -6394,6 +6704,33 @@ Object.assign(ONL.nl,{kick:'Kicken',promote:'Host maken',kicked:'De host heeft j
 Object.assign(ONL.de,{kick:'Rauswerfen',promote:'Zum Host machen',kicked:'Der Host hat dich aus dem Raum entfernt.',kickedS:'wurde aus dem Raum entfernt.',nowHost:'Du bist jetzt der Host!',handed:'Host-Rolle übergeben.',personal:'Persönliche Wahl · betrifft nur dich',stOn:'Verbunden',stOff:'Warten…',inRoomL:'im Raum',secRules:'Arena, Modifikatoren & Power-ups',chgHint:'Tippe unten auf einen Kämpfer zum Wechseln',joinedS:'ist dem Raum beigetreten!',leftS:'hat den Raum verlassen.',youJoined:'Du bist dem Raum beigetreten!'});
 Object.assign(ONL.fr,{kick:'Expulser',promote:'Nommer hôte',kicked:'L’hôte t’a retiré du salon.',kickedS:'a été retiré du salon.',nowHost:'Tu es maintenant l’hôte !',handed:'Rôle d’hôte transmis.',personal:'Choix personnel · ne concerne que toi',stOn:'Connecté',stOff:'En attente…',inRoomL:'dans le salon',secRules:'Arène, modificateurs et power-ups',chgHint:'Touche un combattant ci-dessous pour changer',joinedS:'a rejoint le salon !',leftS:'a quitté le salon.',youJoined:'Tu as rejoint le salon !'});
 Object.assign(ONL.es,{kick:'Expulsar',promote:'Hacer anfitrión',kicked:'El anfitrión te sacó de la sala.',kickedS:'fue expulsado de la sala.',nowHost:'¡Ahora eres el anfitrión!',handed:'Rol de anfitrión transferido.',personal:'Elección personal · solo te afecta a ti',stOn:'Conectado',stOff:'Esperando…',inRoomL:'en la sala',secRules:'Arena, modificadores y power-ups',chgHint:'Toca un luchador abajo para cambiar',joinedS:'se unió a la sala.',leftS:'salió de la sala.',youJoined:'¡Te uniste a la sala!'});
+/* WebRTC needs a TURN relay on 4G/5G (carrier NAT) and on many public/school/hotel networks.
+   Default: free Open Relay servers (shared, rate-limited). For a reliable setup create a free account at
+   metered.ca (or Cloudflare Calls TURN) and replace the TURN entries below with your own credentials. */
+const ICE_SERVERS=[
+  {urls:['stun:stun.l.google.com:19302','stun:global.stun.twilio.com:3478','stun:openrelay.metered.ca:80']},
+  {urls:['turn:openrelay.metered.ca:80','turn:openrelay.metered.ca:443','turn:openrelay.metered.ca:443?transport=tcp','turns:openrelay.metered.ca:443?transport=tcp'],username:'openrelayproject',credential:'openrelayproject'}
+];
+/* === TURN SETUP (needed for 4G/5G and public networks) ===
+   1) Make a free account at https://www.metered.ca  (Open Relay, 20 GB/month free).
+   2) Dashboard > TURN Server: copy your app name (the part before .metered.live) and the API key.
+   3) Paste them below. The game then fetches fresh TURN credentials every time you open the Online menu.
+   Until you fill these in, the old shared servers are used (unreliable). */
+const TURN_APP='';   /* e.g. 'rumblerift'  -> https://rumblerift.metered.live */
+const TURN_KEY='';   /* your Metered API key */
+let ICE_LIVE=null;
+function refreshIce(){
+  if(!TURN_APP||!TURN_KEY||!window.fetch)return;
+  try{
+    const ctl=window.AbortController?new AbortController():null,t=setTimeout(()=>{try{ctl&&ctl.abort();}catch(e){}},6000);
+    fetch('https://'+TURN_APP+'.metered.live/api/v1/turn/credentials?apiKey='+encodeURIComponent(TURN_KEY),ctl?{signal:ctl.signal}:{})
+      .then(r=>r.ok?r.json():null)
+      .then(j=>{clearTimeout(t);if(Array.isArray(j)&&j.length)ICE_LIVE=j.concat([{urls:['stun:stun.l.google.com:19302']}]);})
+      .catch(()=>{clearTimeout(t);});
+  }catch(e){}
+}
+const peerOpts=()=>({config:{iceServers:ICE_LIVE||ICE_SERVERS,iceCandidatePoolSize:4,sdpSemantics:'unified-plan'}});
+refreshIce();
 function onl(k){return (ONL[lang]&&ONL[lang][k])||ONL.en[k]||k;}
 function mkRng(s){let a=s>>>0;return()=>{a=(a+0x6D2B79F5)>>>0;let t=a;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;};}
 function cosFor(p){return NET.on?((NET.cos&&NET.cos[p.idx])||{}):p.ai?{}:undefined;}
@@ -6406,6 +6743,7 @@ const NET={
   send(o){try{if(this.conn&&this.conn.open)this.conn.send(o);}catch(e){}},
   /* lobby */
   openLobby(){
+    refreshIce();
     if(game)return;
     if(!this.el){
       const s=document.createElement('style');s.textContent='#onl{position:fixed;inset:0;z-index:250;background:rgba(8,8,26,.88);display:flex;align-items:center;justify-content:center;padding:12px;overflow:auto}#onl .onc{background:var(--panel);border:2px solid var(--gold);border-radius:14px;padding:20px 24px;max-width:380px;width:100%;text-align:center;display:flex;flex-direction:column;gap:12px;color:#fff}#onl h2{margin:0;font:400 28px var(--display)}#onl p{margin:0}#onl .onr{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}#onl .oncode{font:400 44px var(--display);letter-spacing:.18em;color:var(--gold)}#onl input{font:400 32px var(--display);letter-spacing:.2em;text-align:center;text-transform:uppercase;padding:8px;border-radius:8px;border:2px solid var(--line);background:#0b0c1c;color:#fff;width:100%;box-sizing:border-box}#onl.in{animation:fadeIn .25s ease-out}#onl.in .onc{animation:ovPop .35s ease-out both}#onl .cta{font-size:18px;padding:10px 22px}#onl.big{align-items:flex-start}#onl .onc.wide{max-width:960px;max-height:calc(100dvh - 24px);overflow:auto;text-align:left;align-items:stretch;box-sizing:border-box}#onl h3{margin:0;font:400 20px var(--display);color:var(--gold)}#onl h4{margin:6px 0 0;font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}.lbtop{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}.lbcode{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.lbcode .oncode{font-size:32px}.lbl{color:var(--muted);font-size:13px}.lbsec{border:2px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px}.lbpl{display:grid;grid-template-columns:1fr 1fr;gap:10px}.lbp{display:flex;align-items:center;gap:10px;border:2px solid var(--line);border-radius:12px;padding:8px 10px;opacity:.65}.lbp.on{opacity:1;border-color:var(--p1)}.lbp.g.on{border-color:var(--p2)}.lbp canvas{width:56px;height:56px;flex:none}.lbp small{display:block;color:var(--muted)}.lbp .dot{width:10px;height:10px;border-radius:50%;background:#666;flex:none;animation:splBlink 1.2s infinite}.lbp.on .dot{background:#4ade80;box-shadow:0 0 8px #4ade80;animation:none}.lbtag{font-style:normal;font-size:11px;padding:1px 6px;border-radius:8px;background:var(--gold);color:#1b1500}.lbtag.me{background:#fff}.lbgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px}.lbgrid.lbmaps{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}.lbf,.lbm{background:var(--panel);border:2px solid var(--line);border-radius:10px;color:inherit;padding:6px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;cursor:pointer;min-width:0}.lbf canvas{width:64px;height:64px}.lbm canvas,.lbrnd{width:100%;aspect-ratio:16/9;border-radius:6px}.lbrnd{display:grid;place-items:center;background:#0b0c1c;font:400 28px var(--display);color:var(--gold)}.lbf.on,.lbm.on{border-color:var(--gold);box-shadow:inset 0 0 0 2px var(--gold)}.lbf:disabled,.lbm:disabled{cursor:default}.lbf:disabled:not(.on){opacity:.5}.lbro .lbm:disabled:not(.on),.lbro .mod:disabled:not(.on){opacity:.45}@media(max-width:560px){.lbpl{grid-template-columns:1fr}}#onl .cta:disabled{opacity:.5}#onw,.onn{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:260;background:rgba(0,0,0,.78);color:#fff;padding:6px 14px;border-radius:20px;font-weight:700}';
@@ -6577,7 +6915,7 @@ const NET={
   },
   tryId(k){
     const A='ABCDEFGHJKMNPQRSTUVWXYZ23456789';let code='';for(let i=0;i<5;i++)code+=A[(Math.random()*A.length)|0];
-    let p;try{p=new Peer(this.pfx+code);}catch(e){this.err('net');return;}
+    let p;try{p=new Peer(this.pfx+code,peerOpts());}catch(e){this.err('net');return;}
     this.peer=p;this.code=code;
     p.on('open',()=>{if(p!==this.peer)return;this.st='room';this.ui();});
     p.on('connection',c=>{if(p!==this.peer)return;if(this.conn){c.on('open',()=>c.close());return;}this.attach(c);});
@@ -6586,9 +6924,9 @@ const NET={
   join(raw){
     const code=String(raw).toUpperCase().replace(/[^A-Z0-9]/g,'');if(code.length<5)return;
     this.teardown();this.isHost=false;this.me=1;this.code=code;this.gf=this.fighterPick(sel.p1);this.R=null;this.st='joining';this.ui();
-    let p;try{p=new Peer();}catch(e){this.err('net');return;}
+    let p;try{p=new Peer(undefined,peerOpts());}catch(e){this.err('net');return;}
     this.peer=p;
-    this.jt=setTimeout(()=>{if(p===this.peer&&this.st==='joining')this.err('net');},15000);
+    this.jt=setTimeout(()=>{if(p===this.peer&&this.st==='joining')this.err('net');},25000);
     p.on('open',()=>{if(p!==this.peer)return;this.attach(p.connect(this.pfx+code,{reliable:true,serialization:'json'}));});
     p.on('error',e=>{if(p!==this.peer)return;this.err(e.type==='peer-unavailable'?'nf':'net');});
   },
