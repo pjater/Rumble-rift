@@ -156,6 +156,8 @@ header{display:flex;align-items:center;justify-content:space-between;gap:12px}
 #setpage[hidden],#rankpage[hidden],#road[hidden],#chestpage[hidden]{display:none}
 .sel{background:var(--panel2);color:var(--text);border:2px solid var(--line);border-radius:8px;padding:8px 12px;font:inherit;max-width:100%}
 .card .ghost{align-self:stretch;margin-top:6px}.card .ghost:disabled{opacity:.5;cursor:not-allowed}
+.card .ghost.buy{background:var(--gold);color:#1b1500;border:0;border-radius:10px;padding:9px 12px;font:400 17px var(--display);letter-spacing:.04em;box-shadow:0 4px 0 #b5851a}.card .ghost.buy:hover{color:#1b1500;transform:translateY(-2px)}.card .ghost.buy:active{transform:translateY(2px);box-shadow:0 2px 0 #b5851a}.card .ghost.buy:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none}
+.cos-all .mg-text{flex:1}
 .coinpill{border-color:var(--gold);color:var(--gold);font-weight:700}
 #m6,#m8{position:relative}
 .qdot{position:absolute;top:-8px;right:-8px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:#ff3d6e;color:#fff;font:700 12px var(--body);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 2px var(--bg,#0e0f22);pointer-events:none}
@@ -368,7 +370,9 @@ header{display:flex;align-items:center;justify-content:space-between;gap:12px}
 #infotip .tn{font:400 15px var(--display);letter-spacing:.03em}
 #infotip .td{color:var(--muted)}
 #infotip .tm{color:var(--gold)}
-.mapcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.mapcards{display:grid;grid-template-columns:repeat(auto-fill,200px);justify-content:start;grid-auto-rows:1fr;gap:10px}
+.mcard{height:100%;box-sizing:border-box;align-self:stretch}
+.cards.row>.mcard{align-self:stretch;flex:0 0 200px;width:200px}.mapcards>.mcard{width:200px}
 .mcard canvas{width:100%;height:auto;aspect-ratio:16/9;align-self:stretch;margin-bottom:6px;border-radius:6px}
 .card[aria-checked=true]{border-color:var(--pc);background:var(--panel2);box-shadow:0 0 0 2px var(--pc) inset}
 .mcard.mlock b{color:var(--gold)}.card:disabled{opacity:.72;cursor:not-allowed}.card:disabled:hover{background:var(--panel)}.card.boss b{color:var(--gold)}
@@ -785,6 +789,11 @@ Object.assign(TR.nl,{"instTitle": "Speel op je telefoon", "instNote": "Zet Rumbl
 Object.assign(TR.de,{"instTitle": "Auf dem Handy spielen", "instNote": "Füge Rumble Rift zum Startbildschirm hinzu, damit es wie eine echte App startet.", "instApple": "Apple", "instAndroid": "Android", "iosT": "Auf iPhone / iPad installieren", "iosS": "Öffne das Spiel in Safari (andere Browser bieten die Option manchmal nicht an).|Tippe auf das Teilen-Symbol (das Quadrat mit Pfeil nach oben) am unteren oder oberen Bildschirmrand.|Scrolle nach unten und tippe auf „Zum Home-Bildschirm“.|Tippe oben rechts auf „Hinzufügen“.|Öffne Rumble Rift ab jetzt über das neue Symbol auf deinem Home-Bildschirm.", "iosN": "Tipp: Drehe dein Gerät ins Querformat für das beste Erlebnis. Hinweis: Die App auf dem Home-Bildschirm kann einen eigenen Speicher haben, daher wird der Fortschritt aus Safari eventuell nicht übernommen.", "andT": "Auf Android installieren", "andS": "Öffne das Spiel in Chrome.|Tippe oben rechts auf das Menü (drei Punkte).|Wähle „App installieren“ oder „Zum Startbildschirm hinzufügen“.|Bestätige mit „Installieren“ oder „Hinzufügen“.|Öffne Rumble Rift ab jetzt über das neue Symbol auf deinem Startbildschirm.", "andN": "Tipp: Drehe dein Handy ins Querformat für das beste Erlebnis.", "instClose": "Verstanden"});
 Object.assign(TR.fr,{"instTitle": "Jouer sur ton téléphone", "instNote": "Ajoute Rumble Rift à ton écran d’accueil pour l’ouvrir comme une vraie appli.", "instApple": "Apple", "instAndroid": "Android", "iosT": "Installer sur iPhone / iPad", "iosS": "Ouvre le jeu dans Safari (les autres navigateurs ne proposent pas toujours l’option).|Touche le bouton Partager (le carré avec une flèche vers le haut) en bas ou en haut de l’écran.|Fais défiler et touche « Sur l’écran d’accueil ».|Touche « Ajouter » en haut à droite.|Ouvre désormais Rumble Rift avec la nouvelle icône de ton écran d’accueil.", "iosN": "Astuce : mets ton appareil en mode paysage pour une meilleure expérience. Remarque : l’appli de l’écran d’accueil peut avoir son propre stockage, la progression de Safari n’est donc peut-être pas reprise.", "andT": "Installer sur Android", "andS": "Ouvre le jeu dans Chrome.|Touche le bouton de menu (trois points) en haut à droite.|Choisis « Installer l’application » ou « Ajouter à l’écran d’accueil ».|Confirme avec « Installer » ou « Ajouter ».|Ouvre désormais Rumble Rift avec la nouvelle icône de ton écran d’accueil.", "andN": "Astuce : mets ton téléphone en mode paysage pour une meilleure expérience.", "instClose": "Compris"});
 Object.assign(TR.es,{"instTitle": "Juega en tu móvil", "instNote": "Añade Rumble Rift a tu pantalla de inicio para abrirlo como una app de verdad.", "instApple": "Apple", "instAndroid": "Android", "iosT": "Instalar en iPhone / iPad", "iosS": "Abre el juego en Safari (otros navegadores no siempre ofrecen la opción).|Toca el botón Compartir (el cuadrado con una flecha hacia arriba) en la parte inferior o superior de la pantalla.|Desplázate hacia abajo y toca «Añadir a pantalla de inicio».|Toca «Añadir» arriba a la derecha.|A partir de ahora, abre Rumble Rift con el nuevo icono de tu pantalla de inicio.", "iosN": "Consejo: gira el dispositivo en horizontal para la mejor experiencia. Nota: la app de la pantalla de inicio puede tener su propio almacenamiento, así que el progreso de Safari puede no trasladarse.", "andT": "Instalar en Android", "andS": "Abre el juego en Chrome.|Toca el botón de menú (tres puntos) arriba a la derecha.|Elige «Instalar aplicación» o «Añadir a la pantalla de inicio».|Confirma con «Instalar» o «Añadir».|A partir de ahora, abre Rumble Rift con el nuevo icono de tu pantalla de inicio.", "andN": "Consejo: gira el teléfono en horizontal para la mejor experiencia.", "instClose": "Entendido"});
+Object.assign(TR.en,{cosAll:'Apply to all fighters'});
+Object.assign(TR.nl,{cosAll:'Toepassen op alle vechters'});
+Object.assign(TR.de,{cosAll:'Auf alle Kämpfer anwenden'});
+Object.assign(TR.fr,{cosAll:'Appliquer à tous les combattants'});
+Object.assign(TR.es,{cosAll:'Aplicar a todos los luchadores'});
 Object.assign(TR.en,{musicTitle:'Music',musicToggle:'Music playback',musicOn:'On',musicOff:'Off',musicVolume:'Volume',musicVolumeAria:'Music volume',musicGame:'Play music during a match'});
 Object.assign(TR.nl,{musicTitle:'Muziek',musicToggle:'Muziek afspelen',musicOn:'Aan',musicOff:'Uit',musicVolume:'Volume',musicVolumeAria:'Muziekvolume',musicGame:'Muziek afspelen tijdens een gevecht'});
 Object.assign(TR.de,{musicTitle:'Musik',musicToggle:'Musikwiedergabe',musicOn:'Ein',musicOff:'Aus',musicVolume:'Lautstärke',musicVolumeAria:'Musiklautstärke',musicGame:'Musik während eines Kampfes abspielen'});
@@ -1309,13 +1318,15 @@ const COS=[
  {id:'glasses',slot:'face',price:30},{id:'mustache',slot:'face',price:30},{id:'shades',slot:'face',price:40},{id:'eyepatch',slot:'face',price:50},
  {id:'bowtie',slot:'body',price:30},{id:'scarf',slot:'body',price:40},{id:'cape',slot:'body',price:80},{id:'belt',slot:'body',price:100}
 ];
-let cosOwn=[],cosEq={},shopTab='chest',cosSel=0,chestSel=-1;
+let cosOwn=[],cosEq={},cosAll=false,shopTab='chest',cosSel=0,chestSel=-1;
 try{const o=JSON.parse(localStorage.getItem('rr_cos')||'null');if(o){
+  cosAll=!!o.all;
   if(Array.isArray(o.own))cosOwn=o.own.filter(id=>COS.some(x=>x.id===id));
   if(o.eq&&typeof o.eq==='object')for(const k in o.eq){const e=o.eq[k],r={};if(e&&typeof e==='object')for(const sl of ['hat','face','body'])if(COS.some(x=>x.id===e[sl]&&x.slot===sl))r[sl]=e[sl];cosEq[k]=r;}
 }}catch(e){cosOwn=[];cosEq={};}
-function saveCos(){try{localStorage.setItem('rr_cos',JSON.stringify({own:cosOwn,eq:cosEq}));}catch(e){}}
+function saveCos(){try{localStorage.setItem('rr_cos',JSON.stringify({own:cosOwn,eq:cosEq,all:cosAll}));}catch(e){}}
 function cosOf(id){return cosEq[id]||{};}
+const NOCOS=Object.freeze({});   // expliciet 'geen cosmetics' (zonder hoed-verkleining)
 function drawCosBack(c,f,cos,t,fl){
   if(cos.body!=='cape')return;
   const w=f.w,h=f.h,sw=Math.sin(t*.15)*4;
@@ -1654,7 +1665,7 @@ function resetAll(){
   RK={rp:0,w:0,l:0,st:0,best:0,cl:[],ml:[],pk:0};rkMatch=false;
   try{['rr_unl','rr_set','rr_sel','rr_coins','rr_own','rr_cos','rr_save','rr_quest','rr_qview','rr_dq','rr_rank'].forEach(k=>localStorage.removeItem(k));}catch(e){}
   Q.p={};Q.c=[];Q.fw=[];Q.mw=[];qDirty=false;qView='grid';DQ_S={d:null,w:null,pv:{d:[],w:[]}};dqRoll();qTab='daily';
-  unl=[];coins=0;own=[];cosOwn=[];cosEq={};shopTab='chest';lang='en';cfg.user='';cfg.diff='normal';cfg.stocks=3;cfg.music=false;cfg.musicGame=true;cfg.musicVolume=25;
+  unl=[];coins=0;own=[];cosOwn=[];cosEq={};cosAll=false;shopTab='chest';lang='en';cfg.user='';cfg.diff='normal';cfg.stocks=3;cfg.music=false;cfg.musicGame=true;cfg.musicVolume=25;
   applyMusicSettings();
   for(let p=0;p<2;p++)for(const k of NAMES)MAP[p][k]=DEFKEYS[p][k].slice();
   sel={mode:1,p1:0,p2:1,rk:0,map:0,lvl:0,train:false,mods:{}};
@@ -3589,7 +3600,7 @@ function libDrawLog(c,lg,t){
 const BM={ice:{P:230,W:60,D:14,w:46,c:'#bff3ff'},rock:{P:200,W:55,D:16,w:60,c:'#b09070'},shade:{P:210,W:60,D:36,w:54,c:'#b070ff'},lava:{P:190,W:55,D:34,w:56,c:'#ff7a2a'},star:{P:170,W:50,D:16,w:50,c:'#ffe27a'}};
 const BMT={en:{q:'JUMP!',l:'LAVA! Get on the platforms!'},nl:{q:'SPRING!',l:'LAVA! Naar de platforms!'},de:{q:'SPRING!',l:'LAVA! Auf die Plattformen!'},fr:{q:'SAUTEZ !',l:'LAVE ! Sur les plateformes !'},es:{q:'¡SALTA!',l:'¡LAVA! ¡A las plataformas!'}};
 const bmTx=k=>(BMT[lang]||BMT.en)[k];
-const ROLL={P:200,len:150,spd:4.2,r:22}; // rotsblokken die na de inslag blijven rollen
+const ROLL={P:200,len:260,spd:4.2,r:22}; // rotsblokken die na de inslag blijven rollen
 const QUAKE={per:520,off:300,warn:60,act:14};   // aardbeving (Colossus Kloof)
 const FLOOD={per:640,off:380,warn:110,act:150}; // magmavloed (Drakenhol)
 const HOLE={per:600,off:120,warn:40,act:360};   // zwart gat (Sterrensmederij)
@@ -3618,7 +3629,10 @@ function bmRolls(t){ // rollende rotsblokken: positie puur uit game.tick
     const hit=k*ROLL.P+ROLL.P*.6+BM.rock.W,age=t-(hit+BM.rock.D);
     if(age<0||age>ROLL.len)continue;
     const x0=x1+libH(k*7+game.mi*13)*(x2-x1),dir=libH(k*3+5)<.5?-1:1;
-    out.push({k:k,x:x0+dir*age*ROLL.spd,dir:dir,age:age});
+    const edge=dir>0?m.main.x2:m.main.x1,ae=Math.max(0,(dir>0?edge-x0:x0-edge)/ROLL.spd); // moment dat het midden van de bal over de rand rolt
+    let rx=x0+dir*age*ROLL.spd,ry=0;
+    if(age>ae){const f=age-ae;rx=edge+dir*f*ROLL.spd*.8;ry=.5*.4*f*f;if(ry>800)continue;} // over de rand: vallen i.p.v. op niks doorrollen
+    out.push({k:k,x:rx,y:ry,dir:dir,age:age});
   }
   return out;
 }
@@ -3671,7 +3685,7 @@ function bmHurt(){
     if(rolls){
       let hitRoll=false;
       for(const r of rolls){
-        if(Math.abs(p.x-r.x)<ROLL.r+p.f.w*.3&&p.y>MAIN.y-2*ROLL.r&&p.y<=MAIN.y+8){
+        if(r.y<4&&Math.abs(p.x-r.x)<ROLL.r+p.f.w*.3&&p.y>MAIN.y-2*ROLL.r&&p.y<=MAIN.y+8){
           bmHit(p,6,4.6,.06,r.dir*.9,-.7,'#b09070',40);hitRoll=true;break;
         }
       }
@@ -3707,7 +3721,7 @@ function bmDraw(c){
     else if(q.s===2&&q.f<.5){const a=1-q.f*2;c.strokeStyle='rgba(220,190,150,'+a+')';c.lineWidth=4;c.beginPath();c.moveTo(M.x1,gy);
       for(let x=M.x1;x<=M.x2;x+=24)c.lineTo(x,gy-6-((x/24|0)%2)*14*a);c.stroke();c.fillStyle='rgba(180,150,110,'+a*.5+')';c.fillRect(M.x1,gy-26,M.x2-M.x1,26);}
     for(const r of bmRolls(t)){ // rollende rotsblokken
-      c.save();c.translate(r.x,gy-ROLL.r);c.rotate(r.age*.12*r.dir);c.fillStyle='#8a7258';c.beginPath();c.arc(0,0,ROLL.r,0,7);c.fill();
+      c.save();c.translate(r.x,gy-ROLL.r+r.y);c.rotate(r.age*.12*r.dir);c.fillStyle='#8a7258';c.beginPath();c.arc(0,0,ROLL.r,0,7);c.fill();
       c.fillStyle='#5a4632';c.beginPath();c.arc(-7,-5,8,0,7);c.arc(8,7,6,0,7);c.fill();c.strokeStyle='#3c2c1c';c.lineWidth=2;c.beginPath();c.arc(0,0,ROLL.r,0,7);c.stroke();c.restore();
     }
   }
@@ -4062,7 +4076,7 @@ function libBanner(c){
      a cruise · b optrekken · c razendsnel (zwaarder, minder wegslingeren) · d afremmen · e cruise
      w noodrem-waarschuwing (obstakel nadert) · s noodrem: staande spelers worden geslagen · r herstart · i cruise
    ===================================================================== */
-const LIFT={SP:112,Y0:40,YMIN:-30,YMAX:372,FADE:340,C:1.35,F:4.4,LEAVE:.45,KB:.3,GR:.4,BH:64,
+const LIFT={SP:112,Y0:40,YMIN:-30,YMAX:372,FADE:340,C:1.35,F:9,LEAVE:.45,KB:.3,GR:.4,BH:64,
  // [lengte, fase, snelheid begin, snelheid eind, richting]; snelheidscodes: 0 stil · 1 +C · 2 +F · 3 -C · 4 -F
  segs:[
   [360,'a',1,1,1],[50,'b',1,2,1],[240,'c',2,2,1],[60,'d',2,1,1],[240,'e',1,1,1],[60,'p',1,2,1],[100,'w',2,2,1],[150,'s',0,0,1],[140,'r',0,3,1],
@@ -5852,7 +5866,7 @@ function togglePause(){
 /* ---------- Menu ---------- */
 function paintFighter(c,i,locked,cos){
   c.save();c.scale(2,2);
-  const cc=cos||cosOf(FIGHTERS[i].id),sm=(cos||cc.hat)?.84:1;
+  const cc=cos||cosOf(FIGHTERS[i].id),sm=((cos&&cos!==NOCOS)||cc.hat)?.84:1;
   c.save();c.translate(FIGHTERS[i].cust?43:36,68);const k=(FIGHTERS[i].boss?.82:FIGHTERS[i].cust?.68:1.05)*sm;c.scale(k,k);drawFighter(c,FIGHTERS[i],{t:0,cos:cos});
   if(locked){c.globalCompositeOperation='source-atop';c.fillStyle='#0b0c20';c.fillRect(-120,-160,300,300);c.globalCompositeOperation='source-over';}
   c.restore();
@@ -5982,7 +5996,7 @@ function renderMenu(){
   document.querySelectorAll('#picks .card,#roadpick .card,#rkpick .card').forEach(el=>{
     const i=+el.dataset.i,c=el.querySelector('canvas').getContext('2d');
     if(i<0){c.scale(2,2);c.fillStyle='#ffc23d';c.font='400 56px Bungee,Impact,sans-serif';c.textAlign='center';c.fillText('?',36,56);}
-    else{c.translate(28,12);paintFighter(c,i,isLocked(i));}
+    else{c.translate(28,12);paintFighter(c,i,isLocked(i),el.dataset.k==='p2'?NOCOS:undefined);}
     el.addEventListener('click',()=>{sel[el.dataset.k]=+el.dataset.i;renderMenu();const n=document.querySelector('.card[data-k="'+el.dataset.k+'"][data-i="'+el.dataset.i+'"]');if(n){n.focus();n.classList.add('pop');}});
   });
   hideTip();
@@ -6104,8 +6118,8 @@ function renderChest(){
    (cs.phase==='result'?'':'<div class="startbar">'+btns+(all?'':'<span class="hint nh'+(sc&&coins<sc.cost?'':' off')+'">'+tx('notEnough')+'</span>')+'</div>')+
    '<div><h3>'+tx('collection')+' · '+tx('chances')+'</h3><div class="cards">'+cf.map(i=>{const f=FIGHTERS[i],ow=own.includes(f.id),col=RARC[f.rar];
      return '<div class="card" style="border-color:'+col+'"><canvas width="144" height="144" data-i="'+i+'"></canvas><b>'+(ow?f.name:'???')+'</b><span class="rarlbl" style="color:'+col+'">'+tx('rar_'+f.rar)+'</span><span>'+CHESTS.map((ch,k)=>ch.icon+' '+Math.round(chW(ch,cf,i)/tws[k]*100)+'%').join(' · ')+'</span></div>';}).join('')+'</div></div>';
-  box.querySelectorAll('canvas[data-i]').forEach(cn=>{const i=+cn.dataset.i;paintFighter(cn.getContext('2d'),i,!own.includes(FIGHTERS[i].id));});
-  const rc=$('chestRes');if(rc){const c=rc.getContext('2d');c.scale(2,2);paintFighter(c,cs.i,false);}
+  box.querySelectorAll('canvas[data-i]').forEach(cn=>{const i=+cn.dataset.i;paintFighter(cn.getContext('2d'),i,!own.includes(FIGHTERS[i].id),NOCOS);});
+  const rc=$('chestRes');if(rc){const c=rc.getContext('2d');c.scale(2,2);paintFighter(c,cs.i,false,NOCOS);}
   box.querySelectorAll('[data-ct]').forEach(b=>b.addEventListener('click',()=>doChest(+b.dataset.ct)));
   const cb=$('chestClaim');if(cb){cb.addEventListener('click',()=>{cs={phase:'idle'};chestSel=-1;renderMenu();const n=$('chestbox').querySelector('[data-co]');if(n)n.focus({preventScroll:true});});
     if(cs.fresh){cs.fresh=false;cb.focus({preventScroll:true});}}
@@ -6117,7 +6131,7 @@ function renderChest(){
   if(op){
     const spr={};
     box.querySelectorAll('canvas[data-r]').forEach(cn=>{const i=+cn.dataset.r;
-      if(!spr[i]){const o=document.createElement('canvas');o.width=o.height=144;paintFighter(o.getContext('2d'),i,false);spr[i]=o;}
+      if(!spr[i]){const o=document.createElement('canvas');o.width=o.height=144;paintFighter(o.getContext('2d'),i,false,NOCOS);spr[i]=o;}
       cn.getContext('2d').drawImage(spr[i],0,0);});
     if(!cs.started){
       cs.started=true;
@@ -6145,7 +6159,7 @@ function cosSwap(){
   const box=$('chestbox'),f=FIGHTERS[cosSel],eq=cosEq[f.id]||(cosEq[f.id]={});
   box.querySelectorAll('.dd-opt').forEach(o=>o.setAttribute('aria-selected',String(+o.dataset.v===cosSel)));
   const nm=$('cosDDname');if(nm)nm.textContent=f.name;
-  const ic=$('cosDDic');if(ic){ic.width=ic.width;paintFighter(ic.getContext('2d'),cosSel,false);}
+  const ic=$('cosDDic');if(ic){ic.width=ic.width;paintFighter(ic.getContext('2d'),cosSel,false,NOCOS);}
   const pv=$('cosPrev');if(pv){pv.width=pv.width;const c=pv.getContext('2d');c.scale(2,2);paintFighter(c,cosSel,false,Object.assign({},eq));}
   const rn=box.querySelector('.chestStage .rname');if(rn)rn.textContent=f.name;
   box.querySelectorAll('canvas[data-cos]').forEach(cn=>{const x=COS.find(q=>q.id===cn.dataset.cos),o={};o[x.slot]=x.id;cn.width=cn.width;paintFighter(cn.getContext('2d'),cosSel,false,o);});
@@ -6153,6 +6167,7 @@ function cosSwap(){
     const x=COS.find(q=>q.id===b.dataset.act),ow=cosOwn.includes(x.id),on=eq[x.slot]===x.id,card=b.closest('.card');
     if(card)card.style.borderColor=on?'var(--gold)':'';
     b.textContent=!ow?tx('buy'):(on?tx('unequip'):tx('equip'));
+    b.classList.toggle('buy',!ow);
   });
   const st=box.querySelector('.chestStage');if(st){st.classList.remove('swap');void st.offsetWidth;st.classList.add('swap');}
 }
@@ -6162,23 +6177,24 @@ function renderCos(){
   const fid=FIGHTERS[cosSel].id,eq=cosEq[fid]||(cosEq[fid]={});
   let h=tabsHTML()+'<div><div class="coinbig">'+COIN+' '+coins+'</div><p class="hint" style="margin:6px 0 0">'+tx('cosInfo')+'</p></div>'+
    '<div class="chestStage"><canvas id="cosPrev" width="288" height="288"></canvas><div class="rname">'+FIGHTERS[cosSel].name+'</div></div>'+
-   '<div><h3>'+tx('cosFighter')+'</h3><div class="dd" id="cosDD"><button type="button" class="dd-btn" id="cosFighter" aria-haspopup="listbox" aria-expanded="false" aria-label="'+tx('cosFighter')+'"><canvas class="dd-ic" id="cosDDic" width="144" height="144"></canvas><span class="dd-name" id="cosDDname">'+FIGHTERS[cosSel].name+'</span><svg class="dd-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="dd-list" role="listbox" aria-label="'+tx('cosFighter')+'">'+ops.map((i,k)=>'<button type="button" class="dd-opt" role="option" aria-selected="'+(i===cosSel)+'" data-v="'+i+'" style="animation-delay:'+Math.min(k*16,240)+'ms"><canvas width="144" height="144" data-dd="'+i+'"></canvas><span>'+FIGHTERS[i].name+'</span></button>').join('')+'</div></div></div>';
+   '<div><h3>'+tx('cosFighter')+'</h3><div class="dd" id="cosDD"><button type="button" class="dd-btn" id="cosFighter" aria-haspopup="listbox" aria-expanded="false" aria-label="'+tx('cosFighter')+'"><canvas class="dd-ic" id="cosDDic" width="144" height="144"></canvas><span class="dd-name" id="cosDDname">'+FIGHTERS[cosSel].name+'</span><svg class="dd-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="dd-list" role="listbox" aria-label="'+tx('cosFighter')+'">'+ops.map((i,k)=>'<button type="button" class="dd-opt" role="option" aria-selected="'+(i===cosSel)+'" data-v="'+i+'" style="animation-delay:'+Math.min(k*16,240)+'ms"><canvas width="144" height="144" data-dd="'+i+'"></canvas><span>'+FIGHTERS[i].name+'</span></button>').join('')+'</div></div></div>'+
+   '<label class="music-game cos-all"><input type="checkbox" id="cosAll"'+(cosAll?' checked':'')+'><span class="mg-box" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg></span><span class="mg-text">'+tx('cosAll')+'</span><span class="mg-eq" aria-hidden="true"><i></i><i></i><i></i></span></label>';
   for(const sl of ['hat','face','body']){
     h+='<div><h3>'+tx('slot_'+sl)+'</h3><div class="cards">'+COS.filter(x=>x.slot===sl).map(x=>{
       const ow=cosOwn.includes(x.id),on=eq[sl]===x.id;
-      return '<div class="card" style="'+(on?'border-color:var(--gold)':'')+'"><canvas width="144" height="144" data-cos="'+x.id+'"></canvas><b>'+tx('cos_'+x.id)+'</b><span>'+(ow?tx('owned'):COIN+' '+x.price)+'</span><button type="button" class="ghost" data-act="'+x.id+'"'+(!ow&&coins<x.price?' disabled':'')+'>'+(!ow?tx('buy'):(on?tx('unequip'):tx('equip')))+'</button></div>';
+      return '<div class="card" style="'+(on?'border-color:var(--gold)':'')+'"><canvas width="144" height="144" data-cos="'+x.id+'"></canvas><b>'+tx('cos_'+x.id)+'</b><span>'+(ow?tx('owned'):COIN+' '+x.price)+'</span><button type="button" class="ghost'+(!ow?' buy':'')+'" data-act="'+x.id+'"'+(!ow&&coins<x.price?' disabled':'')+'>'+(!ow?tx('buy'):(on?tx('unequip'):tx('equip')))+'</button></div>';
     }).join('')+'</div></div>';
   }
   box.innerHTML=h;
   bindTabs(box);
   const pc=$('cosPrev').getContext('2d');pc.scale(2,2);paintFighter(pc,cosSel,false,Object.assign({},eq));
   box.querySelectorAll('canvas[data-cos]').forEach(cn=>{const x=COS.find(q=>q.id===cn.dataset.cos),o={};o[x.slot]=x.id;paintFighter(cn.getContext('2d'),cosSel,false,o);});
-  paintFighter($('cosDDic').getContext('2d'),cosSel,false);
+  paintFighter($('cosDDic').getContext('2d'),cosSel,false,NOCOS);
   {
     const dd=$('cosDD'),ddb=$('cosFighter');
     const ddClose=f=>{dd.classList.remove('open');ddb.setAttribute('aria-expanded','false');if(f)ddb.focus();};
     const ddOpen=()=>{
-      if(!dd.dataset.painted){dd.querySelectorAll('canvas[data-dd]').forEach(cn=>paintFighter(cn.getContext('2d'),+cn.dataset.dd,false));dd.dataset.painted='1';}
+      if(!dd.dataset.painted){dd.querySelectorAll('canvas[data-dd]').forEach(cn=>paintFighter(cn.getContext('2d'),+cn.dataset.dd,false,NOCOS));dd.dataset.painted='1';}
       dd.classList.add('open');ddb.setAttribute('aria-expanded','true');
       const sel=dd.querySelector('[aria-selected="true"]');if(sel)sel.scrollIntoView({block:'nearest'});
     };
@@ -6201,11 +6217,13 @@ function renderCos(){
       const d=$('cosDD');if(d&&d.classList.contains('open')&&!d.contains(e.target)){d.classList.remove('open');const b=$('cosFighter');if(b)b.setAttribute('aria-expanded','false');}
     });}
   }
+  const ca=$('cosAll');if(ca)ca.addEventListener('change',()=>{cosAll=ca.checked;saveCos();const lb=ca.closest('.music-game');lb.classList.remove('pop');if(ca.checked){void lb.offsetWidth;lb.classList.add('pop');setTimeout(()=>lb.classList.remove('pop'),650);}});
   box.querySelectorAll('[data-act]').forEach(b=>b.addEventListener('click',()=>{
     const x=COS.find(q=>q.id===b.dataset.act),eq=cosEq[FIGHTERS[cosSel].id]||(cosEq[FIGHTERS[cosSel].id]={});
     if(!cosOwn.includes(x.id)){if(coins<x.price)return;coins-=x.price;cosOwn.push(x.id);eq[x.slot]=x.id;qAdd('clothes');qSave();}
     else if(eq[x.slot]===x.id)delete eq[x.slot];
     else eq[x.slot]=x.id;
+    if(cosAll){const v=eq[x.slot];for(const ff of FIGHTERS){const e2=cosEq[ff.id]||(cosEq[ff.id]={});if(v)e2[x.slot]=v;else delete e2[x.slot];}}
     saveCoins();saveCos();renderMenu();
     const n=$('chestbox').querySelector('[data-act="'+x.id+'"]');if(n)n.focus();
   }));
@@ -6335,11 +6353,11 @@ Object.assign(TR.de,{rsTitle:'Spiel läuft noch',rsBody:'Du hattest noch ein Spi
 Object.assign(TR.fr,{rsTitle:'Partie en cours',rsBody:'Tu avais encore un combat ouvert. Reprendre là où tu t’étais arrêté ?',rsYes:'Reprendre',rsNo:'Abandonner'});
 Object.assign(TR.es,{rsTitle:'Partida en curso',rsBody:'Tenías un combate abierto. ¿Quieres continuar donde lo dejaste?',rsYes:'Continuar',rsNo:'Descartar'});
 /* ---------- Quest texts ---------- */
-Object.assign(TR.en,{"questBtn": "Quests", "questInfo": "Complete quests to earn coins. Progress counts in fights against the CPU (not in training or with 2 players).", "claim": "Claim", "claimAll": "Claim all (+{0} 🪙)", "qReady": "Ready to claim", "qBusy": "In progress", "qClaimed": "Claimed", "qCount": "{0} of {1} quests claimed", "q_fights": "Play fights against the CPU", "q_wins": "Win fights against the CPU", "q_hits": "Land hits on the CPU", "q_dmg": "Deal total damage", "q_kos": "KO the CPU", "q_wallkicks": "Do wallkicks", "q_ledges": "Grab ledges", "q_specials": "Use special attacks", "q_bosses": "Win Bossfight Road fights", "q_flawless": "Win without losing a life (3+ lives)", "q_comeback": "Win on your last life", "q_quick": "Win in under 60 seconds", "q_hardwins": "Win on Hard", "q_fighters": "Win with different fighters", "q_maps": "Win on different maps", "q_chests": "Open chests", "q_clothes": "Buy clothes", "q_time": "Play (minutes)"});
-Object.assign(TR.nl,{"questBtn": "Quests", "questInfo": "Voltooi quests en verdien munten. Voortgang telt mee in gevechten tegen de CPU (niet in training of met 2 spelers).", "claim": "Ophalen", "claimAll": "Alles ophalen (+{0} 🪙)", "qReady": "Klaar om op te halen", "qBusy": "Bezig", "qClaimed": "Opgehaald", "qCount": "{0} van {1} quests opgehaald", "q_fights": "Speel gevechten tegen de CPU", "q_wins": "Win gevechten tegen de CPU", "q_hits": "Raak de CPU", "q_dmg": "Richt totale schade aan", "q_kos": "KO de CPU", "q_wallkicks": "Doe wallkicks", "q_ledges": "Grijp randen", "q_specials": "Gebruik speciale aanvallen", "q_bosses": "Win gevechten in de Bossfight Road", "q_flawless": "Win zonder een leven te verliezen (3+ levens)", "q_comeback": "Win op je laatste leven", "q_quick": "Win in minder dan 60 seconden", "q_hardwins": "Win op Hard", "q_fighters": "Win met verschillende vechters", "q_maps": "Win op verschillende kaarten", "q_chests": "Open kisten", "q_clothes": "Koop kleren", "q_time": "Speel (minuten)"});
-Object.assign(TR.de,{"questBtn": "Quests", "questInfo": "Erfülle Quests und verdiene Münzen. Der Fortschritt zählt in Kämpfen gegen die CPU (nicht im Training oder mit 2 Spielern).", "claim": "Abholen", "claimAll": "Alle abholen (+{0} 🪙)", "qReady": "Bereit zum Abholen", "qBusy": "In Arbeit", "qClaimed": "Abgeholt", "qCount": "{0} von {1} Quests abgeholt", "q_fights": "Kämpfe gegen die CPU bestreiten", "q_wins": "Kämpfe gegen die CPU gewinnen", "q_hits": "Die CPU treffen", "q_dmg": "Gesamtschaden verursachen", "q_kos": "Die CPU KO schlagen", "q_wallkicks": "Wallkicks ausführen", "q_ledges": "Kanten greifen", "q_specials": "Spezialangriffe einsetzen", "q_bosses": "Kämpfe in der Bossfight Road gewinnen", "q_flawless": "Gewinnen, ohne ein Leben zu verlieren (3+ Leben)", "q_comeback": "Mit dem letzten Leben gewinnen", "q_quick": "In unter 60 Sekunden gewinnen", "q_hardwins": "Auf Schwer gewinnen", "q_fighters": "Mit verschiedenen Kämpfern gewinnen", "q_maps": "Auf verschiedenen Karten gewinnen", "q_chests": "Truhen öffnen", "q_clothes": "Kleidung kaufen", "q_time": "Spielen (Minuten)"});
-Object.assign(TR.fr,{"questBtn": "Quêtes", "questInfo": "Termine des quêtes pour gagner des pièces. La progression compte dans les combats contre le CPU (pas à l’entraînement ni à 2 joueurs).", "claim": "Récupérer", "claimAll": "Tout récupérer (+{0} 🪙)", "qReady": "Prêtes à récupérer", "qBusy": "En cours", "qClaimed": "Récupérées", "qCount": "{0} quêtes sur {1} récupérées", "q_fights": "Disputer des combats contre le CPU", "q_wins": "Gagner des combats contre le CPU", "q_hits": "Toucher le CPU", "q_dmg": "Infliger des dégâts au total", "q_kos": "Mettre le CPU KO", "q_wallkicks": "Faire des wallkicks", "q_ledges": "Attraper des rebords", "q_specials": "Utiliser des attaques spéciales", "q_bosses": "Gagner des combats de la Bossfight Road", "q_flawless": "Gagner sans perdre de vie (3+ vies)", "q_comeback": "Gagner avec ta dernière vie", "q_quick": "Gagner en moins de 60 secondes", "q_hardwins": "Gagner en Difficile", "q_fighters": "Gagner avec des combattants différents", "q_maps": "Gagner sur des cartes différentes", "q_chests": "Ouvrir des coffres", "q_clothes": "Acheter des vêtements", "q_time": "Jouer (minutes)"});
-Object.assign(TR.es,{"questBtn": "Misiones", "questInfo": "Completa misiones y gana monedas. El progreso cuenta en combates contra la CPU (no en el entrenamiento ni con 2 jugadores).", "claim": "Reclamar", "claimAll": "Reclamar todo (+{0} 🪙)", "qReady": "Listas para reclamar", "qBusy": "En curso", "qClaimed": "Reclamadas", "qCount": "{0} de {1} misiones reclamadas", "q_fights": "Jugar combates contra la CPU", "q_wins": "Ganar combates contra la CPU", "q_hits": "Golpear a la CPU", "q_dmg": "Causar daño en total", "q_kos": "Noquear a la CPU", "q_wallkicks": "Hacer wallkicks", "q_ledges": "Agarrar bordes", "q_specials": "Usar ataques especiales", "q_bosses": "Ganar combates de la Bossfight Road", "q_flawless": "Ganar sin perder una vida (3+ vidas)", "q_comeback": "Ganar con tu última vida", "q_quick": "Ganar en menos de 60 segundos", "q_hardwins": "Ganar en Difícil", "q_fighters": "Ganar con luchadores distintos", "q_maps": "Ganar en mapas distintos", "q_chests": "Abrir cofres", "q_clothes": "Comprar ropa", "q_time": "Jugar (minutos)"});
+Object.assign(TR.en,{"questBtn": "Quests", "questInfo": "Complete quests to earn coins. Progress counts in fights against the CPU (not in training or with 2 players).", "claim": "Claim", "claimAll": "Claim all (+{0} 🪙)", "qReady": "Ready to claim", "qBusy": "In progress", "qClaimed": "Claimed", "qCount": "{0} of {1} quests claimed", "q_fights": "Play fights against the CPU", "q_wins": "Win fights against the CPU", "q_hits": "Land hits on the CPU", "q_dmg": "Deal total damage", "q_kos": "KO the CPU", "q_wallkicks": "Do wallkicks", "q_ledges": "Grab ledges", "q_specials": "Use special attacks", "q_bosses": "Win Bossfight Road fights", "q_flawless": "Win without losing a life", "q_comeback": "Win on your last life", "q_quick": "Win in under 60 seconds", "q_hardwins": "Win on Hard", "q_fighters": "Win with different fighters", "q_maps": "Win on different maps", "q_chests": "Open chests", "q_clothes": "Buy clothes", "q_time": "Play (minutes)"});
+Object.assign(TR.nl,{"questBtn": "Quests", "questInfo": "Voltooi quests en verdien munten. Voortgang telt mee in gevechten tegen de CPU (niet in training of met 2 spelers).", "claim": "Ophalen", "claimAll": "Alles ophalen (+{0} 🪙)", "qReady": "Klaar om op te halen", "qBusy": "Bezig", "qClaimed": "Opgehaald", "qCount": "{0} van {1} quests opgehaald", "q_fights": "Speel gevechten tegen de CPU", "q_wins": "Win gevechten tegen de CPU", "q_hits": "Raak de CPU", "q_dmg": "Richt totale schade aan", "q_kos": "KO de CPU", "q_wallkicks": "Doe wallkicks", "q_ledges": "Grijp randen", "q_specials": "Gebruik speciale aanvallen", "q_bosses": "Win gevechten in de Bossfight Road", "q_flawless": "Win zonder een leven te verliezen", "q_comeback": "Win op je laatste leven", "q_quick": "Win in minder dan 60 seconden", "q_hardwins": "Win op Hard", "q_fighters": "Win met verschillende vechters", "q_maps": "Win op verschillende kaarten", "q_chests": "Open kisten", "q_clothes": "Koop kleren", "q_time": "Speel (minuten)"});
+Object.assign(TR.de,{"questBtn": "Quests", "questInfo": "Erfülle Quests und verdiene Münzen. Der Fortschritt zählt in Kämpfen gegen die CPU (nicht im Training oder mit 2 Spielern).", "claim": "Abholen", "claimAll": "Alle abholen (+{0} 🪙)", "qReady": "Bereit zum Abholen", "qBusy": "In Arbeit", "qClaimed": "Abgeholt", "qCount": "{0} von {1} Quests abgeholt", "q_fights": "Kämpfe gegen die CPU bestreiten", "q_wins": "Kämpfe gegen die CPU gewinnen", "q_hits": "Die CPU treffen", "q_dmg": "Gesamtschaden verursachen", "q_kos": "Die CPU KO schlagen", "q_wallkicks": "Wallkicks ausführen", "q_ledges": "Kanten greifen", "q_specials": "Spezialangriffe einsetzen", "q_bosses": "Kämpfe in der Bossfight Road gewinnen", "q_flawless": "Gewinnen, ohne ein Leben zu verlieren", "q_comeback": "Mit dem letzten Leben gewinnen", "q_quick": "In unter 60 Sekunden gewinnen", "q_hardwins": "Auf Schwer gewinnen", "q_fighters": "Mit verschiedenen Kämpfern gewinnen", "q_maps": "Auf verschiedenen Karten gewinnen", "q_chests": "Truhen öffnen", "q_clothes": "Kleidung kaufen", "q_time": "Spielen (Minuten)"});
+Object.assign(TR.fr,{"questBtn": "Quêtes", "questInfo": "Termine des quêtes pour gagner des pièces. La progression compte dans les combats contre le CPU (pas à l’entraînement ni à 2 joueurs).", "claim": "Récupérer", "claimAll": "Tout récupérer (+{0} 🪙)", "qReady": "Prêtes à récupérer", "qBusy": "En cours", "qClaimed": "Récupérées", "qCount": "{0} quêtes sur {1} récupérées", "q_fights": "Disputer des combats contre le CPU", "q_wins": "Gagner des combats contre le CPU", "q_hits": "Toucher le CPU", "q_dmg": "Infliger des dégâts au total", "q_kos": "Mettre le CPU KO", "q_wallkicks": "Faire des wallkicks", "q_ledges": "Attraper des rebords", "q_specials": "Utiliser des attaques spéciales", "q_bosses": "Gagner des combats de la Bossfight Road", "q_flawless": "Gagner sans perdre de vie", "q_comeback": "Gagner avec ta dernière vie", "q_quick": "Gagner en moins de 60 secondes", "q_hardwins": "Gagner en Difficile", "q_fighters": "Gagner avec des combattants différents", "q_maps": "Gagner sur des cartes différentes", "q_chests": "Ouvrir des coffres", "q_clothes": "Acheter des vêtements", "q_time": "Jouer (minutes)"});
+Object.assign(TR.es,{"questBtn": "Misiones", "questInfo": "Completa misiones y gana monedas. El progreso cuenta en combates contra la CPU (no en el entrenamiento ni con 2 jugadores).", "claim": "Reclamar", "claimAll": "Reclamar todo (+{0} 🪙)", "qReady": "Listas para reclamar", "qBusy": "En curso", "qClaimed": "Reclamadas", "qCount": "{0} de {1} misiones reclamadas", "q_fights": "Jugar combates contra la CPU", "q_wins": "Ganar combates contra la CPU", "q_hits": "Golpear a la CPU", "q_dmg": "Causar daño en total", "q_kos": "Noquear a la CPU", "q_wallkicks": "Hacer wallkicks", "q_ledges": "Agarrar bordes", "q_specials": "Usar ataques especiales", "q_bosses": "Ganar combates de la Bossfight Road", "q_flawless": "Ganar sin perder una vida", "q_comeback": "Ganar con tu última vida", "q_quick": "Ganar en menos de 60 segundos", "q_hardwins": "Ganar en Difícil", "q_fighters": "Ganar con luchadores distintos", "q_maps": "Ganar en mapas distintos", "q_chests": "Abrir cofres", "q_clothes": "Comprar ropa", "q_time": "Jugar (minutos)"});
 Object.assign(TR.en,{"qViewAria": "Quest view", "qView_grid": "Grid", "qView_list": "List"});
 Object.assign(TR.nl,{"qViewAria": "Weergave", "qView_grid": "Raster", "qView_list": "Lijst"});
 Object.assign(TR.de,{"qViewAria": "Ansicht", "qView_grid": "Raster", "qView_list": "Liste"});
@@ -6651,7 +6669,7 @@ const BLOCK=['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space','Slash','Per
 addEventListener('keydown',e=>{
   initAudio();
   if(splashOpen){if(e.code==='Enter'||e.code==='NumpadEnter'||e.code==='Space'){e.preventDefault();closeSplash();}return;}
-  if(NET.lobbyOpen){if(e.code==='Escape'){e.preventDefault();NET.closeLobby();}return;}
+  if(NET.lobbyOpen){if(e.code==='Escape'){e.preventDefault();NET.askLeave();}return;}
   if(infoOpen&&e.code==='Escape')hideTip();
   if(rebind){e.preventDefault();doRebind(e);return;}
   if(inSet&&!game&&e.code==='Escape'){e.preventDefault();closeSet();return;}
@@ -6700,10 +6718,15 @@ de:{btn:'Online',title:'Online-Match',create:'Raum erstellen',join:'Raum beitret
 fr:{btn:'En ligne',title:'Match en ligne',create:'Créer un salon',join:'Rejoindre',making:'Création du salon…',share:'Partage ce code avec ton ami',wait:'En attente de ton ami…',conn:'Ami connecté !',start:'Lancer le match',enter:'Entre le code du salon',go:'Rejoindre',joining:'Connexion…',waitHost:'Connecté ! En attente de l’hôte…',nf:'Salon introuvable. Vérifie le code.',net:'Problème de connexion. Réessaie.',left:'Ton ami est parti.',lost:'Connexion perdue.',rematch:'Revanche',waitRm:'En attente de l’ami…',menu:'Match en ligne',modeOn:'Match en ligne',noLib:'Le service en ligne n’a pas pu être chargé.',desync:'Les parties sont désynchronisées. Lance une revanche.',hint:'Tu joues avec le combattant du Joueur 1 du menu. L’hôte choisit l’arène et les règles.',copy:'Copier le code',copied:'Copié !',back:'Retour',close:'Fermer',roomCode:'Code du salon',host:'Hôte',you:'toi',yourF:'Ton combattant',rules:'Arène et règles',hostOnly:'Seul l’hôte peut changer l’arène et les règles.',lives:'Vies',arena:'Arène',leave:'Quitter le salon',players:'Dans le salon',pups:'Power-ups',waitStart:'En attente de l’hôte…',stall:'En attente de l’adversaire…'},
 es:{btn:'Online',title:'Partida online',create:'Crear sala',join:'Unirse a sala',making:'Creando sala…',share:'Comparte este código con tu amigo',wait:'Esperando a tu amigo…',conn:'¡Amigo conectado!',start:'Empezar partida',enter:'Introduce el código',go:'Unirse',joining:'Conectando…',waitHost:'¡Conectado! Esperando al anfitrión…',nf:'Sala no encontrada. Revisa el código.',net:'Problema de conexión. Inténtalo de nuevo.',left:'Tu amigo se fue.',lost:'Conexión perdida.',rematch:'Revancha',waitRm:'Esperando al amigo…',menu:'Partida online',modeOn:'Partida online',noLib:'No se pudo cargar el servicio online.',desync:'Las partidas se desincronizaron. Pide una revancha.',hint:'Juegas con el luchador del Jugador 1 del menú. El anfitrión elige arena y reglas.',copy:'Copiar código',copied:'¡Copiado!',back:'Atrás',close:'Cerrar',roomCode:'Código de sala',host:'Anfitrión',you:'tú',yourF:'Tu luchador',rules:'Arena y reglas',hostOnly:'Solo el anfitrión puede cambiar la arena y las reglas.',lives:'Vidas',arena:'Arena',leave:'Salir de la sala',players:'En la sala',pups:'Power-ups',waitStart:'Esperando al anfitrión…',stall:'Esperando al rival…'}};
 Object.assign(ONL.en,{kick:'Kick',promote:'Make host',kicked:'The host removed you from the room.',kickedS:'was removed from the room.',nowHost:'You are now the host!',handed:'Host role handed over.',personal:'Personal choice · only affects you',stOn:'Connected',stOff:'Waiting…',inRoomL:'in the room',secRules:'Arena, modifiers & power-ups',chgHint:'Tap a fighter below to change',joinedS:'joined the room!',leftS:'left the room.',youJoined:'You joined the room!'});
+Object.assign(ONL.en,{leaveT:'Are you sure you want to leave this room?',leaveD:'If you leave, you may lose your current settings for your online match, the room may close and the room code may become invalid.',leaveYes:'Leave room',leaveNo:'Stay',hostLeft:'The host left. You are the new host!'});
 Object.assign(ONL.nl,{kick:'Kicken',promote:'Host maken',kicked:'De host heeft je uit de kamer gezet.',kickedS:'is uit de kamer gezet.',nowHost:'Je bent nu de host!',handed:'Host-rol overgedragen.',personal:'Persoonlijke keuze · alleen voor jou',stOn:'Verbonden',stOff:'Wachten…',inRoomL:'in de kamer',secRules:'Arena, modifiers & power-ups',chgHint:'Tik hieronder op een karakter om te wisselen',joinedS:'is de kamer binnengekomen!',leftS:'heeft de kamer verlaten.',youJoined:'Je zit nu in de kamer!'});
+Object.assign(ONL.nl,{leaveT:'Weet je zeker dat je deze kamer wilt verlaten?',leaveD:'Als je weggaat, kan het zijn dat je je huidige instellingen voor je online wedstrijd kwijtraakt, dat de kamer sluit en dat de kamercode ongeldig wordt.',leaveYes:'Kamer verlaten',leaveNo:'Blijven',hostLeft:'De host is vertrokken. Jij bent nu de nieuwe host!'});
 Object.assign(ONL.de,{kick:'Rauswerfen',promote:'Zum Host machen',kicked:'Der Host hat dich aus dem Raum entfernt.',kickedS:'wurde aus dem Raum entfernt.',nowHost:'Du bist jetzt der Host!',handed:'Host-Rolle übergeben.',personal:'Persönliche Wahl · betrifft nur dich',stOn:'Verbunden',stOff:'Warten…',inRoomL:'im Raum',secRules:'Arena, Modifikatoren & Power-ups',chgHint:'Tippe unten auf einen Kämpfer zum Wechseln',joinedS:'ist dem Raum beigetreten!',leftS:'hat den Raum verlassen.',youJoined:'Du bist dem Raum beigetreten!'});
+Object.assign(ONL.de,{leaveT:'Bist du sicher, dass du diesen Raum verlassen willst?',leaveD:'Wenn du gehst, kannst du deine aktuellen Einstellungen für dein Online-Match verlieren, der Raum kann geschlossen werden und der Raumcode kann ungültig werden.',leaveYes:'Raum verlassen',leaveNo:'Bleiben',hostLeft:'Der Host ist gegangen. Du bist jetzt der neue Host!'});
 Object.assign(ONL.fr,{kick:'Expulser',promote:'Nommer hôte',kicked:'L’hôte t’a retiré du salon.',kickedS:'a été retiré du salon.',nowHost:'Tu es maintenant l’hôte !',handed:'Rôle d’hôte transmis.',personal:'Choix personnel · ne concerne que toi',stOn:'Connecté',stOff:'En attente…',inRoomL:'dans le salon',secRules:'Arène, modificateurs et power-ups',chgHint:'Touche un combattant ci-dessous pour changer',joinedS:'a rejoint le salon !',leftS:'a quitté le salon.',youJoined:'Tu as rejoint le salon !'});
+Object.assign(ONL.fr,{leaveT:'Veux-tu vraiment quitter ce salon ?',leaveD:'Si tu pars, tu risques de perdre tes paramètres actuels pour ton match en ligne, le salon peut fermer et le code du salon peut devenir invalide.',leaveYes:'Quitter le salon',leaveNo:'Rester',hostLeft:'L’hôte est parti. Tu es maintenant le nouvel hôte !'});
 Object.assign(ONL.es,{kick:'Expulsar',promote:'Hacer anfitrión',kicked:'El anfitrión te sacó de la sala.',kickedS:'fue expulsado de la sala.',nowHost:'¡Ahora eres el anfitrión!',handed:'Rol de anfitrión transferido.',personal:'Elección personal · solo te afecta a ti',stOn:'Conectado',stOff:'Esperando…',inRoomL:'en la sala',secRules:'Arena, modificadores y power-ups',chgHint:'Toca un luchador abajo para cambiar',joinedS:'se unió a la sala.',leftS:'salió de la sala.',youJoined:'¡Te uniste a la sala!'});
+Object.assign(ONL.es,{leaveT:'¿Seguro que quieres salir de esta sala?',leaveD:'Si te vas, puedes perder tus ajustes actuales de la partida online, la sala puede cerrarse y el código de la sala puede dejar de ser válido.',leaveYes:'Salir de la sala',leaveNo:'Quedarme',hostLeft:'El anfitrión se fue. ¡Ahora eres el nuevo anfitrión!'});
 /* WebRTC needs a TURN relay on 4G/5G (carrier NAT) and on many public/school/hotel networks.
    Default: free Open Relay servers (shared, rate-limited). For a reliable setup create a free account at
    metered.ca (or Cloudflare Calls TURN) and replace the TURN entries below with your own credentials. */
@@ -6746,7 +6769,7 @@ const peerOpts=()=>({config:{iceServers:ICE_LIVE||ICE_SERVERS,iceCandidatePoolSi
 refreshIce();
 function onl(k){return (ONL[lang]&&ONL[lang][k])||ONL.en[k]||k;}
 function mkRng(s){let a=s>>>0;return()=>{a=(a+0x6D2B79F5)>>>0;let t=a;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;};}
-function cosFor(p){return NET.on?((NET.cos&&NET.cos[p.idx])||{}):p.ai?{}:undefined;}
+function cosFor(p){return NET.on?((NET.cos&&NET.cos[p.idx])||{}):(p.idx===0&&!p.ai&&!p.dummy)?undefined:{};}
 function rndSim(){return NET.on&&NET.rng?NET.rng():Math.random();}
 function simHash(){let h=0;for(const p of game.players)for(const v of [p.x,p.y,p.vx,p.vy,p.dmg,p.stocks,p.t,p.hitstun,p.dmgLim])h=(Math.imul(h,31)+Math.round((v||0)*100))|0;return h;}
 const NET={
@@ -6786,7 +6809,7 @@ const NET={
         document.head.appendChild(st);
       }
       document.querySelectorAll('.pcFx').forEach(n=>n.remove());
-      const isNew=kind==='new',el=document.createElement('div');
+      const isNew=kind==='new'||kind==='left',el=document.createElement('div');
       el.className='pcFx '+(isNew?'new':'old');el.setAttribute('aria-hidden','true');
       let h='<div class="pcBg"></div>'+(isNew?'<div class="pcRay"></div><div class="pcRing"></div><div class="pcRing b"></div>':'');
       const n=isNew?22:12;
@@ -6797,7 +6820,7 @@ const NET={
         +'<rect x="10" y="62" width="80" height="12" rx="4" fill="url(#pcG)" stroke="#7a4300" stroke-width="4"/>'
         +'<circle cx="50" cy="10" r="5" fill="#ff4d6d" stroke="#7a4300" stroke-width="2.5"/><circle cx="5" cy="21" r="4.5" fill="#4dd2ff" stroke="#7a4300" stroke-width="2.5"/><circle cx="95" cy="21" r="4.5" fill="#4dd2ff" stroke="#7a4300" stroke-width="2.5"/>'
         +'<circle cx="30" cy="68" r="3" fill="#ff4d6d"/><circle cx="50" cy="68" r="3" fill="#7dffa0"/><circle cx="70" cy="68" r="3" fill="#ff4d6d"/></svg>';
-      const t=document.createElement('div');t.className='pcTxt';t.textContent=onl(isNew?'nowHost':'handed');
+      const t=document.createElement('div');t.className='pcTxt';t.textContent=onl(kind==='left'?'hostLeft':(isNew?'nowHost':'handed'));
       el.innerHTML=h;el.appendChild(t);document.body.appendChild(el);
       setTimeout(()=>el.remove(),isNew?3200:2600);
       if(typeof tone==='function'&&!(typeof muted!=='undefined'&&muted)){
@@ -6815,9 +6838,12 @@ const NET={
       const s=document.createElement('style');s.textContent='#onl{position:fixed;inset:0;z-index:250;background:rgba(8,8,26,.88);display:flex;align-items:center;justify-content:center;padding:12px;overflow:auto}#onl .onc{background:var(--panel);border:2px solid var(--gold);border-radius:14px;padding:20px 24px;max-width:380px;width:100%;text-align:center;display:flex;flex-direction:column;gap:12px;color:#fff}#onl h2{margin:0;font:400 28px var(--display)}#onl p{margin:0}#onl .onr{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}#onl .oncode{font:400 44px var(--display);letter-spacing:.18em;color:var(--gold)}#onl input{font:400 32px var(--display);letter-spacing:.2em;text-align:center;text-transform:uppercase;padding:8px;border-radius:8px;border:2px solid var(--line);background:#0b0c1c;color:#fff;width:100%;box-sizing:border-box}#onl.in{animation:fadeIn .25s ease-out}#onl.in .onc{animation:ovPop .35s ease-out both}#onl .cta{font-size:18px;padding:10px 22px}#onl.big{align-items:flex-start}#onl .onc.wide{max-width:960px;max-height:calc(100dvh - 24px);overflow:auto;text-align:left;align-items:stretch;box-sizing:border-box}#onl h3{margin:0;font:400 20px var(--display);color:var(--gold)}#onl h4{margin:6px 0 0;font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}.lbtop{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}.lbcode{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.lbcode .oncode{font-size:32px}.lbl{color:var(--muted);font-size:13px}.lbsec{border:2px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px}.lbpl{display:grid;grid-template-columns:1fr 1fr;gap:10px}.lbp{display:flex;align-items:center;gap:10px;border:2px solid var(--line);border-radius:12px;padding:8px 10px;opacity:.65}.lbp.on{opacity:1;border-color:var(--p1)}.lbp.g.on{border-color:var(--p2)}.lbp canvas{width:56px;height:56px;flex:none}.lbp small{display:block;color:var(--muted)}.lbp .dot{width:10px;height:10px;border-radius:50%;background:#666;flex:none;animation:splBlink 1.2s infinite}.lbp.on .dot{background:#4ade80;box-shadow:0 0 8px #4ade80;animation:none}.lbtag{font-style:normal;font-size:11px;padding:1px 6px;border-radius:8px;background:var(--gold);color:#1b1500}.lbtag.me{background:#fff}.lbgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px}.lbgrid.lbmaps{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}.lbf,.lbm{background:var(--panel);border:2px solid var(--line);border-radius:10px;color:inherit;padding:6px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;cursor:pointer;min-width:0}.lbf canvas{width:64px;height:64px}.lbm canvas,.lbrnd{width:100%;aspect-ratio:16/9;border-radius:6px}.lbrnd{display:grid;place-items:center;background:#0b0c1c;font:400 28px var(--display);color:var(--gold)}.lbf.on,.lbm.on{border-color:var(--gold);box-shadow:inset 0 0 0 2px var(--gold)}.lbf:disabled,.lbm:disabled{cursor:default}.lbf:disabled:not(.on){opacity:.5}.lbro .lbm:disabled:not(.on),.lbro .mod:disabled:not(.on){opacity:.45}@media(max-width:560px){.lbpl{grid-template-columns:1fr}}#onl .cta:disabled{opacity:.5}#onw,.onn{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:260;background:rgba(0,0,0,.78);color:#fff;padding:6px 14px;border-radius:20px;font-weight:700}';
       document.head.appendChild(s);
       {const s2=document.createElement('style');s2.textContent='#onl.big{padding:0;align-items:stretch;background:var(--bg)}\n#onl.big .onc.rp{max-width:none;width:100%;height:100%;max-height:none;border:0;border-radius:0;padding:0;gap:0;background:var(--bg);overflow:auto;text-align:left;align-items:stretch;box-sizing:border-box}\n.rp-body{width:100%;max-width:1000px;margin:0 auto;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(28px,env(safe-area-inset-bottom));box-sizing:border-box;display:flex;flex-direction:column;gap:22px}\n.rp-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;justify-content:space-between}\n.rp-codebox{display:flex;align-items:center;gap:10px;background:var(--panel);border:2px dashed var(--gold);border-radius:12px;padding:4px 6px 4px 14px}\n.rp-codebox .oncode{font-size:34px;line-height:1.1;user-select:all}\n.rp-count{display:flex;align-items:center;gap:8px;color:var(--muted);font-weight:700}\n.rp-count b{color:var(--text);font:400 20px var(--display)}\n.rp-count.full b{color:#4ade80}\n.rp-pips{display:flex;gap:4px}.rp-pips i{width:12px;height:12px;border-radius:50%;background:var(--line)}.rp-pips i.on{background:#4ade80;box-shadow:0 0 8px #4ade80}\n.rp-players{display:grid;grid-template-columns:1fr 1fr;gap:12px}\n.rp-slot{display:flex;align-items:center;gap:14px;border:3px dashed var(--line);border-radius:14px;padding:12px;background:var(--panel);min-width:0;transition:border-color .25s,background .25s}\n.rp-slot.on{border-style:solid;border-color:var(--p1);background:var(--panel2)}.rp-slot.g.on{border-color:var(--p2)}\n.rp-slot.me{box-shadow:0 0 0 3px rgba(255,194,61,.45)}\n.rp-slot.pop{animation:rpPop .6s ease-out}\n@keyframes rpPop{0%{transform:scale(.88);box-shadow:0 0 0 0 rgba(74,222,128,.9)}60%{transform:scale(1.04)}100%{transform:scale(1);box-shadow:0 0 0 14px rgba(74,222,128,0)}}\n.rp-slot canvas,.rp-empty{width:84px;height:84px;flex:none}\n.rp-empty{display:grid;place-items:center;border-radius:50%;border:3px dashed var(--line);font:400 36px var(--display);color:var(--muted);animation:splBlink 1.4s infinite}\n.rp-info{min-width:0;flex:1;display:flex;flex-direction:column;gap:2px}\n.rp-name{font:400 20px var(--display);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}\n.rp-slot:not(.on) .rp-name{white-space:normal;overflow:visible;text-overflow:clip;font-size:17px;line-height:1.2;overflow-wrap:anywhere}\n.rp-tags{display:flex;gap:6px;flex-wrap:wrap}.rp-tags:empty{display:none}\n.rp-info small{color:var(--muted);font-size:15px}\n.rp-st{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:700;color:var(--muted);margin-top:2px}\n.rp-st .dot{width:10px;height:10px;border-radius:50%;background:#666;flex:none;animation:splBlink 1.2s infinite}\n.rp-slot.on .rp-st{color:#4ade80}.rp-slot.on .rp-st .dot{background:#4ade80;box-shadow:0 0 8px #4ade80;animation:none}\n#onl .pick h2{margin:0;font:700 15px var(--body);text-transform:uppercase;letter-spacing:.14em;color:var(--pc)}\n.rp-ttl{display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-width:0}\n.rp-pers{font-size:13px;font-weight:700;color:var(--gold);border:1px solid var(--gold);border-radius:999px;padding:2px 10px;background:rgba(255,194,61,.1)}\n#onl .sld-rail input[type=range]{position:absolute;inset:0;width:100%;height:36px;margin:0;padding:0;border:0;border-radius:0;background:transparent;letter-spacing:normal;text-transform:none;box-sizing:border-box}\n.lbro .sld{opacity:.6;pointer-events:none}\n.lbro .card:disabled[aria-checked=true]{opacity:1}\n.rp-start{display:flex;flex-direction:column;align-items:center;gap:8px;padding-top:6px}\n#onl .rp-start .cta{font-size:22px;padding:14px 44px}\n.rp-hint{color:var(--muted);font-weight:700}\n@media(max-width:560px){.rp-players{gap:8px}.rp-slot{flex-direction:column;text-align:center;padding:10px 8px}.rp-info{align-items:center}.rp-tags{justify-content:center}.rp-slot canvas,.rp-empty{width:64px;height:64px}.rp-codebox .oncode{font-size:28px}.rp-head{justify-content:center}}\n#onl.out{animation:rpOut .28s ease-in both;pointer-events:none}#onl.out .onc{animation:rpOutC .28s ease-in both}@keyframes rpOut{to{opacity:0}}@keyframes rpOutC{to{opacity:0;transform:translateY(24px) scale(.97)}}.onc.rp.rp-in{animation:pgUp .35s ease-out}.rp.animin .mod,.rp.animin .rp-slot{animation:itemIn .4s ease-out both;animation-delay:calc(var(--i,0)*40ms + 80ms)}.rp-start .cta:not(:hover):not(:active):not(:focus-visible):not(:disabled){animation:ctaPulse 2.4s ease-out infinite}.rp .pop{animation:pop .3s ease-out}\n.rp-act{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.rp-act .ghost{padding:3px 10px;font-size:14px;min-height:0}.rp-act .kick{border-color:var(--p1);color:var(--p1)}.rp-act .kick:hover{background:var(--p1);color:#fff}';document.head.appendChild(s2);}
+      {const s3=document.createElement('style');s3.textContent='#onl.big{background:transparent}#onl.big .onc.rp{background:transparent}\n#onlBg{position:fixed;inset:0;z-index:249;overflow:hidden;pointer-events:none;display:none;background:var(--bg)}\n#onl.big:not([hidden])~#onlBg{display:block}\n#onlBg video{width:100%;height:100%;display:block;object-fit:cover}\n#onlBg::after{content:\'\';position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,transparent calc(50% - 780px),rgba(14,15,34,.5) calc(50% - 660px),var(--bg) calc(50% - 530px),var(--bg) calc(50% + 530px),rgba(14,15,34,.5) calc(50% + 660px),transparent calc(50% + 780px))}\n@media (max-width:760px){#onlBg::after{background:linear-gradient(90deg,transparent 0%,var(--bg) 9%,var(--bg) 91%,transparent 100%)}}\n#onl.big.in~#onlBg{animation:fadeIn .25s ease-out}#onl.big.out~#onlBg{animation:rpOut .28s ease-in both}';document.head.appendChild(s3);}
       const el=this.el=document.createElement('div');el.id='onl';el.hidden=true;document.body.appendChild(el);
       el.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b&&!b.disabled)this.act(b.dataset.a,b);});
       el.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='onCode')this.act('go');});
+      const bg=document.createElement('div');bg.id='onlBg';bg.setAttribute('aria-hidden','true');
+      bg.innerHTML='<video autoplay muted loop playsinline preload="auto"><source src="assets/video/Rumble_Rift_menu_loop_v2.mp4" type="video/mp4"></video>';document.body.appendChild(bg);
     }
     this.lobbyOpen=true;this.el.hidden=false;
     clearTimeout(this.ct);this.el.classList.remove('out');this.el.classList.remove('in');void this.el.offsetWidth;this.el.classList.add('in');clearTimeout(this.at);this.at=setTimeout(()=>this.el.classList.remove('in'),450);
@@ -6828,6 +6854,28 @@ const NET={
     const el=this.el;this.lobbyOpen=false;
     if(!this.on)this.close();
     if(el&&!el.hidden){clearTimeout(this.at);clearTimeout(this.ct);el.classList.remove('in');el.classList.add('out');this.ct=setTimeout(()=>{el.classList.remove('out');el.hidden=true;},280);}
+  },
+  /* 'Weet je zeker...' popup bij het verlaten van de pre-lobby */
+  askLeave(){
+    if(this.st!=='room'){this.closeLobby();return;}
+    if(this.isHost&&this.gj){ /* host met gast erbij: direct weg, gast wordt de nieuwe host */
+      if(this.leaving)return;this.leaving=1;this.send({k:'bye'});
+      setTimeout(()=>{this.leaving=0;this.closeLobby();},150);return;
+    }
+    if(!this.isHost){this.closeLobby();return;} /* gast: kamer blijft open voor de host */
+    if($('cfOv'))return;
+    const T=onl,ov=document.createElement('div');
+    ov.id='cfOv';ov.setAttribute('role','alertdialog');ov.setAttribute('aria-modal','true');ov.setAttribute('aria-labelledby','cfT');ov.setAttribute('aria-describedby','cfD');
+    ov.innerHTML='<div class="cf-box"><h2 id="cfT">'+escHTML(T('leaveT'))+'</h2><p id="cfD">'+escHTML(T('leaveD'))+'</p><div class="cf-row"><button type="button" class="ghost" id="cfNo">'+escHTML(T('leaveNo'))+'</button><button type="button" class="ghost danger" id="cfYes">'+escHTML(T('leaveYes'))+'</button></div></div>';
+    document.body.appendChild(ov);
+    const onKey=e=>{if(e.key==='Escape'){e.preventDefault();e.stopPropagation();close();}else if(e.key==='Tab'){const b=[$('cfNo'),$('cfYes')],i=b.indexOf(document.activeElement);e.preventDefault();b[(i+(e.shiftKey?-1:1)+2)%2].focus();}};
+    const close=()=>{document.removeEventListener('keydown',onKey,true);ov.remove();if(this.cfClose===close)this.cfClose=null;};
+    this.cfClose=close;
+    document.addEventListener('keydown',onKey,true);
+    ov.addEventListener('click',e=>{if(e.target===ov)close();});
+    $('cfNo').addEventListener('click',close);
+    $('cfYes').addEventListener('click',()=>{close();this.closeLobby();});
+    $('cfNo').focus();
   },
   kick(){
     const c=this.conn;if(!this.isHost||!c||!this.gj)return;
@@ -6843,6 +6891,18 @@ const NET={
     this.isHost=false;this.me=1;this.gf=this.hf;this.gc={};this.gu='';this.R=null;
     this.send({k:'hi',f:this.gf,c:cosOf(FIGHTERS[this.gf].id),u:cfg.user.trim(),r:rkLvOf(RK.rp)});
     this.crownFx('old');this.ui();
+  },
+  /* gast zit nog in de pre-lobby terwijl de host weggaat: gast wordt de nieuwe host en behoudt de kamercode */
+  hostLeft(){
+    const R=this.R||{},code=this.code;
+    this.teardown();
+    this.isHost=true;this.me=0;this.hf=this.gf;
+    if(R.map!==undefined)this.map=Math.max(-1,Math.min(MAPS.length-1,R.map|0));
+    if(R.mods)this.mods=Object.assign({},R.mods);
+    if(STOCKOPT.includes(R.stocks))this.stocks=R.stocks;
+    this.gf=0;this.gc={};this.gu='';this.gj=false;this.R=null;this.st='room';
+    this.crownFx('left');this.ui();
+    this.tryId(0,code);
   },
   gotPromoted(d){
     this.isHost=true;this.me=0;this.hf=this.gf;
@@ -6869,6 +6929,7 @@ const NET={
     el.innerHTML=h;
     const nc=el.querySelector('.onc');if(nc&&st==='room')nc.scrollTop=sc;
     hideTip();
+    if(st==='room'){const v=document.querySelector('#onlBg video');if(v&&v.paused){try{const pr=v.play();if(pr&&pr.catch)pr.catch(()=>{});}catch(e){}}}
     {const ent=st==='room'&&this.ps!=='room';this.ps=st;
      if(ent&&nc){nc.classList.add('rp-in');playIn(nc);setTimeout(()=>nc.classList.remove('rp-in'),500);}}
     if(st==='room'){
@@ -6970,17 +7031,19 @@ const NET={
     else if(a==='menu'){this.teardown();this.st=window.Peer?'menu':'err';this.msg=onl('noLib');this.ui();}
     else if(a==='kick'&&H)this.kick();
     else if(a==='promote'&&H)this.promote();
-    else if(a==='close'||a==='leave')this.closeLobby();
+    else if(a==='leave')this.askLeave();
+    else if(a==='close')this.closeLobby();
   },
-  err(k){this.teardown();this.st='err';this.msg=onl(k);this.ui();},
+  err(k){if(this.cfClose)this.cfClose();this.teardown();this.st='err';this.msg=onl(k);this.ui();},
   teardown(){const c=this.conn,p=this.peer;this.conn=null;this.peer=null;clearTimeout(this.jt);clearTimeout(this.rt);try{c&&c.close();}catch(e){}try{p&&p.destroy();}catch(e){}},
   close(){this.teardown();this.on=false;this.gj=false;this.R=null;this.cfg=null;this.base=null;this.rng=null;this.rm=[0,0];this.sT=0;const w=$('onw');if(w)w.remove();},
   /* connection */
   createRoom(){
     this.teardown();this.isHost=true;this.me=0;this.gf=0;this.gc={};this.gu='';this.gj=false;this.hf=this.fighterPick(sel.p1);this.map=sel.map;this.mods=Object.assign({},sel.mods);this.stocks=cfg.stocks;this.st='creating';this.ui();this.tryId(0);
   },
-  tryId(k){
+  tryId(k,fix){
     const A='ABCDEFGHJKMNPQRSTUVWXYZ23456789';let code='';for(let i=0;i<5;i++)code+=A[(Math.random()*A.length)|0];
+    if(fix)code=fix;
     if(!this.wk){this.wk=1;const w=()=>this.sigRe();document.addEventListener('visibilitychange',()=>{if(!document.hidden)w();});addEventListener('pageshow',w);addEventListener('online',w);}
     this.dgReset();const me=this.tk=(this.tk||0)+1;
     withIce(()=>{if(me!==this.tk||this.st!=='creating'&&this.st!=='room')return;
@@ -6989,7 +7052,9 @@ const NET={
     p.on('open',()=>{if(p!==this.peer)return;this.dgSet('sg','open');this.st='room';this.ui();});
     p.on('connection',c=>{if(p!==this.peer)return;if(this.conn){c.on('open',()=>c.close());return;}this.attach(c);});
     p.on('disconnected',()=>{if(p!==this.peer)return;this.dgSet('sg','disconnected');this.sigRe();});
-    p.on('error',e=>{if(p!==this.peer)return;this.dgSet('sg','err '+e.type);if(this.st==='room'&&(e.type==='unavailable-id'||SIGERR.test(e.type))){if(!(this.conn&&this.conn.open))this.sigRe();return;}if(e.type==='unavailable-id'&&k<4){this.peer=null;try{p.destroy();}catch(x){}this.tryId(k+1);}else this.err('net');});
+    p.on('error',e=>{if(p!==this.peer)return;this.dgSet('sg','err '+e.type);
+      if(fix&&e.type==='unavailable-id'){this.peer=null;try{p.destroy();}catch(x){}if(k<8)setTimeout(()=>{if(this.isHost&&this.st==='room'&&!this.peer&&!this.conn&&this.code===fix)this.tryId(k+1,fix);},1500);else this.tryId(0);return;}
+      if(this.st==='room'&&(e.type==='unavailable-id'||SIGERR.test(e.type))){if(!(this.conn&&this.conn.open))this.sigRe();return;}if(e.type==='unavailable-id'&&k<4){this.peer=null;try{p.destroy();}catch(x){}this.tryId(k+1);}else this.err('net');});
     });
   },
   join(raw){
@@ -7036,7 +7101,7 @@ const NET={
     if(this.on&&game){
       const p=this.peer;this.conn=null;this.peer=null;try{p&&p.destroy();}catch(e){}
       $('ov').dataset.lock='1';showOv(onl(game.over?'left':'lost'),[[tx('toMenu'),toMenu]]);
-    }else if(this.lobbyOpen){if(this.isHost&&this.st==='room'){this.note((this.gu||tx('player',2))+' '+onl('leftS'));this.conn=null;this.gj=false;this.gu='';this.gc={};this.ui();}else this.err('left');}else this.teardown();
+    }else if(this.lobbyOpen){if(this.isHost&&this.st==='room'){this.note((this.gu||tx('player',2))+' '+onl('leftS'));this.conn=null;this.gj=false;this.gu='';this.gc={};this.ui();}else if(!this.isHost&&this.st==='room')this.hostLeft();else this.err('left');}else this.teardown();
   },
   /* match setup */
   fighterPick(v){const op=FIGHTERS.map((f,i)=>i).filter(i=>!isLocked(i));return v<0?op[(Math.random()*op.length)|0]:(isLocked(v)?0:v);},
@@ -7051,6 +7116,7 @@ const NET={
   launch(c){
     this.on=true;this.cfg=c;this.cos=c.cs||[{},{}];this.gid=c.g;this.rng=mkRng(c.seed);this.rm=[0,0];this.hs={};this.ds=0;this.sT=0;
     this.n=0;this.sn=-1;this.buf=[{},{}];for(let i=0;i<this.D;i++)this.buf[0][i]=this.buf[1][i]=0;
+    if(this.cfClose)this.cfClose();
     this.lobbyOpen=false;if(this.el)this.el.hidden=true;
     startGame();
   },
@@ -7071,6 +7137,7 @@ const NET={
     if(d.k==='in'){if(d.g===this.gid)this.buf[1-this.me][d.n]=d.b;}
     else if(d.k==='hi'&&this.isHost){const fi=x=>Math.max(0,Math.min(FIGHTERS.length-1,x|0));this.gf=fi(d.f);this.gc=d.c||{};this.gu=String(d.u||'').slice(0,12);this.gr=Math.max(0,Math.min(RK_LV.length-1,d.r|0));if(!this.gj){this.gj=true;this.flash=1;this.sendRoom();this.note((this.gu||tx('player',2))+' '+onl('joinedS'));}this.ui();}
     else if(d.k==='room'&&!this.isHost){d.hf=Math.max(0,Math.min(FIGHTERS.length-1,d.hf|0));this.R=d;this.ui();}
+    else if(d.k==='bye'&&!this.isHost&&this.lobbyOpen&&this.st==='room'&&!this.on)this.hostLeft();
     else if(d.k==='start'&&!this.isHost)this.launch(d.c);
     else if(d.k==='kick'&&!this.isHost&&this.lobbyOpen)this.err('kicked');
     else if(d.k==='promote'&&!this.isHost&&this.lobbyOpen&&this.st==='room')this.gotPromoted(d);
@@ -7161,6 +7228,31 @@ $('settings').addEventListener('input',e=>{if(e.target.id==='userName'){cfg.user
 })();
 applyStatic();renderMenu();
 splInit();
+})();
+
+/* Arena cards: altijd even groot als de grootste arena card (per rij/raster, ook na taalwissel, resize en renderMenu) */
+(function(){
+  const seen=new WeakMap();let raf=0;
+  function eq(){
+    raf=0;
+    const boxes=document.querySelectorAll('.mapcards,.cards.row');
+    boxes.forEach(box=>{
+      const cs=box.querySelectorAll(':scope>.mcard');
+      if(!cs.length)return;
+      if(!seen.has(box)){seen.set(box,0);ro.observe(box);}
+      if(box.offsetParent===null)return;
+      cs.forEach(c=>{c.style.minHeight='';});
+      let m=0;cs.forEach(c=>{m=Math.max(m,c.offsetHeight);});
+      if(m>0)cs.forEach(c=>{c.style.minHeight=m+'px';});
+    });
+  }
+  function sched(){if(!raf)raf=requestAnimationFrame(eq);}
+  const ro=new ResizeObserver(es=>{for(const e of es){const w=Math.round(e.contentRect.width);if(seen.get(e.target)!==w){seen.set(e.target,w);sched();}}});
+  new MutationObserver(sched).observe(document.body,{childList:true,subtree:true,characterData:true});
+  window.addEventListener('resize',sched);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(sched);
+  window.addEventListener('load',sched);
+  sched();
 })();
 </script>
 
